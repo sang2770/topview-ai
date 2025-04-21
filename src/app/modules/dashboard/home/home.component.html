@@ -1,0 +1,176 @@
+<div class="page-container">
+    <div class="home-banner">
+        <h2>
+            Create Marketing Videos from Links or Materials
+        </h2>
+        <div class="banner-group">
+            <div class="banner-item">
+                <div class="item-prefix">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 19 18"
+                        font-size="17.5px">
+                        <g clip-path="url(#input_link_icon_svg__a)">
+                            <path fill="#4E40F3"
+                                d="m10.255 6.23 1.008 1.007a4.986 4.986 0 0 1 0 7.051l-.252.252a4.986 4.986 0 0 1-7.05-7.05l1.006 1.006a3.561 3.561 0 1 0 5.037 5.037l.251-.252a3.56 3.56 0 0 0 0-5.036L9.248 7.237zm4.785 4.28-1.007-1.006a3.561 3.561 0 0 0-5.037-5.037l-.251.252a3.56 3.56 0 0 0 0 5.036l1.007 1.008-1.007 1.007-1.008-1.007a4.985 4.985 0 0 1 0-7.051l.252-.252a4.986 4.986 0 0 1 7.05 7.05">
+                            </path>
+                        </g>
+                        <defs>
+                            <clipPath id="input_link_icon_svg__a">
+                                <path fill="#fff" d="M.75.25h17.5v17.5H.75z"></path>
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </div>
+                <input class="item-input" placeholder="Amazon/Shopify/TikTok/Ebay/Mercado..." />
+                <button class="btn btn-primary">
+                    Create video
+                </button>
+            </div>
+            <div style="font-size: 15px; color:rgba(255, 255, 255, 0.5) ;">
+                or
+            </div>
+            <div class="item-action h-100">
+                <button class="btn btn-ghost h-100">
+                    Upload file
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="home-content">
+        <div class="home-item">
+            <h3 class="home-item-title">
+                AI Creation Tools
+            </h3>
+            <div class="slider-container">
+                <button class="slider-btn slider-btn-left" (click)="scrollTools('left')" *ngIf="showToolsLeftButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="home-item-tools" #toolsContainer>
+                    @for (tool of toolList; track $index) {
+                    <div class="home-tool">
+                        @if (tool.video){
+                        <video [src]="tool.video" autoplay loop muted></video>
+                        } @else {
+                        <img [src]="tool.image" [alt]="tool.name">
+                        }
+                        <div class="home-tool-title">
+                            {{tool.name}}
+                        </div>
+                        <div class="home-tool-desc">
+                            {{tool.description}}
+                        </div>
+                    </div>
+                    }
+                </div>
+                <button class="slider-btn slider-btn-right" (click)="scrollTools('right')" *ngIf="showToolsRightButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="home-item">
+            <h3 class="home-item-title">
+                AnyShoot Templates
+            </h3>
+            <div class="slider-container">
+                <button class="slider-btn slider-btn-left" (click)="scrollTemplates('left')"
+                    *ngIf="showTemplatesLeftButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="home-item-templates" #templatesContainer>
+                    @for (template of templateList; track $index) {
+                    <div class="home-template">
+                        <img [src]="template.image" [alt]="template.title">
+                        <div class="home-template-title">
+                            {{template.title}}
+                        </div>
+                    </div>
+                    }
+                </div>
+                <button class="slider-btn slider-btn-right" (click)="scrollTemplates('right')"
+                    *ngIf="showTemplatesRightButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="home-item">
+            <h3 class="home-item-title">
+                Product Avatar Templates
+            </h3>
+            <div class="slider-container">
+                <button class="slider-btn slider-btn-left" (click)="scrollProductAvatars('left')"
+                    *ngIf="showProductAvatarsLeftButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="home-item-product-avatars" #productAvatarsContainer>
+                    @for (avatar of productAvatarList; track $index) {
+                    <div class="home-product-avatar">
+                        <div class="product-avatar-image-container">
+                            <img [src]="avatar.image" [alt]="avatar.category" loading="eager"
+                                class="product-avatar-image">
+                            <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
+                                class="product-avatar-badge">
+                        </div>
+                        <div class="product-avatar-title">
+                            <p>{{avatar.category}}</p>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <button class="slider-btn slider-btn-right" (click)="scrollProductAvatars('right')"
+                    *ngIf="showProductAvatarsRightButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="home-item">
+            <h3 class="home-item-title">
+                Video Avatar Templates
+            </h3>
+            <div class="slider-container">
+                <button class="slider-btn slider-btn-left" (click)="scrollProductAvatars('left')"
+                    *ngIf="showVideoAvatarLeftButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="home-item-video-avatars" #videoAvatarsContainer>
+                    @for (avatar of videoAvatarTemplate; track $index) {
+                    <div class="home-video-avatar">
+                        <div class="video-avatar-image-container">
+                            <img [src]="avatar.image" [alt]="avatar.title" loading="eager" class="video-avatar-image">
+                            <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
+                                class="video-avatar-badge">
+                        </div>
+                    </div>
+                    }
+                </div>
+                <button class="slider-btn slider-btn-right" (click)="scrollProductAvatars('right')"
+                    *ngIf="showVideoAvatarRightButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
