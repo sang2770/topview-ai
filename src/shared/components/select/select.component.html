@@ -1,0 +1,16 @@
+<div class="select-wrapper" [class.disabled]="disabled" [class.focused]="isFocused" [class.invalid]="invalid">
+    <select #selectElement class="select-element" [attr.id]="id" [attr.name]="name" [disabled]="disabled"
+        [attr.required]="required" [attr.aria-label]="ariaLabel || placeholder" (focus)="onFocus()" (blur)="onBlur()"
+        (change)="onChangeValue($event)">
+        <option *ngIf="placeholder" value="" disabled selected hidden>{{ placeholder }}</option>
+        <option *ngFor="let option of options" [value]="option.value" [disabled]="option.disabled">
+            {{ option.label }}
+        </option>
+    </select>
+
+    <div class="select-icon">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+            <path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+        </svg>
+    </div>
+</div>
