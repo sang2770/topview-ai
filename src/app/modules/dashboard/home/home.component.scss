@@ -311,21 +311,23 @@
         display: inline-block;
       }
     }
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 320px;
+      border: 2px solid var(--primary-color);
+      border-radius: 16px;
+      transition: 0.2s;
+      z-index: 2;
+      display: none;
+    }
 
     &:hover {
-      .product-avatar-image-container {
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border: 2px solid var(--primary-color);
-          border-radius: 16px;
-          transition: 0.2s;
-          z-index: 2;
-        }
+      &::after {
+        display: block;
       }
 
       .product-avatar-title p {
