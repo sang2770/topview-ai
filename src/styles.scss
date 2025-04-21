@@ -2,6 +2,7 @@
 :root {
   --primary-color: rgb(78, 64, 243);
   --dark-background: rgb(22, 22, 23);
+  --secondary-color: rgb(39, 39, 41);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -23,4 +24,33 @@ body {
 
 .page-container {
   padding: 0px 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+.btn {
+  padding: 0 16px;
+  font-size: 15px;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  height: 40px;
+  gap: 10px;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
 }

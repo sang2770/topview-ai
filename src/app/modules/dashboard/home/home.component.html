@@ -21,7 +21,7 @@
                     </svg>
                 </div>
                 <input class="item-input" placeholder="Amazon/Shopify/TikTok/Ebay/Mercado..." />
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" (click)="createVideo()">
                     Create video
                 </button>
             </div>
@@ -29,7 +29,7 @@
                 or
             </div>
             <div class="item-action h-100">
-                <button class="btn btn-ghost h-100">
+                <button class="btn btn-ghost h-100 pointer" (click)="createVideo()">
                     Upload file
                 </button>
             </div>

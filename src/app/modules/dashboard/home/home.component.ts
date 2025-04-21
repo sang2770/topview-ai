@@ -6,6 +6,8 @@ import {
   AfterViewInit,
   HostListener,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 
 type ScrollContainerType =
   | 'tools'
@@ -259,6 +261,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/d34311e2dce84c799a21772d2b3f3372/5c4-0a2cfad8245c.webp',
     },
   ];
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -348,5 +351,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   scrollProductAvatars(direction: 'left' | 'right'): void {
     this.scrollContainer('productAvatars', direction);
+  }
+
+  createVideo(): void {
+    this.router.navigate([ROUTER_UTILS.DASHBOARD.getMaterialToVideo()]).then();
   }
 }

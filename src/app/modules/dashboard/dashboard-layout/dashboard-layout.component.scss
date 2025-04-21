@@ -3,6 +3,11 @@
   align-items: center;
   height: 60px;
   border-bottom: 1px solid rgb(53, 53, 55);
+
+  .header-title {
+    flex: 1;
+    text-align: center;
+  }
 }
 
 .body {
