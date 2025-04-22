@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,10 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './material-to-video.component.scss',
   standalone: false,
 })
-export class MaterialToVideoComponent {
+export class MaterialToVideoComponent implements AfterViewInit {
   tab?: string = 'detail';
   isShowPlaceHolder: boolean = true;
   form: FormGroup = new FormGroup({});
+  @ViewChild('inputLink', {static: true}) inputLinkRef: any;
 
   languages = [
     { label: 'English', value: 'en' },
@@ -56,10 +57,20 @@ export class MaterialToVideoComponent {
       this.isShowPlaceHolder = !value;
     });
   }
+  ngAfterViewInit(): void {
+  }
 
   changeTab(tab: string) {
     this.tab = tab;
   }
 
   generate() {}
+
+  togglePlaceHolder() {
+    this.isShowPlaceHolder = !this.isShowPlaceHolder;
+    
+    if (this.inputLinkRef){
+      this.inputLinkRef.nativeElement.focus();
+    }
+  }
 }

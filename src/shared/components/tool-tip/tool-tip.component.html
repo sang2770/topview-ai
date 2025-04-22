@@ -1,0 +1,14 @@
+<div class="tooltip-container" 
+     (mouseenter)="show()" 
+     (mouseleave)="hide()">
+  <ng-content></ng-content>
+  <div [ngClass]="{'tooltip': true, 'tooltip-show': isVisible}"
+       [@tooltipAnimation]
+       [class.tooltip-top]="placement === 'top'"
+       [class.tooltip-bottom]="placement === 'bottom'"
+       [class.tooltip-left]="placement === 'left'"
+       [class.tooltip-right]="placement === 'right'">
+    <div class="tooltip-content">{{ content }}</div>
+    <div class="tooltip-arrow" *ngIf="hasArrow"></div>
+  </div>
+</div>

@@ -1,16 +1,53 @@
-<div class="select-wrapper" [class.disabled]="disabled" [class.focused]="isFocused" [class.invalid]="invalid">
-    <select #selectElement class="select-element" [attr.id]="id" [attr.name]="name" [disabled]="disabled"
-        [attr.required]="required" [attr.aria-label]="ariaLabel || placeholder" (focus)="onFocus()" (blur)="onBlur()"
-        (change)="onChangeValue($event)">
-        <option *ngIf="placeholder" value="" disabled selected hidden>{{ placeholder }}</option>
-        <option *ngFor="let option of options" [value]="option.value" [disabled]="option.disabled">
-            {{ option.label }}
-        </option>
-    </select>
+<div class="select-wrapper" [class.disabled]="disabled" [class.focused]="isFocused" [class.invalid]="invalid" #selectWrapper>
+    <button
+        #triggerButton
+        type="button"
+        class="select-trigger"
+        [attr.id]="id"
+        [attr.aria-label]="ariaLabel || placeholder"
+        [attr.aria-expanded]="isOpen"
+        [attr.aria-controls]="id + '-listbox'"
+        [disabled]="disabled"
+        (click)="toggleDropdown()"
+        (keydown)="onKeyDown($event)"
+        (blur)="onTriggerBlur($event)">
+        <span class="select-value" [class.placeholder]="!selectedOption">
+            <ng-container *ngIf="selectedOption; else placeholderTpl">
+                <ng-container *ngTemplateOutlet="optionTemplate || defaultOptionTemplate; context: { $implicit: selectedOption }"></ng-container>
+            </ng-container>
+            <ng-template #placeholderTpl>{{ placeholder }}</ng-template>
+        </span>
+        <div class="select-icon" [class.open]="isOpen">
+            <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+            </svg>
+        </div>
+    </button>
 
-    <div class="select-icon">
-        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-            <path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
-        </svg>
+    <div
+        *ngIf="isOpen"
+        class="select-dropdown"
+        [attr.id]="id + '-listbox'"
+        role="listbox"
+        [attr.aria-label]="ariaLabel || placeholder"
+        (mousedown)="$event.preventDefault()"
+        [@dropdownAnimation]>
+        <div class="select-options" #optionsContainer>
+            <div
+                *ngFor="let option of options; let i = index"
+                class="select-option"
+                [class.selected]="option.value === value"
+                [class.disabled]="option.disabled"
+                [attr.aria-selected]="option.value === value"
+                role="option"
+                (click)="!option.disabled && selectOption(option)"
+                (mouseenter)="highlightOption(i)">
+                <ng-container *ngTemplateOutlet="optionTemplate || defaultOptionTemplate; context: { $implicit: option }"></ng-container>
+            </div>
+        </div>
     </div>
+
+    <ng-template #defaultOptionTemplate let-option>
+        {{ option.label }}
+    </ng-template>
 </div>

@@ -21,10 +21,10 @@
 
                 </svg>
             </div>
-            <input type="text" name="inputLink" formControlName="link">
-            <button class="btn btn-primary">Import from Link</button>
+            <input type="text" name="inputLink" formControlName="link" #inputLink>
+            <button class="btn btn-primary" style="position: relative;" [appTooltip]="'Select from available options'" placement="top">Import from Link</button>
             @if (isShowPlaceHolder){
-            <div class="place-holder" (click)="isShowPlaceHolder = !isShowPlaceHolder">
+            <div class="place-holder" (click)="togglePlaceHolder()">
                 <p class="chakra-text css-0">Enter a link, supports</p>
                 <div class="css-16iqw5x"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none"
                         viewBox="0 0 24 24">

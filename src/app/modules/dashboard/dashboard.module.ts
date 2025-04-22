@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectComponent } from '../../../shared/components/select/select.component';
 import { MaterialToVideoComponent } from './material-to-video/material-to-video.component';
+import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
 
 @NgModule({
   declarations: [HomeComponent, MaterialToVideoComponent],
@@ -15,6 +16,7 @@ import { MaterialToVideoComponent } from './material-to-video/material-to-video.
     ReactiveFormsModule,
     FormsModule,
     SelectComponent,
+    TooltipDirective
   ],
 })
 export class DashboardModule {}

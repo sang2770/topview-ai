@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SelectComponent, SelectOption } from './select.component';
+import { TooltipDirective } from '../../directives/tooltip.directive';
 
 @Component({
   selector: 'app-select-demo',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SelectComponent],
+  imports: [CommonModule, ReactiveFormsModule, SelectComponent, TooltipDirective],
   template: `
     <div class="demo-container">
       <h2>Select Component Demo</h2>
@@ -17,6 +18,8 @@ import { SelectComponent, SelectOption } from './select.component';
           [options]="basicOptions"
           placeholder="Select an option"
           (selectionChange)="onBasicSelectionChange($event)"
+          [appTooltip]="'Select from available options'"
+          placement="top"
         >
         </app-select>
         <p *ngIf="basicSelectedValue">Selected: {{ basicSelectedValue }}</p>
@@ -29,6 +32,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="formOptions"
             placeholder="Select a size"
             formControlName="size"
+            [appTooltip]="'Choose your preferred size'"
+            placement="right"
           >
           </app-select>
         </form>
@@ -42,6 +47,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="variantOptions"
             placeholder="Outline (Default)"
             variant="outline"
+            [appTooltip]="'Default outline style'"
+            placement="top"
           >
           </app-select>
 
@@ -49,6 +56,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="variantOptions"
             placeholder="Filled"
             variant="filled"
+            [appTooltip]="'Filled background style'"
+            placement="top"
           >
           </app-select>
 
@@ -56,6 +65,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="variantOptions"
             placeholder="Flushed"
             variant="flushed"
+            [appTooltip]="'Borderless flushed style'"
+            placement="top"
           >
           </app-select>
 
@@ -63,6 +74,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="variantOptions"
             placeholder="Unstyled"
             variant="unstyled"
+            [appTooltip]="'No default styling'"
+            placement="top"
           >
           </app-select>
         </div>
@@ -71,17 +84,31 @@ import { SelectComponent, SelectOption } from './select.component';
       <div class="demo-section">
         <h3>Sizes</h3>
         <div class="size-row">
-          <app-select [options]="sizeOptions" placeholder="Small" size="sm">
+          <app-select 
+            [options]="sizeOptions" 
+            placeholder="Small" 
+            size="sm"
+            [appTooltip]="'Small size select'"
+            placement="left"
+          >
           </app-select>
 
           <app-select
             [options]="sizeOptions"
             placeholder="Medium (Default)"
             size="md"
+            [appTooltip]="'Medium size select'"
+            placement="top"
           >
           </app-select>
 
-          <app-select [options]="sizeOptions" placeholder="Large" size="lg">
+          <app-select 
+            [options]="sizeOptions" 
+            placeholder="Large" 
+            size="lg"
+            [appTooltip]="'Large size select'"
+            placement="right"
+          >
           </app-select>
         </div>
       </div>
@@ -89,13 +116,20 @@ import { SelectComponent, SelectOption } from './select.component';
       <div class="demo-section">
         <h3>States</h3>
         <div class="state-row">
-          <app-select [options]="stateOptions" placeholder="Normal">
+          <app-select 
+            [options]="stateOptions" 
+            placeholder="Normal"
+            [appTooltip]="'Normal state select'"
+            placement="top"
+          >
           </app-select>
 
           <app-select
             [options]="stateOptions"
             placeholder="Disabled"
             [disabled]="true"
+            [appTooltip]="'This select is disabled'"
+            placement="bottom"
           >
           </app-select>
 
@@ -103,6 +137,8 @@ import { SelectComponent, SelectOption } from './select.component';
             [options]="stateOptions"
             placeholder="Invalid"
             [invalid]="true"
+            [appTooltip]="'Invalid state select'"
+            placement="right"
           >
           </app-select>
         </div>
