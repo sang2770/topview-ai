@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../shared/components/modal';
 import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
+import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 
 @Component({
   selector: 'app-material-to-video',
@@ -49,7 +50,8 @@ export class MaterialToVideoComponent implements AfterViewInit {
     public activatedRoute: ActivatedRoute,
     public dashboardService: DashboardService,
     public modalService: ModalService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public router: Router
   ) {
     dashboardService.title$.next('Material to Video');
     this.form = fb.group({
@@ -89,5 +91,9 @@ export class MaterialToVideoComponent implements AfterViewInit {
     ).afterClosed$.subscribe(result => {
       this.avatar = result;
     })
+  }
+
+  redirectToDashboard() {
+    this.router.navigate([ROUTER_UTILS.DASHBOARD.getHome()]);
   }
 }

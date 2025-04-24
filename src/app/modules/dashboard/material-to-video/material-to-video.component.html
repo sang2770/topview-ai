@@ -1,5 +1,5 @@
 <div class="page-container">
-    <button class="btn btn-secondary">
+    <button class="btn btn-secondary" (click)="redirectToDashboard()">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
             focusable="false" class="chakra-icon css-10er4pj">
             <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -202,7 +202,7 @@
             <h4>Product Name</h4>
             <input type="text" name="product-name" formControlName="name"
                 placeholder="Your product name or video topic" [ngClass]="{'invalid': this.form.get('name')?.invalid}">
-            <div class="error">
+            <div class="error" *ngIf="this.form.get('name')?.invalid && this.form.get('name')?.touched">
                 Please enter product name or video topic.
             </div>
             <div class="product-tabs">
@@ -211,8 +211,8 @@
                 <div [class]="{'tab': true, 'active': tab === 'script' }" (click)="changeTab('script')">Use My Script
                 </div>
             </div>
-            <textarea name="product-details" formControlName="script"  [ngClass]="{'invalid': this.form.get('name')?.invalid}"></textarea>
-            <div class="error">
+            <textarea name="product-details" formControlName="script"  [ngClass]="{'invalid': this.form.get('script')?.invalid}"></textarea>
+            <div class="error" *ngIf="this.form.get('script')?.invalid && this.form.get('script')?.touched">
                 Please enter product description or topic content
             </div>
         </div>
