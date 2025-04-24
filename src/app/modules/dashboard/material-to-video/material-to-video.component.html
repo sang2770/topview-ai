@@ -201,14 +201,20 @@
         <div class="product-info">
             <h4>Product Name</h4>
             <input type="text" name="product-name" formControlName="name"
-                placeholder="Your product name or video topic">
+                placeholder="Your product name or video topic" [ngClass]="{'invalid': this.form.get('name')?.invalid}">
+            <div class="error">
+                Please enter product name or video topic.
+            </div>
             <div class="product-tabs">
                 <div [class]="{'tab': true, 'active': tab === 'detail' }" (click)="changeTab('detail')">Product
                     Details for The Script</div>
                 <div [class]="{'tab': true, 'active': tab === 'script' }" (click)="changeTab('script')">Use My Script
                 </div>
             </div>
-            <textarea name="product-details" formControlName="script"></textarea>
+            <textarea name="product-details" formControlName="script"  [ngClass]="{'invalid': this.form.get('name')?.invalid}"></textarea>
+            <div class="error">
+                Please enter product description or topic content
+            </div>
         </div>
     </div>
 </div>
@@ -227,6 +233,10 @@
         </app-select>
         <app-select [options]="voices" placeholder="Select an option">
         </app-select>
+        <button class="btn btn-ghost" (click)="openSelectAvatar()">
+            <img alt="avatar" [src]="this.avatar?.url ?? 'https://www.topview.ai/images/m2v/avatar_demo.png'" style="width: 20px; height: 20px; border-radius: 8px;">
+            <span style="flex-shrink: 0;">{{this.avatar?.name ?? 'No Avatar'}}</span>
+        </button>
         <button style="padding: 0 40px; font-size: 16px; margin-left: 20px;" class="btn btn-primary"
             (click)="generate()">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 17 21"

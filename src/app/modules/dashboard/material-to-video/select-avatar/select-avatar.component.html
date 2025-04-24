@@ -1,0 +1,23 @@
+<div class="avatar-container">
+    <div class="avatar-header">
+        <a href="https://fl85bkxdyaa.typeform.com/to/z8nNw9Ou">No desired avatar? Tell us</a>
+    </div>
+    <div class="avatar-content">
+        <div class="avatar-item empty d-flex align-item-center justify-content-center" (click)="selectAvatar(null)"
+            [class.selected]="selectedAvatar === null">
+            <img src="https://www.topview.ai/images/icon/ban_small.svg" alt="empty" style="width: 50px;">
+        </div>
+        @for (item of avatarList; track $index) {
+        <div class="avatar-item" [class.selected]="selectedAvatar === $index" (click)="selectAvatar($index)">
+            <div class="avatar-media-container">
+                <img [src]="item.url" alt="Avatar" class="avatar-image">
+                <video [src]="item.videoUrl" class="avatar-video" loop muted #avatarVideo></video>
+            </div>
+            <!-- <div class="avatar-name">{{ item.name || 'Avatar ' + ($index + 1) }}</div> -->
+        </div>
+        }
+    </div>
+    <div class="avatar-footer d-flex flex-end">
+        <button class="btn btn-primary large" (click)="onConfirm()">Confirm</button>
+    </div>
+</div>

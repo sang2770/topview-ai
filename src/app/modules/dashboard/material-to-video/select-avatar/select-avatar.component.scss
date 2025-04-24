@@ -1,0 +1,100 @@
+.avatar-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.avatar-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+
+  a {
+    color: #4a90e2;
+    text-decoration: none;
+    font-size: 14px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.avatar-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-height: 700px;
+  overflow-y: auto;
+
+  .box.empty {
+    display: none; // Hide the empty box
+  }
+}
+
+.avatar-item {
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  background: rgb(39, 39, 41);
+  cursor: pointer;
+  border-radius: 8px;
+  height: 256px;
+
+  &:hover {
+    outline: rgb(78, 64, 243) solid 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &.selected {
+    outline: rgb(78, 64, 243) solid 2px;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+  }
+}
+
+.avatar-media-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+
+  .avatar-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+  }
+
+  .avatar-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+}
+
+.avatar-name {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.avatar-footer {
+  padding: 20px;
+  padding-right: 0;
+}

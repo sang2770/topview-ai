@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalService } from '../../../../shared/components/modal';
+import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
 
 @Component({
   selector: 'app-material-to-video',
@@ -41,16 +43,19 @@ export class MaterialToVideoComponent implements AfterViewInit {
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
   ];
+
+  avatar: any = {};
   constructor(
-    activatedRoute: ActivatedRoute,
-    dashboardService: DashboardService,
-    fb: FormBuilder
+    public activatedRoute: ActivatedRoute,
+    public dashboardService: DashboardService,
+    public modalService: ModalService,
+    public fb: FormBuilder
   ) {
     dashboardService.title$.next('Material to Video');
     this.form = fb.group({
-      link: ['', [Validators.required]],
+      link: ['', []],
       name: ['', [Validators.required]],
-      script: [''],
+      script: ['', [Validators.required]],
     });
 
     this.form.get('link')?.valueChanges.subscribe((value) => {
@@ -72,5 +77,17 @@ export class MaterialToVideoComponent implements AfterViewInit {
     if (this.inputLinkRef){
       this.inputLinkRef.nativeElement.focus();
     }
+  }
+
+  openSelectAvatar() {
+    this.modalService.open(
+      SelectAvatarComponent, {
+        title: 'AI avatar',
+        data: {},
+        size: 'xl',
+      }
+    ).afterClosed$.subscribe(result => {
+      this.avatar = result;
+    })
   }
 }

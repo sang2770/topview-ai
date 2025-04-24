@@ -11,6 +11,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   background-color: var(--dark-background);
   color: white;
@@ -46,6 +47,13 @@ button {
   border: none;
   height: 40px;
   gap: 10px;
+  justify-content: center;
+}
+
+.btn-ghost {
+  background-color: transparent !important;
+  border: 1px solid var(--border-color);
+  padding: 0px 24px;
 }
 
 .btn-secondary {
@@ -54,6 +62,12 @@ button {
 
 .btn-primary {
   background-color: var(--primary-color);
+}
+
+.btn.large {
+  min-width: 150px;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 h4 {
@@ -83,6 +97,28 @@ h4 {
   justify-content: center;
 }
 
+.flex-end {
+  justify-self: end;
+}
+
 .gap-10 {
   gap: 10px;
+}
+
+
+.error {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  color: rgb(255, 64, 64);
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+  border: 1px solid rgb(255, 64, 64) !important;
+}
+
+input, textarea{
+  outline: none;
 }

@@ -57,12 +57,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   private hide() {
-    // clearTimeout(this.showTimeout);
-    // if (this.tooltipRef) {
-    //   this.hideTimeout = setTimeout(() => {
-    //     this.destroyTooltip();
-    //   }, this.hideDelay);
-    // }
+    clearTimeout(this.showTimeout);
+    if (this.tooltipRef) {
+      this.hideTimeout = setTimeout(() => {
+        this.destroyTooltip();
+      }, this.hideDelay);
+    }
   }
 
   private destroyTooltip() {
