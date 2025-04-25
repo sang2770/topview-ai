@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from '../../../../shared/components/modal';
 import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
+import { HttpClient } from '@angular/common/http';
+import { LoadingService } from '../../../../shared/services/loading.service';
 
 @Component({
   selector: 'app-material-to-video',
@@ -17,7 +19,7 @@ export class MaterialToVideoComponent implements AfterViewInit {
   isShowPlaceHolder: boolean = true;
   form: FormGroup = new FormGroup({});
   @ViewChild('inputLink', {static: true}) inputLinkRef: any;
-
+  images: string[] = [];
   languages = [
     { label: 'English', value: 'en' },
     { label: 'Spanish', value: 'es' },
@@ -51,7 +53,9 @@ export class MaterialToVideoComponent implements AfterViewInit {
     public dashboardService: DashboardService,
     public modalService: ModalService,
     public fb: FormBuilder,
-    public router: Router
+    public router: Router,
+    public http: HttpClient,
+    public loadingService: LoadingService
   ) {
     dashboardService.title$.next('Material to Video');
     this.form = fb.group({
@@ -95,5 +99,15 @@ export class MaterialToVideoComponent implements AfterViewInit {
 
   redirectToDashboard() {
     this.router.navigate([ROUTER_UTILS.DASHBOARD.getHome()]);
+  }
+
+  getImageProduct() {
+    const link = this.form.get('link')?.value;
+    if (!link) return;
+    this.http.post(`localhost:3000/exactImages`, {
+      url: link,
+    }).subscribe((res: any) => {
+      this.images = res;
+    });
   }
 }
