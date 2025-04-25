@@ -1,1 +1,115 @@
-<p>ai-video works!</p>
+<div class="app-container">
+    <header class="top-bar">
+        <nav class="main-nav">
+            <button class="nav-tab active">AI Video</button>
+            <button class="nav-tab">AI Image</button>
+        </nav>
+        <div class="type-filter">
+            <label for="type-select">Type:</label>
+            <select id="type-select">
+                <option>All</option>
+                {/* Add other options here */}
+            </select>
+            <i class="fas fa-chevron-down dropdown-arrow"></i>
+        </div>
+    </header>
+
+    <main class="content-area">
+        <aside class="sidebar">
+            <div class="sub-nav">
+                <button class="sub-nav-btn active">Text to Video</button>
+                <button class="sub-nav-btn">Image to Video</button>
+            </div>
+
+            <div class="form-group">
+                <label for="prompt">Prompt</label>
+                <div class="textarea-container">
+                    <textarea id="prompt" rows="6" placeholder="Please describe the video content you'd like to generate."></textarea>
+                    <span class="char-count">0/1500</span>
+                </div>
+            </div>
+
+            <div class="form-group slider-group">
+                <div class="slider-labels">
+                    <span>Creativity</span>
+                    <span>Relevance</span>
+                </div>
+                <input type="range" id="creativity" min="0" max="100" value="50" class="styled-slider creativity-slider">
+             </div>
+
+            <div class="form-group">
+                <label>Duration</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="duration" value="5s" checked>
+                        <span class="custom-radio"></span> 5s
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="duration" value="10s">
+                        <span class="custom-radio"></span> 10s
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Aspect Ratio</label>
+                <div class="aspect-ratio-group">
+                    <button class="aspect-btn active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>9:16</span>
+                    </button>
+                    <button class="aspect-btn">
+                        <i class="far fa-square"></i>
+                        <span>1:1</span>
+                    </button>
+                    <button class="aspect-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span>16:9</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group slider-group">
+                <label>Generating Count : 1</label> {/* Label might need JS update */}
+                <input type="range" id="gen-count" min="1" max="4" value="1" step="1" class="styled-slider count-slider">
+                <div class="slider-markers">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="negative-prompt">Negative Prompt <span class="optional">(Optional)</span></label>
+                 <div class="textarea-container">
+                    <textarea id="negative-prompt" rows="4" placeholder="List the types of content you don't want to see in the video. Examples: animation, blur, distortion, disfigurement, low quality, collage, grainy, logos, abstract, illustrations, computer-generated, warped..."></textarea>
+                </div>
+            </div>
+
+            <button class="generate-btn">
+                <i class="fas fa-crown"></i> Generate | <i class="fas fa-coins"></i> 5
+            </button>
+
+        </aside>
+
+        <section class="display-area">
+            <div class="empty-state">
+                <!-- Simple SVG Placeholder for the Box/Plane Icon -->
+                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M85 45 L85 75 L15 75 L15 45 L50 60 L85 45 Z" stroke="#4A4A52" stroke-width="2"/>
+                    <path d="M15 45 L50 30 L85 45" stroke="#4A4A52" stroke-width="2"/>
+                    <path d="M50 30 L50 75" stroke="#4A4A52" stroke-width="2"/>
+                     <!-- Simple Paper Plane -->
+                    <path d="M50 15 L58 35 L50 30 L42 35 Z" fill="#6A5ACD"/>
+                     <!-- Dotted line -->
+                    <circle cx="50" cy="38" r="1" fill="#4A4A52"/>
+                    <circle cx="54" cy="42" r="1" fill="#4A4A52"/>
+                    <circle cx="58" cy="46" r="1" fill="#4A4A52"/>
+                </svg>
+                <p>Nothing here</p>
+            </div>
+        </section>
+    </main>
+</div>

@@ -1,1 +1,96 @@
-<p>product-any-shot works!</p>
+<div class="app-container">
+    <aside class="left-sidebar">
+        <div class="panel product-image-panel">
+            <h3>Product Image</h3>
+            <p class="format-info">Image format: jpg, jpeg, png, webp; File size: < 10MB.</p>
+            <div class="upload-area checkerboard">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p>Click to upload product image</p>
+            </div>
+            <div class="icon-toolbar">
+                <!-- Placeholder icons - replace with actual icons if available -->
+                <button class="icon-btn"><i class="fas fa-tshirt"></i></button>
+                <button class="icon-btn"><i class="fas fa-shoe-prints"></i></button>
+                <button class="icon-btn"><i class="fas fa-hat-wizard"></i></button>
+                <button class="icon-btn"><i class="fas fa-ring"></i></button>
+                <button class="icon-btn"><i class="far fa-square"></i></button>
+                <button class="icon-btn"><i class="fas fa-tree"></i></button>
+                <button class="icon-btn"><i class="far fa-square"></i></button>
+                <button class="icon-btn"><i class="fas fa-car"></i></button>
+                <button class="icon-btn"><i class="fas fa-ellipsis-h"></i></button>
+            </div>
+        </div>
+
+        <div class="panel tools-panel">
+            <div class="tool-buttons">
+                <button class="tool-btn active">
+                    <i class="fas fa-paint-brush"></i>
+                </button>
+                <button class="tool-btn">
+                    <i class="fas fa-eraser"></i>
+                </button>
+            </div>
+            <div class="slider-group">
+                <label for="brush-thickness">Brush Thickness</label>
+                <input type="range" id="brush-thickness" min="0" max="100" value="30" class="styled-slider">
+            </div>
+            <div class="slider-group">
+                 <label>Generating Count : <span id="gen-count-value">2</span></label>
+                <input type="range" id="gen-count" min="1" max="4" value="2" step="1" class="styled-slider count-slider">
+                <div class="slider-markers">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="center-content">
+        <div class="mode-switcher">
+            <button class="mode-btn active">Standard Mode</button>
+            <button class="mode-btn creative-btn">
+                Creative Mode <span class="beta-badge">Beta</span>
+            </button>
+        </div>
+        <div class="target-image-section">
+            <div class="target-header">
+                 <h2>Target Image</h2>
+                 <a href="#" class="how-to-draw">
+                     <i class="fas fa-info-circle"></i> How to draw?
+                 </a>
+            </div>
+
+            <div class="upload-area target-upload checkerboard">
+                 <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p>Click to upload target image</p>
+                <p class="or-text">or</p>
+                <button class="btn btn-primary">Select from Public Templates</button>
+            </div>
+        </div>
+         <button class="btn btn-generate">
+             Generate | <i class="fas fa-bolt"></i> Limited Free
+        </button>
+    </main>
+
+    <aside class="right-sidebar">
+         <button class="action-btn new-btn">
+             <i class="fas fa-plus"></i>
+             <span>New</span>
+         </button>
+        <div class="samples-section">
+             <div class="samples-grid">
+                 <img src="https://via.placeholder.com/80/eee/ccc?text=Sample1" alt="Sample 1">
+                 <img src="https://via.placeholder.com/80/eee/ccc?text=Sample2" alt="Sample 2">
+                 <img src="https://via.placeholder.com/80/eee/ccc?text=Sample3" alt="Sample 3">
+                 <img src="https://via.placeholder.com/80/eee/ccc?text=Sample4" alt="Sample 4">
+             </div>
+             <p class="samples-caption">Click to Try Samples</p>
+              <button class="scroll-arrow"><i class="fas fa-chevron-left"></i></button>
+        </div>
+         <button class="action-btn history-btn">
+             <i class="far fa-check-square"></i>
+         </button>
+    </aside>
+</div>
