@@ -1,10 +1,33 @@
-<div class="app-container">
+<div class="page-container">
+    <div class="content-header d-flex align-items-center" style="margin-bottom: 20px;">
+        <button class="btn btn-secondary" (click)="redirectToDashboard()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
+                focusable="false" class="chakra-icon css-10er4pj">
+                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3.332 9.998h13.333m-13.333 0 5.833-5.832M3.332 9.998l5.833 5.835"></path>
+            </svg>
+            <span>Dashboard</span>
+        </button>
+        <div class="d-flex align-items-center justify-content-center" style="flex: 1;">
+            <div class="progress-steps">
+                <div class="d-flex align-items-center">
+                    <div class="step active">1</div>
+                    <div class="step-label">Select an avatar and upload a product image</div>
+                </div>
+                <div class="connector"></div>
+                <div class="step">2</div>
+                <div class="connector"></div>
+                <div class="step">3</div>
+                <div class="connector"></div>
+                <div class="step">4</div>
+            </div>
+        </div>
+
+    </div>
     <main class="main-content">
+
         <!-- Left Panel -->
         <aside class="left-panel">
-            <button class="back-button">
-                <i class="fas fa-arrow-left"></i> Dashboard
-            </button>
 
             <h2>Choose an Avatar Gesture that Matches Your Product's Size</h2>
 
@@ -24,89 +47,256 @@
                     <button class="category-btn">Books</button>
                     <button class="category-btn">Maternal & Infant Products</button>
                     <button class="category-btn">Large Appliances</button>
-                    <button class="category-btn icon-btn"><i class="fas fa-chevron-down"></i></button>
                 </div>
-                <div class="action-buttons">
-                    <button class="action-btn">Design Your Avatar</button>
-                    <button class="action-btn filter-btn">
-                        <i class="fas fa-filter"></i> Filter
-                    </button>
-                    <button class="action-btn icon-btn star-btn">
-                        <i class="fas fa-star"></i>
-                    </button>
-                </div>
+
             </div>
 
 
             <div class="avatar-grid-container">
-                 <div class="avatar-grid">
+                <div class="avatar-grid">
                     <!-- Add 20+ Avatar Items - Example Structure Below -->
                     <div class="avatar-item selected">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 1">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 1">
                         <!-- No badges for the first few -->
                     </div>
                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 2">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 2">
                     </div>
                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 3">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 3">
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 4">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 4">
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 5">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 5">
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 6">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 6">
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 7">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 7">
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 8">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 8">
                     </div>
 
                     <!-- Items with Badges -->
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 9">
-                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 9">
+                        <span class="badge new-badge">New</span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 10">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 10">
                         <span class="badge new-badge">New</span>
-                        <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 11">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 11">
                         <span class="badge new-badge">New</span>
-                        <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 12">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 12">
                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 13">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 13">
                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 14">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 14">
                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 15">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 15">
                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
-                     <div class="avatar-item">
-                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Avatar 16">
+                    <div class="avatar-item">
+                        <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                            alt="Avatar 16">
                         <span class="badge new-badge">New</span>
-                         <span class="badge crown-badge"><i class="fas fa-crown"></i></span>
+                        <span class="badge crown-badge"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                fill="none" viewBox="0 0 14 12" font-size="12px">
+                                <path fill="url(#icon_starter_svg__a)"
+                                    d="M1.012 2.272 4 4.513 6.47.273a.65.65 0 0 1 1.06 0L10 4.513l2.988-2.241a.65.65 0 0 1 1.008.62l-1.91 7.407A2 2 0 0 1 10.15 11.8H3.863a2 2 0 0 1-1.936-1.498L.005 2.892a.652.652 0 0 1 1.007-.62">
+                                </path>
+                                <path fill="url(#icon_starter_svg__b)"
+                                    d="M7 0a.65.65 0 0 0-.53.273L4 4.513 1.012 2.272a.65.65 0 0 0-1.007.62l1.92 7.407A2 2 0 0 0 3.86 11.8H7z">
+                                </path>
+                                <defs>
+                                    <linearGradient id="icon_starter_svg__a" x1="10.5" x2="8.302" y1="5.125" y2="9.508"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFEB33"></stop>
+                                        <stop offset="1" stop-color="#FD9B08"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="icon_starter_svg__b" x1="3.111" x2="5.487" y1="5.113" y2="9.812"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#FFF280"></stop>
+                                        <stop offset="1" stop-color="#FFC700"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg></span>
                     </div>
                     <!-- Repeat .avatar-item as needed -->
 
@@ -117,26 +307,23 @@
 
         <!-- Right Panel -->
         <section class="right-panel">
-            <div class="progress-steps">
-                <div class="step active">1</div>
-                <div class="connector"></div>
-                <div class="step">2</div>
-                 <div class="connector"></div>
-                <div class="step">3</div>
-                 <div class="connector"></div>
-                <div class="step">4</div>
-                 <div class="step-label">Select an avatar and upload a product image</div>
-            </div>
+
 
             <div class="preview-area">
-                <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp" alt="Selected Avatar Preview" class="preview-image">
-                 <!-- Approximate position and size for the product placeholder -->
+                <img src="https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/39pvOxJplh.webp"
+                    alt="Selected Avatar Preview" class="preview-image">
+                <!-- Approximate position and size for the product placeholder -->
                 <div class="product-placeholder"></div>
             </div>
 
-            <button class="replace-button">
+            <button class="btn btn-primary">
                 Replace with My Product Image
-                <i class="fas fa-question-circle help-icon"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 12"
+                    focusable="false" class="chakra-icon css-ky7im0">
+                    <path fill="#fff" fill-opacity="0.35"
+                        d="M6 0C2.69 0 0 2.69 0 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6m.429 9.429H5.57V8.57h.858zm.15-2.722-.075.064c-.043.033-.075.108-.075.172v.782H5.57v-.782c0-.332.15-.643.397-.847l.075-.064c.75-.6 1.114-.91 1.114-1.446 0-.643-.514-1.157-1.157-1.157-.664 0-1.157.492-1.157 1.157h-.857C3.986 3.46 4.875 2.57 6 2.57c1.114 0 2.014.9 2.014 2.015 0 .975-.664 1.51-1.435 2.121">
+                    </path>
+                </svg>
             </button>
         </section>
     </main>

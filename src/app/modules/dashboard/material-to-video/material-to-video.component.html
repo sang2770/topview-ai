@@ -8,14 +8,14 @@
         <span>Dashboard</span>
     </button>
     <div class="material-container" [formGroup]="form">
-       <div class="d-flex justify-content-between align-items-center">
-        <h4>
-            Import Materials
-        </h4>
-        <div class="pointer">
-            Try Example
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>
+                Import Materials
+            </h4>
+            <div class="pointer" style="font-size: 14px;" (click)="fillExample()">
+                Try Example
+            </div>
         </div>
-       </div>
         <div class="material-import-group">
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 18 18"
@@ -27,7 +27,8 @@
                 </svg>
             </div>
             <input type="text" name="inputLink" formControlName="link" #inputLink>
-            <button class="btn btn-primary" style="position: relative;" [appTooltip]="'Select from available options'" placement="top">Import from Link</button>
+            <button class="btn btn-primary" style="position: relative;" [appTooltip]="'Select from available options'"
+                placement="top">Import from Link</button>
             @if (isShowPlaceHolder){
             <div class="place-holder" (click)="togglePlaceHolder()">
                 <p class="chakra-text css-0">Enter a link, supports</p>
@@ -203,10 +204,38 @@
             <p class="title">Upload File</p>
             <p class="text-hint">(mp4, mov, png, jpg, bmp, webp)</p>
         </div>
+        <div class="upload-result">
+            @for (item of resultItems; track $index) {
+            <div class="result-item">
+                <div class="icon" (click)="removeItemResult($index)">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+                        viewBox="0 0 256 256" xml:space="preserve">
+                        <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                            transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                            <circle cx="45" cy="45" r="45"
+                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(230,62,50); fill-rule: nonzero; opacity: 1;"
+                                transform="  matrix(1 0 0 1 0 0) " />
+                            <path
+                                d="M 27.169 64.83 c -0.512 0 -1.024 -0.195 -1.414 -0.586 c -0.781 -0.781 -0.781 -2.047 0 -2.828 l 35.661 -35.661 c 0.781 -0.781 2.047 -0.781 2.828 0 c 0.781 0.781 0.781 2.047 0 2.828 L 28.583 64.244 C 28.193 64.635 27.681 64.83 27.169 64.83 z"
+                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                            <path
+                                d="M 62.83 64.83 c -0.512 0 -1.023 -0.195 -1.414 -0.586 L 25.755 28.583 c -0.781 -0.781 -0.781 -2.047 0 -2.828 c 0.78 -0.781 2.048 -0.781 2.828 0 l 35.661 35.661 c 0.781 0.781 0.781 2.047 0 2.828 C 63.854 64.635 63.342 64.83 62.83 64.83 z"
+                                style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                        </g>
+                    </svg>
+                </div>
+                <img [src]="test" alt="">
+                <span>Analysis Completed</span>
+            </div>
+            }
+
+        </div>
         <div class="product-info">
             <h4>Product Name</h4>
-            <input type="text" name="product-name" formControlName="name"
-                placeholder="Your product name or video topic" [ngClass]="{'invalid': this.form.get('name')?.invalid}">
+            <input type="text" name="product-name" formControlName="name" placeholder="Your product name or video topic"
+                [ngClass]="{'invalid': this.form.get('name')?.invalid}">
             <div class="error" *ngIf="this.form.get('name')?.invalid && this.form.get('name')?.touched">
                 Please enter product name or video topic.
             </div>
@@ -216,7 +245,8 @@
                 <div [class]="{'tab': true, 'active': tab === 'script' }" (click)="changeTab('script')">Use My Script
                 </div>
             </div>
-            <textarea name="product-details" formControlName="script"  [ngClass]="{'invalid': this.form.get('script')?.invalid}"></textarea>
+            <textarea name="product-details" formControlName="script"
+                [ngClass]="{'invalid': this.form.get('script')?.invalid}"></textarea>
             <div class="error" *ngIf="this.form.get('script')?.invalid && this.form.get('script')?.touched">
                 Please enter product description or topic content
             </div>
@@ -239,7 +269,8 @@
         <app-select [options]="voices" placeholder="Select an option">
         </app-select>
         <button class="btn btn-ghost" (click)="openSelectAvatar()">
-            <img alt="avatar" [src]="this.avatar?.url ?? 'https://www.topview.ai/images/m2v/avatar_demo.png'" style="width: 20px; height: 20px; border-radius: 8px;">
+            <img alt="avatar" [src]="this.avatar?.url ?? 'https://www.topview.ai/images/m2v/avatar_demo.png'"
+                style="width: 20px; height: 20px; border-radius: 8px;">
             <span style="flex-shrink: 0;">{{this.avatar?.name ?? 'No Avatar'}}</span>
         </button>
         <button style="padding: 0 40px; font-size: 16px; margin-left: 20px;" class="btn btn-primary"

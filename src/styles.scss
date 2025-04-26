@@ -12,6 +12,10 @@
   box-sizing: border-box;
 }
 
+h3 {
+  margin: 0;
+}
+
 body {
   background-color: var(--dark-background);
   color: white;
@@ -73,7 +77,10 @@ button {
 h4 {
   margin: 10px 0;
 }
-
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 .footer {
   position: fixed;
   left: 0px;
@@ -109,7 +116,6 @@ h4 {
   gap: 10px;
 }
 
-
 .error {
   display: flex;
   -webkit-box-align: center;
@@ -119,10 +125,51 @@ h4 {
   margin: 6px 0;
 }
 
-input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
   border: 1px solid rgb(255, 64, 64) !important;
 }
 
-input, textarea{
+input,
+textarea {
   outline: none;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: rgb(24, 24, 24);
+  border-radius: 8px;
+  padding: 4px;
+  .tab {
+    display: flex;
+    height: 32px;
+    padding: 7px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 250ms ease-in-out;
+    color: rgba(255, 255, 255, 0.5);
+    &.active {
+      color: rgb(255, 255, 255);
+
+      background: rgb(39, 39, 41);
+    }
+  }
+}
+
+textarea {
+  display: block;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 15px 10px;
+  color: #fff;
+  width: 100%;
+  min-height: 150px;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
 }

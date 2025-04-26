@@ -1,30 +1,24 @@
-<div class="app-container">
-    <header class="top-bar">
-        <nav class="main-nav">
-            <button class="nav-tab active">AI Video</button>
-            <button class="nav-tab">AI Image</button>
-        </nav>
-        <div class="type-filter">
-            <label for="type-select">Type:</label>
-            <select id="type-select">
-                <option>All</option>
-                {/* Add other options here */}
-            </select>
-            <i class="fas fa-chevron-down dropdown-arrow"></i>
+<div class="page-container d-flex" style="gap:40px;">
+    <div class="left">
+        <div class="section-title">
+            AI Video
         </div>
-    </header>
-
-    <main class="content-area">
         <aside class="sidebar">
-            <div class="sub-nav">
-                <button class="sub-nav-btn active">Text to Video</button>
-                <button class="sub-nav-btn">Image to Video</button>
+            <div class="tabs">
+                <div class="tab" [ngClass]="{'active': selectedTab === 'Text'}" (click)="selectedTab = 'Text'">Text to
+                    Video</div>
+                <div class="tab" [ngClass]="{'active': selectedTab === 'Image'}" (click)="selectedTab = 'Image'">Image
+                    to Video</div>
             </div>
 
+            <div class="form-group" *ngIf="selectedTab === 'Image'">
+                <app-file-upload></app-file-upload>
+            </div>
             <div class="form-group">
                 <label for="prompt">Prompt</label>
                 <div class="textarea-container">
-                    <textarea id="prompt" rows="6" placeholder="Please describe the video content you'd like to generate."></textarea>
+                    <textarea id="prompt" rows="6"
+                        placeholder="Please describe the video content you'd like to generate."></textarea>
                     <span class="char-count">0/1500</span>
                 </div>
             </div>
@@ -32,13 +26,13 @@
             <div class="form-group slider-group">
                 <div class="slider-labels">
                     <span>Creativity</span>
+                    <app-slider [value]="50"></app-slider>
                     <span>Relevance</span>
                 </div>
-                <input type="range" id="creativity" min="0" max="100" value="50" class="styled-slider creativity-slider">
-             </div>
+            </div>
 
-            <div class="form-group">
-                <label>Duration</label>
+            <div class="form-group d-flex">
+                <label style="min-width: 80px;">Duration</label>
                 <div class="radio-group">
                     <label class="radio-label">
                         <input type="radio" name="duration" value="5s" checked>
@@ -51,64 +45,102 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" style="display: flex; gap: 10px">
                 <label>Aspect Ratio</label>
-                <div class="aspect-ratio-group">
+                <div class="aspect-ratio-group" style="flex: 1">
                     <button class="aspect-btn active">
-                        <i class="fas fa-mobile-alt"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
+                            focusable="false" class="chakra-icon css-1cv0b1u">
+                            <rect width="13" height="22" x="5.5" y="1" stroke="#fff" stroke-width="2" rx="2"></rect>
+                        </svg>
                         <span>9:16</span>
                     </button>
                     <button class="aspect-btn">
-                        <i class="far fa-square"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
+                            focusable="false" class="chakra-icon css-1cv0b1u">
+                            <rect width="18" height="18" x="3" y="3" stroke="#fff" stroke-width="2" rx="2"></rect>
+                        </svg>
                         <span>1:1</span>
                     </button>
                     <button class="aspect-btn">
-                        <i class="fas fa-desktop"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
+                            focusable="false" class="chakra-icon css-1cv0b1u">
+                            <rect width="22" height="13" x="1" y="5.5" stroke="#fff" stroke-width="2" rx="2"></rect>
+                        </svg>
                         <span>16:9</span>
                     </button>
                 </div>
             </div>
 
-            <div class="form-group slider-group">
-                <label>Generating Count : 1</label> {/* Label might need JS update */}
-                <input type="range" id="gen-count" min="1" max="4" value="1" step="1" class="styled-slider count-slider">
-                <div class="slider-markers">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                </div>
+            <div class="form-group slider-group" style="margin-bottom: 40px;">
+                <label>Generating Count : 1</label>
+                <app-slider style="padding: 0 10px;" [value]="0" [step]="25" [marks]="customMarks"></app-slider>
             </div>
 
 
             <div class="form-group">
                 <label for="negative-prompt">Negative Prompt <span class="optional">(Optional)</span></label>
-                 <div class="textarea-container">
-                    <textarea id="negative-prompt" rows="4" placeholder="List the types of content you don't want to see in the video. Examples: animation, blur, distortion, disfigurement, low quality, collage, grainy, logos, abstract, illustrations, computer-generated, warped..."></textarea>
+                <div class="textarea-container">
+                    <textarea id="negative-prompt" rows="4"
+                        placeholder="List the types of content you don't want to see in the video. Examples: animation, blur, distortion, disfigurement, low quality, collage, grainy, logos, abstract, illustrations, computer-generated, warped..."></textarea>
                 </div>
             </div>
 
-            <button class="generate-btn">
-                <i class="fas fa-crown"></i> Generate | <i class="fas fa-coins"></i> 5
+            <button class="btn btn-primary" style="width: 100%;">
+                Generate
             </button>
 
         </aside>
-
+    </div>
+    <main class="content-area">
+        <div>
+            <div class="type-filter">
+                <label for="type-select">Type:</label>
+                <app-select [(ngModel)]="selectedType" id="type-select" [options]="typeList">
+                </app-select>
+            </div>
+        </div>
         <section class="display-area">
-            <div class="empty-state">
+            <div class="empty-state" style="font-size: 120px;">
                 <!-- Simple SVG Placeholder for the Box/Plane Icon -->
-                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M85 45 L85 75 L15 75 L15 45 L50 60 L85 45 Z" stroke="#4A4A52" stroke-width="2"/>
-                    <path d="M15 45 L50 30 L85 45" stroke="#4A4A52" stroke-width="2"/>
-                    <path d="M50 30 L50 75" stroke="#4A4A52" stroke-width="2"/>
-                     <!-- Simple Paper Plane -->
-                    <path d="M50 15 L58 35 L50 30 L42 35 Z" fill="#6A5ACD"/>
-                     <!-- Dotted line -->
-                    <circle cx="50" cy="38" r="1" fill="#4A4A52"/>
-                    <circle cx="54" cy="42" r="1" fill="#4A4A52"/>
-                    <circle cx="58" cy="46" r="1" fill="#4A4A52"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 120 120"
+                    focusable="false" class="chakra-icon css-1y16v75">
+                    <path stroke="#4D4C4C"
+                        d="m10.325 61.93.094.983 51.002 3.466.068.005.067-.014 45.335-9.314-.055-.987-55.277-4.999-.088-.008-.085.023z">
+                    </path>
+                    <path fill="#151515" fill-rule="evenodd"
+                        d="m11.008 82.34.925 27.28 49.717 10.205V65.286l-50.642-3.81z" clip-rule="evenodd"></path>
+                    <path stroke="#fff" stroke-opacity="0.15"
+                        d="m12.419 109.209-.911-26.878V62.016L61.15 65.75v53.462z"></path>
+                    <mask id="nothing_svg__a" fill="#fff">
+                        <path fill-rule="evenodd" d="m61.652 119.826 42.936-12.705-.495-51.148-42.44 9.732"
+                            clip-rule="evenodd"></path>
+                    </mask>
+                    <path fill="#151515" fill-rule="evenodd" d="m61.652 119.826 42.936-12.705-.495-51.148-42.44 9.732"
+                        clip-rule="evenodd"></path>
+                    <path fill="#fff" fill-opacity="0.15"
+                        d="m104.588 107.121.284.959.723-.214-.007-.754zm-.495-51.148 1-.01-.012-1.243-1.212.278zm-42.157 64.812 42.936-12.705-.568-1.918-42.935 12.705zm43.652-13.673-.495-51.149-2 .02.495 51.148zm-1.719-52.114-42.44 9.732.447 1.95 42.44-9.733z"
+                        mask="url(#nothing_svg__a)"></path>
+                    <path fill="#fff" fill-rule="evenodd" d="M51.742 51.568v18.716l-40.734-7.96z" clip-rule="evenodd">
+                    </path>
+                    <path fill="#0F0F0F" d="M11 61.91 51.735 51.5v18.366L26.39 70.9z"></path>
+                    <path stroke="#4D4C4C" stroke-dasharray="1.19 1.19" stroke-width="1.193"
+                        d="m24 29 4.606 7.312 4.173 5.721 3.77 4.383 3.413 3.247 3.096 2.312 2.827 1.512 2.615.867 2.452.308 2.346-.212 2.298-.722 2.087-1.175 1.182-1.108.558-1.07.144-1.203-.279-1.147-.72-1.165-1.606-1.455-2.202-1.156-1.635-.482-1.654-.212-1.702.078-1.625.404-1.461.8-1.346 1.233-.99 1.531-.732 2.13-.394 2.918.48 1.898.953 1.628 1.49 1.397 1.789 1.136 2.105 1.002 2.481.867 3.827 1.03 3.933.868 7.115 1.58 2.067.664 1.414.694.923.722 2.048 1.908 1.346 1.608L76 71">
+                    </path>
+                    <path fill="#1C1C1D" fill-rule="evenodd" d="m61.102 65.317 16.04 26.984L120 76.271l-13.263-20.863z"
+                        clip-rule="evenodd"></path>
+                    <path stroke="#fff" stroke-opacity="0.15"
+                        d="M77.358 91.686 61.886 65.66l44.617-9.688 12.745 20.048z"></path>
+                    <path fill="#1C1C1D" fill-rule="evenodd" d="M9.875 61.477 0 79.103 50.917 90.1l10.734-24.782z"
+                        clip-rule="evenodd"></path>
+                    <path stroke="#fff" stroke-opacity="0.15" d="m60.913 65.766-10.291 23.76L.767 78.755 10.156 62z">
+                    </path>
+                    <path fill="#4E40F3" d="m8.98 0-.905 24.754 10.14-5.31 6.287 7.976 4.653-14.289L39.62 9.382z">
+                    </path>
+                    <path fill="#3325DA" d="m8.98 0 13.838 17.03 1.686 10.39 4.653-14.289z"></path>
+                    <path fill="#4238B4" d="m18.215 19.444 6.287 7.976-1.686-10.39z"></path>
                 </svg>
-                <p>Nothing here</p>
+                <p style="font-size: 14px; color: #ffffffa9;">Nothing here</p>
             </div>
         </section>
     </main>

@@ -8,10 +8,29 @@ import { SelectComponent } from '../../../shared/components/select/select.compon
 import { MaterialToVideoComponent } from './material-to-video/material-to-video.component';
 import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
 import { SelectAvatarComponent } from './material-to-video/select-avatar/select-avatar.component';
-import { ExampleModalContentComponent, ModalDemoComponent } from '../../../shared/components/modal';
+import {
+  ExampleModalContentComponent,
+  ModalDemoComponent,
+} from '../../../shared/components/modal';
+import {
+  SliderComponent,
+  SliderDemoComponent,
+} from '../../../shared/components/slider';
+import { ProductAnyShotComponent } from './product-any-shot/product-any-shot.component';
+import { AiVideoComponent } from './ai-video/ai-video.component';
+import { ProductAvatarComponent } from './product-avatar/product-avatar.component';
+import { FileUploadDemoComponent } from '../../../shared/components/file-upload/file-upload-demo.component';
+import { FileUploadComponent } from '../../../shared/components/file-upload';
 
 @NgModule({
-  declarations: [HomeComponent, MaterialToVideoComponent, SelectAvatarComponent],
+  declarations: [
+    HomeComponent,
+    MaterialToVideoComponent,
+    SelectAvatarComponent,
+    ProductAnyShotComponent,
+    AiVideoComponent,
+    ProductAvatarComponent,
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -20,7 +39,10 @@ import { ExampleModalContentComponent, ModalDemoComponent } from '../../../share
     SelectComponent,
     TooltipDirective,
     ModalDemoComponent,
-    ExampleModalContentComponent
+    ExampleModalContentComponent,
+    SliderDemoComponent,
+    SliderComponent,
+    FileUploadComponent,
   ],
 })
 export class DashboardModule {}

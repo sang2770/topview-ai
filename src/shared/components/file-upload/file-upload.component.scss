@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.upload-container {
+  width: 100%;
+}
+
+.upload-area {
+  min-width: 300px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  justify-content: space-around;
+  align-items: center;
+  gap: 16px 0px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease;
+
+  &:hover,
+  &.drag-over {
+    border-color: var(--primary-color, #3f51b5);
+  }
+
+  svg {
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.checkerboard {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.preview-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: var(--primary-color, #3f51b5);
+
+    .preview-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.preview-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  p {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+/* Toolbar removed */
+
+.or-text {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 5px 0;
+}
+
+.btn-primary {
+  background-color: var(--primary-color, #3f51b5);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    background-color: var(--primary-hover-color, #303f9f);
+  }
+}

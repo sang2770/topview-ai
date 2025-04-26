@@ -49,7 +49,7 @@
                 </button>
                 <div class="home-item-tools" #toolsContainer>
                     @for (tool of toolList; track $index) {
-                    <div class="home-tool">
+                    <div class="home-tool pointer" (click)="redirectToTool(tool.link)">
                         @if (tool.video){
                         <video [src]="tool.video" autoplay loop muted></video>
                         } @else {

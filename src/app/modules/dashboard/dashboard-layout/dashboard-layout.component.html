@@ -2,14 +2,14 @@
   <div class="header-logo">
     <img src="https://www.topview.ai/logo.png" alt="">
   </div>
-  <div class="header-title">
+  <div class="header-title" style="padding-right: 260px;">
     {{title}}
   </div>
 </header>
 <div class="body">
   <div class="sidebar" *ngIf="isShowSidebar">
     <ul class="menu">
-      <li class="menu-item active">
+      <li class="menu-item active" (click)="redirtectTo(ROUTER_UTILS.DASHBOARD.getHome())">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
           style="font-size: 20px;">
           <rect width="5.5" height="5.5" x="3" y="3" stroke="#fff" stroke-width="1.5" rx="1"></rect>
@@ -19,7 +19,7 @@
         </svg>
         <span>Dashboard</span>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" (click)="redirtectTo(ROUTER_UTILS.DASHBOARD.getProductAnyShot())">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
           style="font-size: 20px;">
           <rect width="14" height="14" x="3" y="3" stroke="#fff" stroke-linejoin="round" stroke-width="1.5" rx="1">
@@ -27,9 +27,9 @@
           <path stroke="#fff" stroke-width="1.5"
             d="M7 3v4.5M7 17v-4.5m0-5H3m4 0v5m0 0H3M13 3v4.5m0 9.5v-4.5m0-5h4m-4 0v5m0 0h4"></path>
         </svg>
-        <span>Projects</span>
+        <span>Product AnyShot</span>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" (click)="redirtectTo(ROUTER_UTILS.DASHBOARD.getProductAvatar())">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
           style="font-size: 20px;">
           <path stroke="#fff" stroke-linejoin="round" stroke-width="1.667"
@@ -38,9 +38,9 @@
           <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.667"
             d="M10.832 9.167h2.917"></path>
         </svg>
-        <span>Assets</span>
+        <span>Product Avatar</span>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" (click)="redirtectTo(ROUTER_UTILS.DASHBOARD.getAiVideo())">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
           style="font-size: 20px;">
           <path stroke="#fff" stroke-linejoin="round" stroke-width="1.5"
@@ -50,7 +50,7 @@
             d="M9.636 5.443a.393.393 0 0 1 .726 0l.806 1.94 2.095.168c.348.027.49.462.224.69L11.89 9.608l.488 2.043a.393.393 0 0 1-.587.427l-1.793-1.095-1.793 1.095a.393.393 0 0 1-.587-.427l.487-2.043L6.511 8.24a.393.393 0 0 1 .224-.69l2.094-.168z">
           </path>
         </svg>
-        <span>Brand Kit</span>
+        <span>AI Video</span>
       </li>
     </ul>
   </div>

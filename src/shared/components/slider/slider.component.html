@@ -1,0 +1,35 @@
+<div class="slider-container" [class.slider-vertical]="orientation === 'vertical'" [class.slider-disabled]="disabled">
+  <div class="slider-header" *ngIf="label || showValue">
+    <label *ngIf="label" class="slider-label">{{ label }}</label>
+    <div *ngIf="showValue" class="slider-value">{{ value }}</div>
+  </div>
+
+  <div class="slider-control" [class.slider-sm]="size === 'sm'" [class.slider-md]="size === 'md'"
+    [class.slider-lg]="size === 'lg'" [class.slider-outline]="variant === 'outline'"
+    [class.slider-solid]="variant === 'solid'" [class.slider-primary]="colorPalette === 'primary'"
+    [class.slider-secondary]="colorPalette === 'secondary'">
+
+    <div #sliderTrack class="slider-track" (click)="onTrackClick($event)">
+      <div class="slider-range" [style.width]="orientation === 'horizontal' ? getRangeWidth() : null"
+        [style.height]="orientation === 'vertical' ? getRangeWidth() : null"></div>
+    </div>
+
+    <div class="slider-thumb" [class.slider-thumb-center]="thumbAlignment === 'center'"
+      [class.slider-thumb-contain]="thumbAlignment === 'contain'"
+      [style.left]="orientation === 'horizontal' ? getThumbPosition() : null"
+      [style.bottom]="orientation === 'vertical' ? getThumbPosition() : null" (mousedown)="onThumbMouseDown()">
+      <div class="slider-dragging-indicator" *ngIf="isDragging">
+        {{ value }}
+      </div>
+    </div>
+
+    <div class="slider-markers" *ngIf="formattedMarks.length > 0">
+      <div *ngFor="let mark of formattedMarks" class="slider-marker"
+        [style.left]="orientation === 'horizontal' ? mark.position : null"
+        [style.bottom]="orientation === 'vertical' ? mark.position : null">
+        <div class="slider-marker-dot"></div>
+        <div class="slider-marker-label" *ngIf="mark.label">{{ mark.label }}</div>
+      </div>
+    </div>
+  </div>
+</div>
