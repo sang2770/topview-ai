@@ -13,8 +13,12 @@ export class ApiService {
   }
 
   getUrlListHandle() {
-    this.http.get("/assets/data/router.json").subscribe((res) => {
+    this.http.get('/assets/data/router.json').subscribe((res) => {
       setUrlHandler(res);
-    })
+    });
+  }
+
+  getProductCategory() {
+    return this.http.get('/assets/data/product-category.json');
   }
 }

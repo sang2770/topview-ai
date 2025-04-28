@@ -104,6 +104,7 @@ img {
   overflow-y: auto; /* Make only the grid scrollable */
   padding-right: 10px; /* Space for scrollbar */
   margin-right: -10px; /* Counteract padding for layout */
+  max-height: calc(100vh - 350px);
 }
 
 .avatar-grid {
@@ -217,10 +218,9 @@ img {
 
 .preview-area {
   position: relative;
-  width: 100%;
-  max-width: 400px; /* Limit preview width */
+  width: 324px;
+  height: 576px;
   margin-bottom: 25px;
-  flex-grow: 1; /* Allow preview to take available space */
   display: flex; /* Center image if it's smaller than container */
   align-items: center;
   justify-content: center;
@@ -230,7 +230,7 @@ img {
   display: block;
   max-width: 100%;
   max-height: 100%; /* Ensure image fits vertically */
-  object-fit: contain; /* Scale image while preserving aspect ratio */
+  object-fit: cover; /* Scale image while preserving aspect ratio */
   border-radius: var(--border-radius-md);
 }
 
