@@ -1,0 +1,37 @@
+<div class="popup-confirm-content">
+
+
+  <div class="popup-confirm-body">
+    @if (this.type === 'progress') {
+      @if (this.progress === 100) {
+      <p class="popup-confirm-message" style="text-align: center;">{{ message }}</p>
+      }
+    } @else {
+    <p class="popup-confirm-message">{{ message }}</p>
+    }
+    <!-- Progress bar for progress type -->
+    <div *ngIf="type === 'progress'" class="progress-container">
+      <app-progress [percent]="progress" type="circle"></app-progress>
+    </div>
+    <!-- Custom content for different action types -->
+    <div *ngIf="action === 'export'" class="export-info">
+      <div class="export-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </div>
+      <p>Your file will be exported in a standard format</p>
+    </div>
+  </div>
+  <div class="popup-confirm-footer">
+    <button type="button" class="btn-cancel" (click)="onCancel()">
+      {{ cancelText || 'Cancel' }}
+    </button>
+    <button type="button" class="btn-confirm" (click)="onConfirm()" [disabled]="isProcessing && progress < 100">
+      {{ confirmText || 'Confirm' }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="progress-container">
+  <!-- Line Progress -->
+  <div *ngIf="type === 'line'" class="progress-line">
+    <div class="progress-line-outer" [style.height.px]="strokeWidth" [style.backgroundColor]="trailColor || 'rgba(255, 255, 255, 0.1)'">
+      <div class="progress-line-inner" [ngClass]="{'progress-status-active': status === 'active'}" [ngStyle]="progressStyle"></div>
+    </div>
+    <span *ngIf="showInfo" class="progress-info">
+      <ng-container *ngIf="status === 'success' || status === 'exception'; else percentText">
+        <svg *ngIf="status === 'success'" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        <svg *ngIf="status === 'exception'" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </ng-container>
+      <ng-template #percentText>{{ percent }}%</ng-template>
+    </span>
+  </div>
+
+  <!-- Circle Progress -->
+  <div *ngIf="type === 'circle'" class="progress-circle" [style.width.px]="width" [style.height.px]="width">
+    <svg viewBox="0 0 100 100">
+      <circle class="progress-circle-trail" cx="50" cy="50" [attr.r]="50 - (strokeWidth / 2)" fill="none" [ngStyle]="circleTrailStyle"></circle>
+      <circle class="progress-circle-path" cx="50" cy="50" [attr.r]="50 - (strokeWidth / 2)" fill="none" [ngStyle]="circlePathStyle"></circle>
+    </svg>
+    <span *ngIf="showInfo" class="progress-circle-info">
+      <ng-container *ngIf="status === 'success' || status === 'exception'; else circlePercentText">
+        <svg *ngIf="status === 'success'" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        <svg *ngIf="status === 'exception'" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </ng-container>
+      <ng-template #circlePercentText>{{ percent }}%</ng-template>
+    </span>
+  </div>
+</div>

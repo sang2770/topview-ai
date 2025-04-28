@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" style="margin-bottom: 60px;">
     <button class="btn btn-secondary" (click)="redirectToDashboard()">
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 20 20"
             focusable="false" class="chakra-icon css-10er4pj">
@@ -28,7 +28,7 @@
             </div>
             <input type="text" name="inputLink" formControlName="link" #inputLink>
             <button class="btn btn-primary" style="position: relative;" [appTooltip]="'Select from available options'"
-                (click)="getImageProduct()" placement="top">Import from Link</button>
+                (click)="getImageProduct()" placement="top">{{this.analyzeProgress !== 0 ? ('...Analyzing ' + this.analyzeProgress + '%') : 'Import from Link'}}</button>
             @if (isShowPlaceHolder){
             <div class="place-holder" (click)="togglePlaceHolder()">
                 <p class="chakra-text css-0">Enter a link, supports</p>
@@ -192,7 +192,15 @@
             </div>
             }
         </div>
-        <div class="upload-file">
+        <div class="upload-file pointer" (click)="onFileUploadClick()">
+            <input 
+                #fileInput
+                type="file" 
+                style="display: none;"
+                accept=".mp4,.mov,.png,.jpg,.jpeg,.bmp,.webp"
+                multiple
+                (change)="onFileSelected($event)"
+            >
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
                     focusable="false" class="chakra-icon css-13otjrl">
@@ -204,7 +212,7 @@
             <p class="title">Upload File</p>
             <p class="text-hint">(mp4, mov, png, jpg, bmp, webp)</p>
         </div>
-        <div class="upload-result">
+        <div class="upload-result" *ngIf="images?.length">
             @for (item of images; track $index) {
             <div class="result-item">
                 <div class="icon" (click)="removeItemResult($index)">
@@ -240,12 +248,14 @@
                 Please enter product name or video topic.
             </div>
             <div class="product-tabs">
-                <div [class]="{'tab': true, 'active': tab === 'detail' }" (click)="changeTab('detail')">Product
+                <div [class]="{'tab': true, 'active': tab === Tab_text }" (click)="changeTab(Tab_text)">Product
                     Details for The Script</div>
-                <div [class]="{'tab': true, 'active': tab === 'script' }" (click)="changeTab('script')">Use My Script
+                <div [class]="{'tab': true, 'active': tab === Tab_script }" (click)="changeTab(Tab_script)">Use My
+                    Script
                 </div>
             </div>
             <textarea name="product-details" formControlName="script"
+                [placeholder]="tab === Tab_script ? 'Input your own script content; the Al will use it directly without editing.' : 'Describe the features of your product/service/application.'"
                 [ngClass]="{'invalid': this.form.get('script')?.invalid}"></textarea>
             <div class="error" *ngIf="this.form.get('script')?.invalid && this.form.get('script')?.touched">
                 Please enter product description or topic content
@@ -264,7 +274,7 @@
         { label: '3:4', value: '3:4' },
         ]" placeholder="Select an option">
         </app-select>
-        <app-select [options]="languages" placeholder="Select an option">
+        <app-select [options]="languages" placeholder="Select an option" [disabled]="this.tab === 'script'">
         </app-select>
         <app-select [options]="voices" placeholder="Select an option">
         </app-select>
@@ -284,5 +294,6 @@
             <span>Generate</span>
         </button>
     </div>
+
 
 </div>

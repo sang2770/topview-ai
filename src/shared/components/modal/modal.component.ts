@@ -115,6 +115,7 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
     
     // Use setTimeout to ensure ViewChild is initialized
     setTimeout(() => {
+      
       if (!this.modalContent) {
         console.warn('Modal content container is not available');
         return;
@@ -122,8 +123,7 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.modalContent.clear();
 
-      this.componentRef = this.modalContent.createComponent(component);
-
+      this.componentRef = this.modalContent.createComponent(component);      
       if (data) {
         Object.assign(this.componentRef.instance, data);
       }

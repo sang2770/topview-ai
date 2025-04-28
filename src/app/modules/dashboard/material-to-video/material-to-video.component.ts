@@ -8,6 +8,9 @@ import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { HttpClient } from '@angular/common/http';
 import { LoadingService } from '../../../../shared/services/loading.service';
 import { ApiService } from '../../../../shared/services/api.service';
+import { ElementRef } from '@angular/core';
+import { catchError, of } from 'rxjs';
+import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 
 @Component({
   selector: 'app-material-to-video',
@@ -16,9 +19,11 @@ import { ApiService } from '../../../../shared/services/api.service';
   standalone: false,
 })
 export class MaterialToVideoComponent implements AfterViewInit {
+  readonly Tab_script = "script";
+  readonly Tab_text = "text";
   readonly sampleUrl =
     'https://www.amazon.com/MAMI-BABI-Indoor-Scratch-Resistant/dp/B0C2C7FQMZ/ref=pd_ybh_a_d_sccl_6/133-6358408-3616469?pd_rd_w=TVDGv&content-id=amzn1.sym.67f8cf21-ade4-4299-b433-69e404eeecf1&pf_rd_p=67f8cf21-ade4-4299-b433-69e404eeecf1&pf_rd_r=FE229K6NC2G2X6B7QRH3&pd_rd_wg=p7DyQ&pd_rd_r=f6720f05-bea8-4f32-82a1-ae9022ffa3e4&pd_rd_i=B0C2C7FQMZ&psc=1';
-  tab?: string = 'detail';
+  tab?: string = this.Tab_text;
   isShowPlaceHolder: boolean = true;
   form: FormGroup = new FormGroup({});
   @ViewChild('inputLink', { static: true }) inputLinkRef: any;
@@ -51,6 +56,8 @@ export class MaterialToVideoComponent implements AfterViewInit {
   ];
 
   avatar: any = {};
+
+  analyzeProgress = 0;
   constructor(
     public activatedRoute: ActivatedRoute,
     public dashboardService: DashboardService,
@@ -59,7 +66,8 @@ export class MaterialToVideoComponent implements AfterViewInit {
     public router: Router,
     public http: HttpClient,
     public loadingService: LoadingService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private popupService: PopupConfirmService
   ) {
     dashboardService.title$.next('Material to Video');
     this.form = fb.group({
@@ -78,7 +86,18 @@ export class MaterialToVideoComponent implements AfterViewInit {
     this.tab = tab;
   }
 
-  generate() {}
+  generate() {
+    this.popupService.progress({
+      title: 'Create video',
+      message: "Video Generated Successfully!",
+      confirmText: "Export"
+    }).afterClosed$.subscribe(() => {
+      // TODO:
+      console.log("Export");
+      
+      
+    });
+  }
 
   togglePlaceHolder() {
     this.isShowPlaceHolder = !this.isShowPlaceHolder;
@@ -105,11 +124,23 @@ export class MaterialToVideoComponent implements AfterViewInit {
   }
 
   getImageProduct() {
+    this.analyzeProgress = 10;
+    const interval = setInterval(() => {
+      if (this.analyzeProgress < 100) {
+        this.analyzeProgress += 10;
+      }
+    }, 1000);
     const link = this.form.get('link')?.value;
     if (!link) return;
-    this.apiService.getProduct(link).subscribe((res: any) => {
+    this.apiService.getProduct(link).pipe(
+      catchError(() => {
+        return of([]);
+      })
+    ).subscribe((res: any) => {
       console.log(res);
       this.images = res.images;
+      clearInterval(interval);
+      this.analyzeProgress = 0;
     });
   }
 
@@ -120,5 +151,42 @@ export class MaterialToVideoComponent implements AfterViewInit {
 
   removeItemResult(index: number) {
     this.images = this.images.filter((_, i) => i !== index);
+  }
+  
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  
+  // Add allowed file types
+  private allowedFileTypes = [
+    'image/jpeg',
+    'image/png', 
+    'image/bmp',
+    'image/webp',
+    'video/mp4',
+    'video/quicktime' // for .mov files
+  ];
+
+  onFileUploadClick() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    for (const file of files) {
+      if (!this.allowedFileTypes.includes(file.type)) {
+        console.error('Invalid file type:', file.type);
+        continue;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.images.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Clear input value to allow selecting the same file again
+    this.fileInput.nativeElement.value = '';
   }
 }

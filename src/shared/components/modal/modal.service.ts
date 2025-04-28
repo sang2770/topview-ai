@@ -15,13 +15,13 @@ export class ModalService {
     private appRef: ApplicationRef,
     private environmentInjector: EnvironmentInjector
   ) {
-    this.createModalsContainer();
   }
 
   /**
    * Opens a modal with a component
    */
   open<T, R = any>(component: Type<T>, options: ModalOptions = {}): ModalRef<T, R> {
+    this.createModalsContainer();
     return this.createModal(options, (modalRef, modalComponent) => {
       modalComponent.loadComponent(component, options.data);
     });
@@ -49,12 +49,10 @@ export class ModalService {
   /**
    * Creates a modal container and appends it to the body
    */
-  private createModalsContainer(): void {
-    if (!this.modalsContainerElement) {
-      this.modalsContainerElement = document.createElement('div');
-      this.modalsContainerElement.classList.add('modals-container');
-      document.body.appendChild(this.modalsContainerElement);
-    }
+  private createModalsContainer(): void {    
+    this.modalsContainerElement = document.createElement('div');
+    this.modalsContainerElement.classList.add('modals-container');
+    document.body.appendChild(this.modalsContainerElement);
   }
 
   /**
@@ -75,10 +73,10 @@ export class ModalService {
       title: options.title,
       footerTemplate: options.footerTemplate,
     };
-
+    
     // Create the modal reference
     const modalRef = new ModalRef<T, R>();
-
+    
     // Create the modal component
     const modalComponentRef = createComponent(ModalComponent, {
       environmentInjector: this.environmentInjector,
@@ -110,7 +108,7 @@ export class ModalService {
 
     // Add to active modals
     this.activeModals.push(modalRef);
-
+  
     // Detect changes
     this.appRef.attachView(modalComponentRef.hostView);
     modalComponentRef.changeDetectorRef.detectChanges();

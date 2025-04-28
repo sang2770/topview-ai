@@ -9,10 +9,6 @@ import { MaterialToVideoComponent } from './material-to-video/material-to-video.
 import { TooltipDirective } from '../../../shared/directives/tooltip.directive';
 import { SelectAvatarComponent } from './material-to-video/select-avatar/select-avatar.component';
 import {
-  ExampleModalContentComponent,
-  ModalDemoComponent,
-} from '../../../shared/components/modal';
-import {
   SliderComponent,
   SliderDemoComponent,
 } from '../../../shared/components/slider';
@@ -21,6 +17,7 @@ import { AiVideoComponent } from './ai-video/ai-video.component';
 import { ProductAvatarComponent } from './product-avatar/product-avatar.component';
 import { FileUploadDemoComponent } from '../../../shared/components/file-upload/file-upload-demo.component';
 import { FileUploadComponent } from '../../../shared/components/file-upload';
+import { ProgressComponent, ProgressDemoComponent } from '../../../shared/components/progress';
 
 @NgModule({
   declarations: [
@@ -38,11 +35,10 @@ import { FileUploadComponent } from '../../../shared/components/file-upload';
     FormsModule,
     SelectComponent,
     TooltipDirective,
-    ModalDemoComponent,
-    ExampleModalContentComponent,
     SliderDemoComponent,
     SliderComponent,
     FileUploadComponent,
+    ProgressComponent
   ],
 })
 export class DashboardModule {}

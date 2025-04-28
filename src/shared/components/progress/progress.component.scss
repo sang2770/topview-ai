@@ -1,0 +1,107 @@
+.progress-container {
+  display: inline-block;
+  width: 100%;
+  
+  // Line progress styles
+  .progress-line {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    .progress-line-outer {
+      position: relative;
+      width: 100%;
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    
+    .progress-line-inner {
+      position: relative;
+      border-radius: 100px;
+      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+      
+      &.progress-status-active {
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          animation: progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+        }
+      }
+    }
+    
+    .progress-info {
+      margin-left: 8px;
+      color: white;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+  
+  // Circle progress styles
+  .progress-circle {
+    position: relative;
+    display: inline-block;
+    
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .progress-circle-trail {
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s;
+    }
+    
+    .progress-circle-path {
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.3s ease 0s, stroke-dasharray 0.3s ease 0s, stroke 0.3s, stroke-width 0.06s ease 0.3s;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+    
+    .progress-circle-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@keyframes progress-active {
+  0% {
+    width: 0;
+    opacity: 0.1;
+  }
+  20% {
+    width: 0;
+    opacity: 0.5;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
