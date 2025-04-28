@@ -28,7 +28,7 @@
             </div>
             <input type="text" name="inputLink" formControlName="link" #inputLink>
             <button class="btn btn-primary" style="position: relative;" [appTooltip]="'Select from available options'"
-                placement="top">Import from Link</button>
+                (click)="getImageProduct()" placement="top">Import from Link</button>
             @if (isShowPlaceHolder){
             <div class="place-holder" (click)="togglePlaceHolder()">
                 <p class="chakra-text css-0">Enter a link, supports</p>
@@ -205,7 +205,7 @@
             <p class="text-hint">(mp4, mov, png, jpg, bmp, webp)</p>
         </div>
         <div class="upload-result">
-            @for (item of resultItems; track $index) {
+            @for (item of images; track $index) {
             <div class="result-item">
                 <div class="icon" (click)="removeItemResult($index)">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -226,7 +226,7 @@
                         </g>
                     </svg>
                 </div>
-                <img [src]="test" alt="">
+                <img [src]="item" alt="">
                 <span>Analysis Completed</span>
             </div>
             }

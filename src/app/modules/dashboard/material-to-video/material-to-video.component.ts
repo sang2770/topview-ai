@@ -7,6 +7,7 @@ import { SelectAvatarComponent } from './select-avatar/select-avatar.component';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { HttpClient } from '@angular/common/http';
 import { LoadingService } from '../../../../shared/services/loading.service';
+import { ApiService } from '../../../../shared/services/api.service';
 
 @Component({
   selector: 'app-material-to-video',
@@ -17,9 +18,6 @@ import { LoadingService } from '../../../../shared/services/loading.service';
 export class MaterialToVideoComponent implements AfterViewInit {
   readonly sampleUrl =
     'https://www.amazon.com/MAMI-BABI-Indoor-Scratch-Resistant/dp/B0C2C7FQMZ/ref=pd_ybh_a_d_sccl_6/133-6358408-3616469?pd_rd_w=TVDGv&content-id=amzn1.sym.67f8cf21-ade4-4299-b433-69e404eeecf1&pf_rd_p=67f8cf21-ade4-4299-b433-69e404eeecf1&pf_rd_r=FE229K6NC2G2X6B7QRH3&pd_rd_wg=p7DyQ&pd_rd_r=f6720f05-bea8-4f32-82a1-ae9022ffa3e4&pd_rd_i=B0C2C7FQMZ&psc=1';
-  test =
-    'https://dr1coeak04nbk.cloudfront.net/analyzed_video%2Ftask%2Fvideo_generator%2Furl2video%2Famazon%2Fimg%2F01c96cbbc302213b1ae5ab3b50a5c3ea.jpg?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vZHIxY29lYWswNG5iay5jbG91ZGZyb250Lm5ldC9hbmFseXplZF92aWRlbyUyRnRhc2slMkZ2aWRlb19nZW5lcmF0b3IlMkZ1cmwydmlkZW8lMkZhbWF6b24lMkZpbWclMkYwMWM5NmNiYmMzMDIyMTNiMWFlNWFiM2I1MGE1YzNlYS5qcGciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NDU2Mjk5MTd9fX1dfQ__&Signature=tKO9zfaLx55MEwkxz-Ql-lZSUDTCmby7SXViEH4k8PVwEaclADLl3dNe6~F7~06RmUtWJz3BGSzUejAiUaX6qVX5PpXPsau~fSuDtHv50wXSmt1z386M5PNQEZ7V0INZC~QgcF8a0x4pDL4NW-ALzV7ukrNm8Q4fZ~zUtC2YYez2c-no2Bj5MNzapOMbsr2ga-NKv6GaVAVN1W22C5VidZ~kVpZG6o0WCVmlGojji9fHRq~DRkOHNhlqAbWwPTzTiTwoxaRSiQ2d2eL-qm1md3opK4ZldL19KDZe9ANyqV4V-uUWf6mI0s0ku6Ey8OisdthRTsrx-AzoQlqa1pmxCg__&Key-Pair-Id=K21X5TGS0ALJI4';
-  resultItems = Array.from(Array(10).keys());
   tab?: string = 'detail';
   isShowPlaceHolder: boolean = true;
   form: FormGroup = new FormGroup({});
@@ -60,7 +58,8 @@ export class MaterialToVideoComponent implements AfterViewInit {
     public fb: FormBuilder,
     public router: Router,
     public http: HttpClient,
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    private apiService: ApiService
   ) {
     dashboardService.title$.next('Material to Video');
     this.form = fb.group({
@@ -108,20 +107,18 @@ export class MaterialToVideoComponent implements AfterViewInit {
   getImageProduct() {
     const link = this.form.get('link')?.value;
     if (!link) return;
-    this.http
-      .post(`localhost:3000/exactImages`, {
-        url: link,
-      })
-      .subscribe((res: any) => {
-        this.images = res;
-      });
+    this.apiService.getProduct(link).subscribe((res: any) => {
+      console.log(res);
+      this.images = res.images;
+    });
   }
 
   fillExample() {
     this.form.get('link')?.setValue(this.sampleUrl);
+    this.getImageProduct();
   }
 
   removeItemResult(index: number) {
-    this.resultItems = this.resultItems.filter((_, i) => i !== index);
+    this.images = this.images.filter((_, i) => i !== index);
   }
 }
