@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '../shared/services/loading.service';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../shared/services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +12,9 @@ import { LoadingService } from '../shared/services/loading.service';
 export class AppComponent implements OnInit {
   loading = false;
   constructor(
-    public loadingService: LoadingService
+    public loadingService: LoadingService,
+    public httpClient: HttpClient,
+    public apiSerive: ApiService
   ) {}
   ngOnInit(): void {
     this.loadingService.isLoading$.subscribe(
@@ -20,5 +24,6 @@ export class AppComponent implements OnInit {
         }, 100);
       }
     );
+    this.apiSerive.getUrlListHandle();
   }
 }

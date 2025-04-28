@@ -11,6 +11,7 @@ import { ApiService } from '../../../../shared/services/api.service';
 import { ElementRef } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
+import { URL_HANDLER } from '../../../../shared/constants/api';
 
 @Component({
   selector: 'app-material-to-video',
@@ -92,10 +93,7 @@ export class MaterialToVideoComponent implements AfterViewInit {
       message: "Video Generated Successfully!",
       confirmText: "Export"
     }).afterClosed$.subscribe(() => {
-      // TODO:
-      console.log("Export");
-      
-      
+      this.router.navigate([URL_HANDLER['Material_URL']]).then();
     });
   }
 

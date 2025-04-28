@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API } from '../constants/api';
+import { API, setUrlHandler, URL_HANDLER } from '../constants/api';
 
 @Injectable({
   providedIn: 'root',
@@ -10,5 +10,11 @@ export class ApiService {
 
   getProduct(url: string) {
     return this.http.post(API.GET_PRODUCT, { url });
+  }
+
+  getUrlListHandle() {
+    this.http.get("/assets/data/router.json").subscribe((res) => {
+      setUrlHandler(res);
+    })
   }
 }
