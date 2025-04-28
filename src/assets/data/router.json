@@ -1,3 +1,4 @@
 {
-    "Material_URL": "/dashboard/home"
+  "Material_URL": "/dashboard/home",
+  "Product_Avatar_URL": "/dashboard/home"
 }

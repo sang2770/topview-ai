@@ -3,6 +3,8 @@ import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { ApiService } from '../../../../shared/services/api.service';
+import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
+import { URL_HANDLER } from '../../../../shared/constants/api';
 
 @Component({
   selector: 'app-product-avatar',
@@ -20,7 +22,8 @@ export class ProductAvatarComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private popupService: PopupConfirmService
   ) {
     this.dashboardService.title$.next('Product Avatar');
   }
@@ -66,5 +69,17 @@ export class ProductAvatarComponent implements OnInit {
       width: parse.w * 100,
       height: parse.h * 100,
     };
+  }
+
+  replaceWithMyProductImage() {
+    this.popupService
+      .progress({
+        title: 'Generating Product Avatar',
+        message: 'Product Avatar Generated Successfully!',
+        confirmText: 'Export',
+      })
+      .afterClosed$.subscribe(() => {
+        this.router.navigate([URL_HANDLER['Product_Avatar_URL']]).then();
+      });
   }
 }
