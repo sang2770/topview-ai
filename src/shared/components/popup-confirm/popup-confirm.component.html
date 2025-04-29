@@ -1,17 +1,18 @@
 <div class="popup-confirm-content">
-
-
   <div class="popup-confirm-body">
     @if (this.type === 'progress') {
       @if (this.progress === 100) {
       <p class="popup-confirm-message" style="text-align: center;">{{ message }}</p>
+      }@else {
+      <p class="popup-confirm-message" style="text-align: center;">{{ pendingMessage }}</p>
+
       }
     } @else {
     <p class="popup-confirm-message">{{ message }}</p>
     }
     <!-- Progress bar for progress type -->
-    <div *ngIf="type === 'progress'" class="progress-container">
-      <app-progress [percent]="progress" type="circle"></app-progress>
+    <div *ngIf="type === 'progress'" class="progress-containers" style="margin: 0 auto;">
+      <app-progress  [percent]="progress" strokeColor="linear-gradient(to right, rgb(241, 62, 242), rgb(201, 203, 255), rgb(48, 213, 229), rgb(52, 75, 255))"></app-progress>
     </div>
     <!-- Custom content for different action types -->
     <div *ngIf="action === 'export'" class="export-info">
@@ -26,10 +27,10 @@
       <p>Your file will be exported in a standard format</p>
     </div>
   </div>
-  <div class="popup-confirm-footer">
-    <button type="button" class="btn-cancel" (click)="onCancel()">
+  <div class="popup-confirm-footer d-flex align-items-center justify-content-center">
+    <!-- <button type="button" class="btn-cancel" (click)="onCancel()">
       {{ cancelText || 'Cancel' }}
-    </button>
+    </button> -->
     <button type="button" class="btn-confirm" (click)="onConfirm()" [disabled]="isProcessing && progress < 100">
       {{ confirmText || 'Confirm' }}
     </button>

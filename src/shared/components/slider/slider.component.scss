@@ -95,25 +95,28 @@
   position: relative;
   width: 100%;
   height: 4px;
-  background-color: rgba(255, 255, 255, 0.2);
+  // background-color: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
   cursor: pointer;
+  background: linear-gradient(to right, rgb(241, 62, 242), rgb(201, 203, 255), rgb(48, 213, 229), rgb(52, 75, 255));
 }
 
 .slider-range {
   position: absolute;
   height: 100%;
-  background-color: var(--primary-color, #6366f1);
+  // background-color: var(--primary-color, #6366f1);
   border-radius: 2px;
   left: 0;
   top: 0;
+  background: linear-gradient(to right, rgb(241, 62, 242), rgb(201, 203, 255), rgb(48, 213, 229), rgb(52, 75, 255));
 }
 
 .slider-thumb {
   position: absolute;
   width: 16px;
   height: 16px;
-  background-color: var(--primary-color, #6366f1);
+  // background-color: var(--primary-color, #6366f1);
+  background-color:  #fff;
   border-radius: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

@@ -8,6 +8,7 @@
   flex-shrink: 0;
   border-radius: 12px;
   padding: 16px;
+  min-height: calc(100vh - 100px);
 }
 
 .section-title {
@@ -105,7 +106,7 @@ label {
 /* Form Groups & Inputs */
 .form-group {
   /* Styles applied via gap in sidebar */
-  margin-bottom: 10px;
+  margin: 20px 0;
 }
 
 .textarea-container {

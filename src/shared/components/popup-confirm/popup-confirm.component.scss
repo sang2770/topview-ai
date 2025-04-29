@@ -1,5 +1,4 @@
-.popup-confirm-content {
-}
+.popup-confirm-content {}
 
 .popup-confirm-title {
   margin: 0;
@@ -8,22 +7,31 @@
 }
 
 .popup-confirm-body {
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .popup-confirm-message {
-  margin: 0 0 16px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(90deg, #553DFF 0%, #37C4F1 23.9%, #82F0B8 47.54%, #6BB3FF 69.67%, #F169F4 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 999;
+  margin-bottom: 20px;
+  margin-top: 0;
 }
 
 .popup-confirm-footer {
   display: flex;
-  justify-content: flex-end;
+  // justify-content: flex-end;
   gap: 12px;
   padding: 16px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  // border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 button {
@@ -33,7 +41,7 @@ button {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  
+
   &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
@@ -44,29 +52,49 @@ button {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
-  
+
   &:hover:not(:disabled) {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
 .btn-confirm {
-  background-color: var(--primary-color, #1976d2);
-  border: none;
-  color: white;
-  
+  display: inline-flex;
+  appearance: none;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  line-height: 1.2;
+  min-width: var(--chakra-sizes-10);
+  padding-inline: 24px;
+  background: rgb(78, 63, 243);
+  position: relative;
+  height: 45px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  border-radius: 100px;
+  border: var(--chakra-borders-none);
+  padding: 16px 53px;
+  transition: 0.3s ease-in-out;
+
   &:hover:not(:disabled) {
-    background-color: darken(#1976d2, 10%);
+    background-color: darken(#1163b4, 10%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
 
 // Progress bar styles
-.progress-container {
-  display: flex;
+.progress-containers {
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 90%;
 }
 
 .progress-bar {

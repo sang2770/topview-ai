@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
+import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
+import { URL_HANDLER } from '../../../../shared/constants/api';
 
 @Component({
   selector: 'app-ai-video',
@@ -11,6 +13,8 @@ import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 export class AiVideoComponent implements OnInit {
   selectedType: any = null;
   selectedTab: any = 'Text';
+  aspectSelected = '9:16';
+  count = 25;
   customMarks = [
     {
       value: 0,
@@ -50,7 +54,8 @@ export class AiVideoComponent implements OnInit {
   ];
   constructor(
     private dashboardService: DashboardService,
-    private router: Router
+    private router: Router,
+    private popupConfirmService: PopupConfirmService
   ) {
     this.dashboardService.title$.next('AI Creation');
   }
@@ -58,5 +63,25 @@ export class AiVideoComponent implements OnInit {
 
   redirectToDashboard() {
     this.router.navigate([ROUTER_UTILS.DASHBOARD.getHome()]);
+  }
+
+  selectAspect(text: string) {
+    this.aspectSelected = text;
+  }
+
+  getCount(): string {
+    return this.customMarks.find(item => item.value === this.count)?.label ?? "";
+  }
+
+  generate() {
+    this.popupConfirmService.progress({
+      // title: "Generate AI Video",
+      size: 'lg',
+      pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
+      message: "Generate Completed! You can check and export"
+    }).afterClosed$.subscribe((res) => {
+      if (!res) return;
+      this.router.navigate([URL_HANDLER['AI_Video']]).then();
+    });
   }
 }

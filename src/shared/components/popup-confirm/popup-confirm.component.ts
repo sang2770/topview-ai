@@ -16,6 +16,7 @@ import { ProgressComponent } from '../progress';
 export class PopupConfirmComponent implements OnInit{
   @Input() title: string = 'Confirm';
   @Input() message: string = 'Are you sure you want to proceed?';
+  @Input() pendingMessage: string = "Generating...";
   @Input() type: 'default' | 'progress' = 'default';
   @Input() action: 'default' | 'confirm' | 'export' = 'default';
   @Input() confirmText: string = 'Confirm';
@@ -40,17 +41,16 @@ export class PopupConfirmComponent implements OnInit{
   
   onConfirm(): void {
     this.confirm.emit(this.data);
-    console.log(this.modalRef);
     
     if (this.modalRef) {
-      this.modalRef.close(this.data);
+      this.modalRef.close({success: true});
     }
   }
   
   onCancel(): void {
     this.cancel.emit();
     if (this.modalRef) {
-      this.modalRef.close();
+      this.modalRef.close(null);
     }
   }
   

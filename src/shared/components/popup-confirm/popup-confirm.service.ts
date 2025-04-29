@@ -4,13 +4,15 @@ import { ModalRef } from '../modal/modal-ref';
 import { PopupConfirmComponent } from './popup-confirm.component';
 
 export interface PopupConfirmOptions {
-  title?: string;
+title?: string;
   message?: string;
+  pendingMessage?: string;
   type?: 'default' | 'progress';
   action?: 'default' | 'confirm' | 'export';
   confirmText?: string;
   cancelText?: string;
   data?: any;
+  size?: any;
 }
 
 @Injectable({
@@ -27,7 +29,7 @@ export class PopupConfirmService {
   confirm(options: PopupConfirmOptions = {}): ModalRef {
     return this.modalService.open(PopupConfirmComponent, {
       centered: true,
-      size: 'sm',
+      size: options.size ?? 'sm',
       title: options.title,
       data: {
         message: options.message,

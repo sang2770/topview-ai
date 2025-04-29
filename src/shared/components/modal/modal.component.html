@@ -21,7 +21,9 @@
     (click)="$event.stopPropagation()">
     
     <div class="modal-header" *ngIf="config.title || config.showCloseButton">
-      <h3 class="modal-title" *ngIf="config.title">{{ config.title }}</h3>
+      <h3 class="modal-title" >
+        {{ config.title }}
+      </h3>
       <button 
         *ngIf="config.showCloseButton" 
         type="button" 

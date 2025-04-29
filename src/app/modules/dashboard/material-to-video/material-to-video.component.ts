@@ -56,6 +56,11 @@ export class MaterialToVideoComponent implements AfterViewInit {
     { label: 'Female', value: 'female' },
   ];
 
+  duration = Array.from(new Array(5)).map((_, index) => ({
+    label: index + ' minutes',
+    value: index
+  }));
+
   avatar: any = {};
 
   analyzeProgress = 0;
@@ -89,10 +94,13 @@ export class MaterialToVideoComponent implements AfterViewInit {
 
   generate() {
     this.popupService.progress({
-      title: 'Create video',
+      // title: 'Create video',
       message: "Video Generated Successfully!",
-      confirmText: "Export"
-    }).afterClosed$.subscribe(() => {
+      pendingMessage: "Generating...",
+      confirmText: "Export",
+      size: "md"
+    }).afterClosed$.subscribe((res) => {
+      if (!res) return;
       this.router.navigate([URL_HANDLER['Material_URL']]).then();
     });
   }

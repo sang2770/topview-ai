@@ -5,6 +5,7 @@ import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { ApiService } from '../../../../shared/services/api.service';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 import { URL_HANDLER } from '../../../../shared/constants/api';
+import { ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-product-avatar',
@@ -71,11 +72,35 @@ export class ProductAvatarComponent implements OnInit {
     };
   }
 
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  uploadedImage: string | null = null;
+
   replaceWithMyProductImage() {
+    // Create a hidden file input
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    
+    input.onchange = (e: any) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.uploadedImage = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    
+    input.click();
+  }
+
+  generate() {
     this.popupService
       .progress({
-        title: 'Generating Product Avatar',
+        // title: 'Generating Product Avatar',
         message: 'Product Avatar Generated Successfully!',
+        pendingMessage: 'Generating...',
         confirmText: 'Export',
       })
       .afterClosed$.subscribe(() => {

@@ -91,12 +91,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
       image: 'https://www.topview.ai/images/home/ai_video.png',
       link: ROUTER_UTILS.DASHBOARD.getAiVideo(),
     },
-    {
-      name: 'AI Voice Generator',
-      description: 'Transfer text to speech',
-      image: 'https://www.topview.ai/images/home/ai_voice.png',
-      link: '/gen/tts',
-    },
+    // {
+    //   name: 'AI Voice Generator',
+    //   description: 'Transfer text to speech',
+    //   image: 'https://www.topview.ai/images/home/ai_voice.png',
+    //   link: '/gen/tts',
+    // },
   ];
 
   templateList = [

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-progress',
@@ -10,7 +10,10 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
     CommonModule
   ]
 })
-export class ProgressComponent implements OnChanges {
+export class ProgressComponent implements OnChanges, OnInit {
+  ngOnInit(): void {
+    
+  }
   @Input() percent: number = 0;
   @Input() showInfo: boolean = true;
   @Input() type: 'line' | 'circle' = 'line';
@@ -39,7 +42,7 @@ export class ProgressComponent implements OnChanges {
       this.progressStyle = {
         width: `${this.percent}%`,
         height: `${this.strokeWidth}px`,
-        backgroundColor: this.getStrokeColor()
+        background: this.getStrokeColor()
       };
     } else if (this.type === 'circle') {
       const radius = 50 - (this.strokeWidth / 2);

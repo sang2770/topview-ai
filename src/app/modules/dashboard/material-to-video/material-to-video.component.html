@@ -272,11 +272,13 @@
         { label: '1:1', value: '1:1' },
         { label: '4:3', value: '4:3' },
         { label: '3:4', value: '3:4' },
-        ]" placeholder="Select an option">
+        ]" placeholder="Select size">
         </app-select>
-        <app-select [options]="languages" placeholder="Select an option" [disabled]="this.tab === 'script'">
+        <app-select [options]="languages" placeholder="Select languages" [disabled]="this.tab === 'script'">
         </app-select>
-        <app-select [options]="voices" placeholder="Select an option">
+        <app-select [options]="voices" placeholder="Select voice">
+        </app-select>
+        <app-select [options]="duration" placeholder="Select duration">
         </app-select>
         <button class="btn btn-ghost" (click)="openSelectAvatar()">
             <img alt="avatar" [src]="this.avatar?.url ?? 'https://www.topview.ai/images/m2v/avatar_demo.png'"

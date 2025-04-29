@@ -99,15 +99,20 @@
                 </div>
             </div>
 
-            <button class="btn btn-primary" (click)="replaceWithMyProductImage()">
-                Replace with My Product Image
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 12"
-                    focusable="false" class="chakra-icon css-ky7im0">
-                    <path fill="#fff" fill-opacity="0.35"
-                        d="M6 0C2.69 0 0 2.69 0 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6m.429 9.429H5.57V8.57h.858zm.15-2.722-.075.064c-.043.033-.075.108-.075.172v.782H5.57v-.782c0-.332.15-.643.397-.847l.075-.064c.75-.6 1.114-.91 1.114-1.446 0-.643-.514-1.157-1.157-1.157-.664 0-1.157.492-1.157 1.157h-.857C3.986 3.46 4.875 2.57 6 2.57c1.114 0 2.014.9 2.014 2.015 0 .975-.664 1.51-1.435 2.121">
-                    </path>
-                </svg>
-            </button>
+            <div class="d-flex align-items-center justify-content-center" style="gap: 10px">
+                <button class="btn btn-primary" (click)="replaceWithMyProductImage()">
+                    Replace with My Product Image
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 12"
+                        focusable="false" class="chakra-icon css-ky7im0">
+                        <path fill="#fff" fill-opacity="0.35"
+                            d="M6 0C2.69 0 0 2.69 0 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6m.429 9.429H5.57V8.57h.858zm.15-2.722-.075.064c-.043.033-.075.108-.075.172v.782H5.57v-.782c0-.332.15-.643.397-.847l.075-.064c.75-.6 1.114-.91 1.114-1.446 0-.643-.514-1.157-1.157-1.157-.664 0-1.157.492-1.157 1.157h-.857C3.986 3.46 4.875 2.57 6 2.57c1.114 0 2.014.9 2.014 2.015 0 .975-.664 1.51-1.435 2.121">
+                        </path>
+                    </svg>
+                </button>
+                <button class="btn btn-primary" (click)="generate()">
+                    Generate Image
+                </button>
+            </div>
         </section>
     </main>
 </div>

@@ -38,7 +38,8 @@ import { ProgressComponent, ProgressDemoComponent } from '../../../shared/compon
     SliderDemoComponent,
     SliderComponent,
     FileUploadComponent,
-    ProgressComponent
+    ProgressComponent,
+    ProgressDemoComponent
   ],
 })
 export class DashboardModule {}

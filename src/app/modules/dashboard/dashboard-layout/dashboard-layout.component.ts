@@ -3,6 +3,7 @@ import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { filter, throttleTime } from 'rxjs';
 import { DashboardService } from './dashboard.service';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
+import { ModalService } from '../../../../shared/components/modal';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -15,13 +16,18 @@ export class DashboardLayoutComponent implements OnInit {
   isShowSidebar = true;
   constructor(
     private DashboardService: DashboardService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ) {}
   ngOnInit(): void {
     this.DashboardService.title.subscribe((title) => {
       this.title = title;
       this.isShowSidebar = !title;
     });
+
+    this.router.events.subscribe(() => {
+      this.modalService.closeAll();
+    })
   }
 
   redirtectTo(route: string) {
