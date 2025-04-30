@@ -33,7 +33,7 @@
                 }
                 <div (click)="selectAvatar(item)" *ngIf="item?.templateImageUrl"
                     [ngClass]="{'grid-item': true, 'active': this.selectedAvatar?.templateId === item.templateId}"><img
-                        src="{{item?.templateImageUrl}}" alt="{{item?.templateName}}"></div>
+                        src="{{item?.templateImageUrl}}" alt="{{item?.templateName}}" loading="lazy"></div>
                 }
             </div>
             }

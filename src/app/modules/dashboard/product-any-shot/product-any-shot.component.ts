@@ -56,7 +56,7 @@ export class ProductAnyShotComponent implements OnInit {
     private router: Router,
     private popupConfirmService: PopupConfirmService
   ) {
-    this.dashboardService.title$.next('Product Avatar');
+    this.dashboardService.title$.next('Product AnyShot');
   }
   ngOnInit(): void {}
 
@@ -97,9 +97,10 @@ export class ProductAnyShotComponent implements OnInit {
     this.templateImage = null; 
   }
 
-  generate() {
+  generate() {    
     this.popupConfirmService.progress({
       // title: "Generate AI Video",
+      imagePreview: this.templateImage,
       size: 'lg',
       pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
       message: "Generate Completed! You can check and export"

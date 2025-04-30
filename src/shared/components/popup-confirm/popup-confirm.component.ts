@@ -22,6 +22,7 @@ export class PopupConfirmComponent implements OnInit{
   @Input() confirmText: string = 'Confirm';
   @Input() cancelText: string = 'Cancel';
   @Input() data: any;
+  @Input() imagePreview?: string;
   
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();

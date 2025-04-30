@@ -13,6 +13,7 @@ title?: string;
   cancelText?: string;
   data?: any;
   size?: any;
+  imagePreview?: string;
 }
 
 @Injectable({
@@ -37,7 +38,8 @@ export class PopupConfirmService {
         action: options.action || 'confirm',
         confirmText: options.confirmText,
         cancelText: options.cancelText,
-        data: options.data
+        data: options.data,
+        imagePreview: options.imagePreview
       }
     });
   }

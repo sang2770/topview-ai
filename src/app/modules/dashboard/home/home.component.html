@@ -87,7 +87,7 @@
                 </button>
                 <div class="home-item-templates" #templatesContainer>
                     @for (template of templateList; track $index) {
-                    <div class="home-template">
+                    <div class="home-template" (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getProductAnyShot())">
                         <img [src]="template.image" [alt]="template.title">
                         <div class="home-template-title">
                             {{template.title}}
@@ -119,8 +119,8 @@
                 </button>
                 <div class="home-item-product-avatars" #productAvatarsContainer>
                     @for (avatar of productAvatarList; track $index) {
-                    <div class="home-product-avatar">
-                        <div class="product-avatar-image-container">
+                    <div class="home-product-avatar" (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getProductAvatar())">
+                        <div class="product-avatar-image-container" >
                             <img [src]="avatar.image" [alt]="avatar.category" loading="eager"
                                 class="product-avatar-image">
                             <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
@@ -155,8 +155,8 @@
                 </button>
                 <div class="home-item-video-avatars" #videoAvatarsContainer>
                     @for (avatar of videoAvatarTemplate; track $index) {
-                    <div class="home-video-avatar">
-                        <div class="video-avatar-image-container">
+                    <div class="home-video-avatar" (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getAiVideo())">
+                        <div class="video-avatar-image-container"  >
                             <img [src]="avatar.image" [alt]="avatar.title" loading="eager" class="video-avatar-image">
                             <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
                                 class="video-avatar-badge">

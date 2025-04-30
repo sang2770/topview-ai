@@ -51,7 +51,7 @@
                     <div [ngClass]="{'avatar-item': true, 'selected': selectedAvatarIndex === $index}"
                         (click)="selectAvatar($index)">
                         <img [src]="'https://d1735p3aqhycef.cloudfront.net/' + item.avatarImagePath"
-                            alt="item.avatarName">
+                            alt="item.avatarName" loading="lazy">
                         <!-- No badges for the first few -->
                         @if (item.showNewBadge) {
                         <span class="badge new-badge">New</span>

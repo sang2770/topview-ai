@@ -3,9 +3,11 @@
     @if (this.type === 'progress') {
       @if (this.progress === 100) {
       <p class="popup-confirm-message" style="text-align: center;">{{ message }}</p>
+      <div class="previewUrl" *ngIf="imagePreview">
+        <img src="{{imagePreview}}" alt="Preview" >
+      </div>
       }@else {
       <p class="popup-confirm-message" style="text-align: center;">{{ pendingMessage }}</p>
-
       }
     } @else {
     <p class="popup-confirm-message">{{ message }}</p>

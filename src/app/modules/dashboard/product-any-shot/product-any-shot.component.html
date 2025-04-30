@@ -96,7 +96,7 @@
             </div>
 
             <div class="upload-area checkerboard" style="flex: 1">
-                <app-file-upload style="height: 100%;" label="Click to upload target image" (fileSelected)="onFileSelected($event)"
+                <app-file-upload style="height: 90%;" label="Click to upload target image" (fileSelected)="onFileSelected($event)"
                     [templateLabel]="templateLabel" [previewUrl]="this.templateImage"></app-file-upload>
 
                 <ng-template #templateLabel>
@@ -107,6 +107,10 @@
                             Templates</button>
                     </div>
                 </ng-template>
+                <div class="" style="margin-top: 10px;" *ngIf="templateImage">
+                    <button class="btn btn-secondary" (click)="openSelectTemplate($event)">Public
+                        Templates</button>
+                </div>
             </div>
         </div>
         <button class="btn btn-generate" (click)="generate()">

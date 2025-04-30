@@ -9,7 +9,23 @@
 .popup-confirm-body {
   padding: 0 20px;
 }
+.previewUrl {
+  width: 80%;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    filter: blur(13px);
+  }
+  
 
+}
 .popup-confirm-message {
   text-align: center;
   font-size: 1.75rem;
