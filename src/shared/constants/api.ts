@@ -1,5 +1,7 @@
+import { environment } from "../../assets/environments/environment";
+
 export const API = {
-  GET_PRODUCT: 'http://localhost:3000/extract-images',
+  GET_PRODUCT: `${environment.gateway}extract-images`,
 };
 
 
