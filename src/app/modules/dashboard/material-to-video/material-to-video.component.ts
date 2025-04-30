@@ -86,7 +86,7 @@ export class MaterialToVideoComponent implements AfterViewInit {
       this.isShowPlaceHolder = !value;
     });
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   changeTab(tab: string) {
     this.tab = tab;
@@ -132,7 +132,7 @@ export class MaterialToVideoComponent implements AfterViewInit {
   getImageProduct() {
     this.analyzeProgress = 10;
     const interval = setInterval(() => {
-      if (this.analyzeProgress < 100) {
+      if (this.analyzeProgress < 90) {
         this.analyzeProgress += 10;
       }
     }, 1000);
@@ -158,13 +158,13 @@ export class MaterialToVideoComponent implements AfterViewInit {
   removeItemResult(index: number) {
     this.images = this.images.filter((_, i) => i !== index);
   }
-  
+
   @ViewChild('fileInput') fileInput!: ElementRef;
-  
+
   // Add allowed file types
   private allowedFileTypes = [
     'image/jpeg',
-    'image/png', 
+    'image/png',
     'image/bmp',
     'image/webp',
     'video/mp4',
