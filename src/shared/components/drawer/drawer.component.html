@@ -1,0 +1,43 @@
+<div class="drawer-container" *ngIf="visible" [@maskAnimation]="visible ? 'visible' : 'void'">
+  <div class="drawer-mask" (click)="onMaskClick()"></div>
+  <div class="drawer-content-wrapper" 
+       [ngClass]="'drawer-' + placement"
+       [ngStyle]="getDrawerStyle()"
+       [@drawerAnimation]="visible ? placement : 'void'">
+    
+    <div class="drawer-content">
+      <!-- Header -->
+      <div class="drawer-header" *ngIf="title || headerTemplate || closable">
+        <ng-container *ngIf="headerTemplate; else defaultHeader">
+          <ng-container *ngTemplateOutlet="headerTemplate"></ng-container>
+        </ng-container>
+        <ng-template #defaultHeader>
+          <div class="drawer-title" *ngIf="title">{{ title }}</div>
+          <button *ngIf="closable" class="drawer-close" (click)="close()">
+            <ng-container *ngIf="closeIcon; else defaultCloseIcon">
+              <ng-container *ngTemplateOutlet="closeIcon"></ng-container>
+            </ng-container>
+            <ng-template #defaultCloseIcon>
+              <span class="close-icon">×</span>
+            </ng-template>
+          </button>
+        </ng-template>
+      </div>
+      
+      <!-- Body -->
+      <div class="drawer-body">
+        <ng-container *ngIf="contentTemplate; else defaultContent">
+          <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+        </ng-container>
+        <ng-template #defaultContent>
+          <ng-content></ng-content>
+        </ng-template>
+      </div>
+      
+      <!-- Footer -->
+      <div class="drawer-footer" *ngIf="footerTemplate">
+        <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>

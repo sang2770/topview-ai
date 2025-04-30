@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     {
       name: 'Avatar Marketing Video',
       description: 'Create marketing video ads from link or local materials',
-      image: 'https://www.topview.ai/images/home/ai_video_ads.png',
+      image: 'https://www.topview.ai/images/home/AI_VIDEO_ads.png',
       link: ROUTER_UTILS.DASHBOARD.getMaterialToVideo(),
     },
     // {
@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     {
       name: 'AI Video',
       description: 'Text to video, image to video',
-      image: 'https://www.topview.ai/images/home/ai_video.png',
+      image: 'https://www.topview.ai/images/home/AI_VIDEO.png',
       link: ROUTER_UTILS.DASHBOARD.getAiVideo(),
     },
     // {

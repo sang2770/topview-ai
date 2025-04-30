@@ -58,17 +58,8 @@ label {
 .upload-area {
   min-width: 300px;
   min-height: 300px;
-  display: flex;
-  flex-direction: column;
   border-radius: 8px;
-  -webkit-box-pack: center;
-  justify-content: space-around;
-  -webkit-box-align: center;
-  align-items: center;
-  gap: 16px 0px;
-  position: relative;
-  min-width: 300px;
-  min-height: 300px;
+
 }
 
 .upload-area:hover {
@@ -106,6 +97,9 @@ label {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 15px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 
 .icon-btn {
@@ -336,9 +330,7 @@ label {
   gap: 8px;
   font-size: 1.05em;
 }
-.btn-generate:hover {
-  background-color: var(--primary-hover);
-}
+
 .btn-generate .fa-bolt {
   color: var(--generate-icon);
 }

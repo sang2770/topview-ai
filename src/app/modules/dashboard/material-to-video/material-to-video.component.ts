@@ -101,7 +101,7 @@ export class MaterialToVideoComponent implements AfterViewInit {
       size: "md"
     }).afterClosed$.subscribe((res) => {
       if (!res) return;
-      this.router.navigate([URL_HANDLER['Material_URL']]).then();
+      this.router.navigate([URL_HANDLER['MATERIAL_URL']]).then();
     });
   }
 

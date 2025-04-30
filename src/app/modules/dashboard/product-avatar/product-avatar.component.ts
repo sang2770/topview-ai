@@ -104,7 +104,7 @@ export class ProductAvatarComponent implements OnInit {
         confirmText: 'Export',
       })
       .afterClosed$.subscribe(() => {
-        this.router.navigate([URL_HANDLER['Product_Avatar_URL']]).then();
+        this.router.navigate([URL_HANDLER['PRODUCT_AVATAR_URL']]).then();
       });
   }
 }

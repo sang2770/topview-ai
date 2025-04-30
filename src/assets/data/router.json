@@ -1,5 +1,6 @@
 {
-  "Material_URL": "/dashboard/home",
-  "Product_Avatar_URL": "/dashboard/home",
-  "AI_Video": "/dashboard/home"
+  "MATERIAL_URL": "/dashboard/home",
+  "PRODUCT_AVATAR_URL": "/dashboard/home",
+  "AI_VIDEO": "/dashboard/home",
+  "PRODUCT_ANY_SHOT": "/dashboard/any-shot"
 }

@@ -6,6 +6,7 @@ import {
   ElementRef,
   ViewChild,
   HostListener,
+  TemplateRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -25,6 +26,7 @@ export class FileUploadComponent {
   @Input() showOrText: boolean = false;
   @Input() showTemplateButton: boolean = false;
   @Input() templateButtonText: string = 'Select from Public Templates';
+  @Input() templateLabel: TemplateRef<any> | null = null;
 
   @Output() fileSelected = new EventEmitter<File>();
   @Output() templateSelected = new EventEmitter<void>();
@@ -33,7 +35,7 @@ export class FileUploadComponent {
 
   selectedFile: File | null = null;
   dragOver: boolean = false;
-  previewUrl: string | null = null;
+  @Input() previewUrl: string | null = null;
 
   constructor() {}
 

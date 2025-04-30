@@ -21,4 +21,8 @@ export class ApiService {
   getProductCategory() {
     return this.http.get('/assets/data/product-category.json');
   }
+
+  getTemplatesAnyShot() {
+    return this.http.get('/assets/data/avatar-category.json');
+  }
 }

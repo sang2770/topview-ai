@@ -3,13 +3,18 @@
     <div *ngIf="!previewUrl" class="upload-area checkerboard" [class.drag-over]="dragOver"
         [style.background-image]="'url(' + backgroundImage + ')'" (click)="openFileSelector()">
         <div class="d-flex justify-content-center flex-column align-items-center" style="padding-top: 40px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="none" viewBox="0 0 24 24"
                 focusable="false" class="chakra-icon css-1w11yih">
                 <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M11.998 12v8.5m0-8.5 3.28 3.278M11.998 12l-3.252 3.254M18 20a5 5 0 0 0 0-10 6 6 0 0 0-12 0a5 5 0 0 0 0 10">
                 </path>
             </svg>
+            @if (templateLabel){
+            <ng-container [ngTemplateOutlet]="templateLabel"></ng-container>
+            }@else {
             <p style="font-size: 16px;">{{ label }}</p>
+
+            }
         </div>
     </div>
     <div *ngIf="previewUrl" class="preview-container" (click)="openFileSelector()">

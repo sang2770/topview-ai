@@ -4,6 +4,7 @@ import { filter, throttleTime } from 'rxjs';
 import { DashboardService } from './dashboard.service';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { ModalService } from '../../../../shared/components/modal';
+import { TutorialComponent } from '../../../../shared/components/tutorial/tutorial.component';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -32,5 +33,23 @@ export class DashboardLayoutComponent implements OnInit {
 
   redirtectTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  isShowOptions() {
+    return this.title === 'Product Avatar' ? true : false;
+  }
+
+  openTutorial() {
+    this.modalService.open(
+      TutorialComponent,
+      {
+        title: 'Tutorial',
+        centered: true,
+        size: 'lg',
+        data: {
+          type: this.title
+        }
+      }
+    ).afterClosed$.subscribe();
   }
 }

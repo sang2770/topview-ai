@@ -1,20 +1,11 @@
-<div class="page-container">
+<div class="page-container" style="padding-right: 0;">
     <aside class="left-sidebar">
         <div class="panel product-image-panel">
             <h3>Product Image</h3>
             <p class="format-info">Image format: jpg, jpeg, png, webp; File size: < 10MB.</p>
-                    <div class="upload-area checkerboard"
-                        style="background-image: url('assets/images/image_editor_bg.png'); font-size: 28px;">
-                        <div class="d-flex justify-content-center flex-column align-items-center"
-                            style="padding-top: 40px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none"
-                                viewBox="0 0 24 24" focusable="false" class="chakra-icon css-1w11yih">
-                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11.998 12v8.5m0-8.5 3.28 3.278M11.998 12l-3.252 3.254M18 20a5 5 0 0 0 0-10 6 6 0 0 0-12 0 5 5 0 0 0 0 10">
-                                </path>
-                            </svg>
-                            <p style="font-size: 16px;">Click to upload product image</p>
-                        </div>
+                    <div class="upload-area checkerboard" style="position: relative;">
+                        <app-file-upload label="Click to upload product image"
+                            (fileSelected)="onFileSelected($event)" [previewUrl]="this.productImage"></app-file-upload>
                         <div class="icon-toolbar">
                             <div class="icon-btn">
                                 <p>🧥</p>
@@ -87,7 +78,7 @@
         <div class="mode-switcher">
             <button class="btn mode-btn active">Standard Mode</button>
         </div>
-        <div class="target-image-section">
+        <div class="target-image-section" style="height: calc(100vh - 250px);">
             <div class="target-header">
                 <h2>Target Image</h2>
                 <a href="#" class="how-to-draw">
@@ -104,40 +95,35 @@
                 </a>
             </div>
 
-            <div class="upload-area checkerboard"
-                style="background-image: url('assets/images/image_editor_bg.png'); font-size: 28px; justify-content: center; gap: 10px; flex-grow: 1;">
-                <div class="d-flex justify-content-center flex-column align-items-center" style="padding-top: 40px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24"
-                        focusable="false" class="chakra-icon css-1w11yih">
-                        <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M11.998 12v8.5m0-8.5 3.28 3.278M11.998 12l-3.252 3.254M18 20a5 5 0 0 0 0-10 6 6 0 0 0-12 0 5 5 0 0 0 0 10">
-                        </path>
-                    </svg>
-                    <p style="font-size: 16px;">Click to upload target image</p>
-                </div>
-                <p class="or-text">or</p>
-                <button class="btn btn-primary">Select from Public Templates</button>
+            <div class="upload-area checkerboard" style="flex: 1">
+                <app-file-upload style="height: 100%;" label="Click to upload target image" (fileSelected)="onFileSelected($event)"
+                    [templateLabel]="templateLabel" [previewUrl]="this.templateImage"></app-file-upload>
+
+                <ng-template #templateLabel>
+                    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+                        <p style="font-size: 16px;">Click to upload target image</p>
+                        <p class="or-text" style="margin-bottom: 20px;">or</p>
+                        <button class="btn btn-primary" (click)="openSelectTemplate($event)">Select from Public
+                            Templates</button>
+                    </div>
+                </ng-template>
             </div>
         </div>
-        <button class="btn btn-generate">
+        <button class="btn btn-generate" (click)="generate()">
             Generate
         </button>
     </main>
     <div class="samples-section" style="width: 20%;">
-        <div class="samples-grid"><img alt="clothes"
-                src="https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg"
-                class="chakra-image css-1vkcvrl"><img alt="shoes"
-                src="https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_product_compress_image.jpg"
-                class="chakra-image css-1vkcvrl"><img alt="hat"
-                src="https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_product_compress_image.jpg"
-                class="chakra-image css-1vkcvrl"><img alt="dress"
-                src="https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/dress_product_compress_image.jpg"
-                class="chakra-image css-1vkcvrl"></div>
-        <p class="samples-caption">Click to Try Samples</p>
+        <div class="samples-grid">
+            @for (item of exampleList; track $index) {
+                <img (click)="onTryExample(item)" alt="{{item.name}}" [src]="item.thumbnail" class="chakra-image css-1vkcvrl">
+                }
+                </div>
+        <p class="samples-caption text-center" >Click to Try Samples</p>
     </div>
 
     <aside class="right-sidebar">
-        <button class="btn history-btn">
+        <button class="btn history-btn" (click)="onCreateNew()">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 32 32"
                 focusable="false" class="chakra-icon css-8jm5u9">
                 <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -147,3 +133,10 @@
         </button>
     </aside>
 </div>
+
+<app-drawer [(visible)]="basicDrawerVisible" title="Public Templates" (afterOpen)="onAfterOpen()" [width]="'80%'"
+    (afterClose)="onAfterClose()">
+    @if (basicDrawerVisible) {
+    <app-select-template (selectedTemplate)="onSelectedTemplate($event)"></app-select-template>
+    }
+</app-drawer>

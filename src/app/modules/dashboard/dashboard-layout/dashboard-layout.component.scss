@@ -10,7 +10,30 @@
     font-size: 20px;
     font-weight: 600;
   }
+
+  .header-options {
+    font-size: 20px;
+    .btn{
+      display: inline-flex;
+      appearance: none;
+      justify-content: center;
+      user-select: none;
+      position: relative;
+      white-space: nowrap;
+      vertical-align: middle;
+      outline: transparent solid 2px;
+      outline-offset: 2px;
+      line-height: 1.2;
+      height: 36px;
+      -webkit-box-align: center;
+      align-items: center;
+      gap: 0px 6px;
+      font-weight: 500;
+      background: rgb(39, 39, 41);
+    }
+  }
 }
+
 
 .body {
   display: flex;

@@ -1,0 +1,47 @@
+<div class="select-container">
+    <div class="filter-tags">
+        <button [ngClass]="{'tag-btn': true, 'active': selectedCategoryIndex === null}">All</button>
+        @for (item of categories; track $index) {
+        <button [ngClass]="{'tag-btn': true, 'active': selectedCategoryIndex === $index}"
+            (click)="selectCategory($index)">{{item.categoryName}}</button>
+        }
+    </div>
+
+    <main class="modal-content">
+        <div class="template-grid" appResizeObserver (resize)="resizeGallery($event)">
+            <!-- Special "AI Creation" Item -->
+
+
+            <!-- Regular Template Items (Examples) -->
+            @for (column of avatarListRender; track $index; let columnFirst = $first;) {
+            <div class="column">
+                @for (item of column; track $index; let first = $first;) {
+                @if ($first && columnFirst) {
+                <div class="grid-item ai-creation-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="none" viewBox="0 0 24 24"
+                        focusable="false" class="chakra-icon css-1qwiz3t">
+                        <path stroke="#fff" stroke-width="2" d="m3 18.5 5.167-5.166a2 2 0 0 1 2.742-.081L14 16"></path>
+                        <path stroke="#fff" stroke-linejoin="round" stroke-width="2"
+                            d="M21 11.757V5.5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h8"></path>
+                        <circle cx="15.502" cy="8.5" r="1.4" fill="#fff"></circle>
+                        <path fill="#fff"
+                            d="m19.5 15 .677 2.058c.274.835.93 1.49 1.765 1.765L24 19.5l-2.058.677c-.835.274-1.49.93-1.765 1.765L19.5 24l-.677-2.058a2.77 2.77 0 0 0-1.765-1.765L15 19.5l2.058-.677a2.77 2.77 0 0 0 1.765-1.765z">
+                        </path>
+                    </svg>
+                    <span>AI Creation</span>
+                </div>
+                }
+                <div (click)="selectAvatar(item)" *ngIf="item?.templateImageUrl"
+                    [ngClass]="{'grid-item': true, 'active': this.selectedAvatar?.templateId === item.templateId}"><img
+                        src="{{item?.templateImageUrl}}" alt="{{item?.templateName}}"></div>
+                }
+            </div>
+            }
+        </div>
+    </main>
+
+    <footer class="select-footer">
+        <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+        <button class="btn btn-primary" (click)="onConfirm()" [disabled]="!selectedAvatar">Use</button>
+    </footer>
+</div>

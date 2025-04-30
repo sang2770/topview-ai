@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
+import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
+import { URL_HANDLER } from '../../../../shared/constants/api';
 
 @Component({
   selector: 'app-product-any-shot',
@@ -9,6 +11,7 @@ import { DashboardService } from '../dashboard-layout/dashboard.service';
   styleUrl: './product-any-shot.component.scss',
 })
 export class ProductAnyShotComponent implements OnInit {
+  basicDrawerVisible = false;
   customMarks = [
     { value: 0, label: '1' },
     { value: 25, label: '2' },
@@ -17,9 +20,41 @@ export class ProductAnyShotComponent implements OnInit {
     { value: 100, label: '5' },
   ];
 
+  exampleList = [
+    {
+      id: 1,
+      image: 'https://dr1coeak04nbk.cloudfront.net/analyzed_video%2Ftask%2Fany_fit%2F9ab0c2fab32e43dabf7b290fb5348021%2F9ab0c2fab32e43dabf7b290fb5348021_198.png?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vZHIxY29lYWswNG5iay5jbG91ZGZyb250Lm5ldC9hbmFseXplZF92aWRlbyUyRnRhc2slMkZhbnlfZml0JTJGOWFiMGMyZmFiMzJlNDNkYWJmN2IyOTBmYjUzNDgwMjElMkY5YWIwYzJmYWIzMmU0M2RhYmY3YjI5MGZiNTM0ODAyMV8xOTgucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzQ2MDQ3Nzc1fX19XX0_&Signature=l6shZUI0q8apWj3piKK3ez-bt6Y3A3XmLRSTqE1nt9VpZbS0CIcg6rmPnst1istJUnqIjgHYC-8g7oXFVGN9~4g6pMSOmO2usv59e06LuQD4VG5MYd~L1HQF29Wwp2n0jZIBr1QAgT7h-sZch-oOfQtK~svnPdTzohmPac3GxV0d99rnNnvnzZg~F-ZeD8pCK9EINPp8NXxmhdYy8Ym1EeZu7-fl4cqAJ5Wc5F795xLfH6TKgi2IRj64ykQpaU6m4Pg5zGHVI4T94qquoYmW2dYw0pCQmdBHxJ9qsHjsROdpy6FdZxNjo9djJMuiI4HUQ8U5uQ163B67PWXeLhr-hg__&Key-Pair-Id=K21X5TGS0ALJI4',
+      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
+      name: 'clothes'
+    },
+    {
+      id: 2,
+      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_template_image.jpg',
+      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_product_compress_image.jpg',
+      name: 'shoes'
+    },
+    {
+      id: 3,
+      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
+      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_product_compress_image.jpg',
+      name:'hat' 
+    },
+    {
+      id: 4,
+      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
+      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/dress_product_compress_image.jpg',
+      name:'dress' 
+    }
+  ]
+
+  productImage: any = null;
+  templateImage: any = null;
+
+
   constructor(
     private dashboardService: DashboardService,
-    private router: Router
+    private router: Router,
+    private popupConfirmService: PopupConfirmService
   ) {
     this.dashboardService.title$.next('Product Avatar');
   }
@@ -27,5 +62,50 @@ export class ProductAnyShotComponent implements OnInit {
 
   redirectToDashboard() {
     this.router.navigate([ROUTER_UTILS.DASHBOARD.getHome()]);
+  }
+
+  onAfterOpen(): void {
+    console.log('Drawer opened');
+  }
+
+  onAfterClose(): void {
+    console.log('Drawer closed');
+  }
+
+  openSelectTemplate(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.basicDrawerVisible = true;
+  }
+
+  onSelectedTemplate(data: any) {
+    this.basicDrawerVisible = false;
+    this.templateImage = data.templateImageUrl;
+  }
+
+  onFileSelected(file: File) {
+    console.log('File selected:', file);
+  }
+
+  onTryExample(data: any) {
+    this.productImage = data.thumbnail;
+    this.templateImage = data.image;
+  }
+
+  onCreateNew() {
+    this.productImage = null;
+    this.templateImage = null; 
+  }
+
+  generate() {
+    this.popupConfirmService.progress({
+      // title: "Generate AI Video",
+      size: 'lg',
+      pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
+      message: "Generate Completed! You can check and export"
+    }).afterClosed$.subscribe((res) => {
+      if (!res) return;
+      this.router.navigate([URL_HANDLER['PRODUCT_ANY_SHOT']]).then();
+    });
   }
 }

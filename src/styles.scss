@@ -52,6 +52,11 @@ button {
   height: 40px;
   gap: 10px;
   justify-content: center;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .btn-ghost {
@@ -172,4 +177,8 @@ textarea {
   min-height: 150px;
   font-size: 14px;
   font-family: "Inter", sans-serif;
+}
+
+.text-center {
+  text-align: center;
 }

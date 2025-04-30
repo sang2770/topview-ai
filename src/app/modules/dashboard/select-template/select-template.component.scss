@@ -1,0 +1,198 @@
+/* Filter Tags */
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-shrink: 0;
+    padding-bottom: 15px;
+}
+
+.tag-btn {
+    display: inline-flex;
+    appearance: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    user-select: none;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    outline: transparent solid 2px;
+    outline-offset: 2px;
+    line-height: 1.2;
+    border-radius: 8px;
+    height: 32px;
+    border: 0.5px solid rgb(67, 67, 67);
+    padding-inline: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+    background-color: transparent;
+    color: white;
+}
+
+.tag-btn:hover {
+    background-color: var(--button-secondary-bg);
+    border-color: var(--text-muted);
+    color: var(--text-color);
+}
+
+.tag-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 500;
+}
+
+.tag-btn.more-btn {
+    padding: 6px 10px;
+}
+
+/* Modal Content (Grid Area) */
+.modal-content {
+    flex-grow: 1;
+    /* Allow content to fill space */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    background-color: var(--content-bg);
+
+    max-height: calc(100vh - 322px);
+}
+
+.template-grid {
+    display: flex;
+    gap: 0.75rem;
+
+    .column {
+        display: flex;
+        gap: 0.75rem;
+        flex-direction: column;
+    }
+}
+
+.grid-item {
+    cursor: pointer;
+    height: auto;
+    min-height: 70px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+    padding: 2px;
+
+    img {
+        border-radius: 8px;
+    }
+
+    &.active {
+        border: 2px solid var(--primary-color); 
+    }
+}
+
+.grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--primary-color);
+}
+
+.grid-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    /* Cover the area if fixed height is set */
+}
+
+/* Special AI Creation Item */
+.ai-creation-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    /* Ensure minimum size */
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px;
+    aspect-ratio: 1 / 1;
+    /* Make it square-ish */
+    display: flex;
+    gap: 10px;
+    border: 1px dashed rgb(53, 53, 55);
+}
+
+.ai-creation-item i {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.ai-creation-item span {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+/* Optional overlay icon on grid items */
+.overlay-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.grid-item:hover .overlay-icon {
+    opacity: 1;
+}
+
+/* Modal Footer */
+.select-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 10px;
+    flex-shrink: 0;
+    .btn {
+        min-width: 130px
+    }
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* Custom Scrollbar Styling (Webkit) */
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--content-bg);
+    /* Match content area background */
+    border-radius: 5px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    /* Scrollbar handle color */
+    border-radius: 5px;
+    border: 2px solid var(--content-bg);
+    /* Creates padding around thumb */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-muted);
+    /* Darker handle on hover */
+}
+
