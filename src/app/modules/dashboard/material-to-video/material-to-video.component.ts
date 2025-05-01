@@ -172,6 +172,8 @@ export class MaterialToVideoComponent implements AfterViewInit, OnInit {
     ).subscribe((res: any) => {
       console.log(res);
       this.images = res.images;
+      this.form.get('name')?.setValue(res.title);
+      this.form.get('script')?.setValue(res.description);
       clearInterval(interval);
       this.analyzeProgress = 0;
     });
