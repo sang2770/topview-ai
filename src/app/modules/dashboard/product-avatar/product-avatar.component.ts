@@ -76,22 +76,21 @@ export class ProductAvatarComponent implements OnInit {
   uploadedImage: string | null = null;
 
   replaceWithMyProductImage() {
-    // Create a hidden file input
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = 'image/*';
-    
+
     input.onchange = (e: any) => {
       const file = e.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = (e: any) => {
+        reader.onload = (readerEvent: any) => {
+          this.uploadedImage = readerEvent.target.result; // ✅ Assign inside onload
         };
-        this.uploadedImage = e.target.result;
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); // Triggers onload after read is done
       }
     };
-    
+
     input.click();
   }
 
