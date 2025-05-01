@@ -93,7 +93,16 @@
                     alt="Selected Avatar Preview" class="preview-image">
                 <!-- Approximate position and size for the product placeholder -->
                 <div class="product-placeholder"
-                    [ngStyle]="{'left': objectMaskImageInfo.x + '%', 'top': objectMaskImageInfo.y + '%', 'width': objectMaskImageInfo.width + '%', 'height': objectMaskImageInfo.height + '%', 'background-image': this.uploadedImage ? 'url(' + this.uploadedImage +')' : null}">
+                    [ngStyle]="{
+                        'left': objectMaskImageInfo.x + '%',
+                        'top': objectMaskImageInfo.y + '%',
+                        'width': objectMaskImageInfo.width + '%',
+                        'height': objectMaskImageInfo.height + '%',
+                        'background-image': this.uploadedImage ? 
+                            'url(' + this.uploadedImage + ')' : null,
+                        'background-size': 'cover',
+                        'background-position': 'center'
+                    }">
                 </div>
             </div>
 

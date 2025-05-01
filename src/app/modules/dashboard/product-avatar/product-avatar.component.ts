@@ -86,8 +86,8 @@ export class ProductAvatarComponent implements OnInit {
       if (file) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
-          this.uploadedImage = e.target.result;
         };
+        this.uploadedImage = e.target.result;
         reader.readAsDataURL(file);
       }
     };
