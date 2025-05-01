@@ -20,7 +20,7 @@ export class ModalService {
   /**
    * Opens a modal with a component
    */
-  open<T, R = any>(component: Type<T>, options: ModalOptions = {}): ModalRef<T, R> {
+  open<T, R = any>(component: Type<T>, options: ModalOptions = {}): ModalRef<T, R> {    
     this.createModalsContainer();
     return this.createModal(options, (modalRef, modalComponent) => {
       modalComponent.loadComponent(component, options.data);

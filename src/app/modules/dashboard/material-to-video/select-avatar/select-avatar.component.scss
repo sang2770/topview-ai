@@ -26,6 +26,7 @@
   padding: 20px;
   max-height: 700px;
   overflow-y: auto;
+  margin-bottom: 100px;
 
   .box.empty {
     display: none; // Hide the empty box
@@ -96,5 +97,7 @@
 
 .avatar-footer {
   padding: 20px;
-  padding-right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

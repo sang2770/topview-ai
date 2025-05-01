@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ import { URL_HANDLER } from '../../../../shared/constants/api';
   styleUrl: './material-to-video.component.scss',
   standalone: false,
 })
-export class MaterialToVideoComponent implements AfterViewInit {
+export class MaterialToVideoComponent implements AfterViewInit, OnInit {
   readonly Tab_script = "script";
   readonly Tab_text = "text";
   readonly sampleUrl =
@@ -56,11 +56,28 @@ export class MaterialToVideoComponent implements AfterViewInit {
     { label: 'Female', value: 'female' },
   ];
 
-  duration = Array.from(new Array(5)).map((_, index) => ({
-    label: index + ' minutes',
-    value: index
-  }));
+  duration = [
+    { label: '30 seconds', value: 30 },
+    { label: '1 minutes', value: 60 },
+    { label: '2 minutes', value: 120 },
+    { label: '3 minutes', value: 180 },
+    { label: '4 minutes', value: 240 },
+  ]
 
+  viewportList = [
+    { label: '9:16', value: '9:16', w: '10px', h: '20px' },
+    { label: '16:9', value: '16:9', w: '20px', h: '10px' },
+    { label: '1:1', value: '1:1', w: '20px', h: '20px' },
+    { label: '4:3', value: '4:3', w: '20px', h: '15px' },
+    { label: '3:4', value: '3:4', w: '15px', h: '20px' },
+  ];
+
+  config: any = {
+    viewport: '16:9',
+    language: 'en',
+    voice: 'female',
+    duration: 30,
+  };
   avatar: any = {};
 
   analyzeProgress = 0;
@@ -85,6 +102,12 @@ export class MaterialToVideoComponent implements AfterViewInit {
     this.form.get('link')?.valueChanges.subscribe((value) => {
       this.isShowPlaceHolder = !value;
     });
+
+  }
+
+  ngOnInit(): void {
+    this.openSelectAvatar();
+    
   }
   ngAfterViewInit(): void { }
 
@@ -97,8 +120,12 @@ export class MaterialToVideoComponent implements AfterViewInit {
       // title: 'Create video',
       message: "Video Generated Successfully!",
       pendingMessage: "Generating...",
-      confirmText: "Export",
-      size: "md"
+      confirmText: "Download",
+      size: "md",
+      videoPreview: {
+        url: this.avatar?.url ?? 'https://www.topview.ai/images/m2v/avatar_demo.png',
+        duration: this.config.duration,
+      }
     }).afterClosed$.subscribe((res) => {
       if (!res) return;
       this.router.navigate([URL_HANDLER['MATERIAL_URL']]).then();

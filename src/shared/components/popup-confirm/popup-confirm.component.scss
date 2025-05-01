@@ -140,3 +140,160 @@ button {
   border-radius: 50%;
   color: var(--primary-color, #1976d2);
 }
+
+.video-player-container {
+  width: 320px; /* Approximate width from image */
+  aspect-ratio: 9 / 16; /* Typical vertical video ratio */
+  max-height: 600px; /* Limit height */
+  background-color: var(--player-bg);
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden; /* Clip content */
+  position: relative; /* For absolute positioning inside */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto; /* Center the container */;
+}
+
+
+.video-area {
+  flex-grow: 1; /* Take available space */
+  position: relative; /* For overlays and watermarks */
+  background-color: var(--player-bg);
+  display: flex; /* Needed if using placeholder image */
+  justify-content: center;
+  align-items: center;
+}
+
+.video-placeholder-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area */
+  opacity: 0.8; /* Slightly dim the image */
+  position: absolute; /* Position behind overlays */
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Watermarks */
+.watermark {
+  position: absolute;
+  color: var(--watermark-color);
+  font-size: 1.5em; /* Adjust size as needed */
+  font-weight: bold;
+  transform: rotate(-30deg); /* Angle */
+  z-index: 2; /* Above placeholder, below controls */
+  pointer-events: none; /* Don't interfere with clicks */
+  white-space: nowrap;
+}
+
+/* Position watermarks (approximate based on image) */
+.w1 { top: 5%; left: 10%; }
+.w2 { top: 20%; left: 50%; }
+.w3 { top: 40%; left: 5%; }
+.w4 { top: 60%; left: 60%; }
+.w5 { top: 80%; left: 15%; }
+.w6 { top: 15%; left: -10%; }
+.w7 { top: 50%; left: 30%; }
+.w8 { top: 70%; left: -5%; }
+/* Add and adjust more as needed */
+
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-color: rgba(40, 40, 40, 0.85);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 3; /* Above video area */
+  transition: background-color 0.2s ease;
+  padding-left: 5px;
+}
+
+.play-button-overlay:hover {
+  background-color: rgba(50, 50, 50, 0.9);
+}
+
+.play-button-overlay i {
+  color: var(--text-color);
+  font-size: 1.8em;
+  margin-left: 4px; /* Nudge play icon slightly right */
+}
+
+.play-indicator {
+  position: absolute;
+  right: -2px; /* Position next to the circle */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 10px solid var(--text-color); /* White arrow pointing right */
+}
+
+
+.controls-bar {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3) 70%, transparent); /* Gradient background */
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute; /* Position over video area */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3; /* Above video area */
+}
+
+.play-pause-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2em;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+}
+
+.time-display {
+  color: var(--text-color);
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.progress-bar-container {
+  flex-grow: 1; /* Take remaining space */
+  height: 5px;
+  background-color: var(--progress-track);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--progress-fill);
+  border-radius: 3px;
+  position: relative; /* For the handle */
+}
+
+.progress-handle {
+  position: absolute;
+  right: -5px; /* Position at the end of the fill */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: var(--progress-handle);
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}

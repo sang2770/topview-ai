@@ -26,9 +26,9 @@ export class DashboardLayoutComponent implements OnInit {
       this.isShowSidebar = !title;
     });
 
-    this.router.events.subscribe(() => {
-      this.modalService.closeAll();
-    })
+    // this.router.events.subscribe(() => {
+    //   this.modalService.closeAll();
+    // })
   }
 
   redirtectTo(route: string) {

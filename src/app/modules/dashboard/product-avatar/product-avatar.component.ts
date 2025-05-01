@@ -102,6 +102,7 @@ export class ProductAvatarComponent implements OnInit {
         message: 'Product Avatar Generated Successfully!',
         pendingMessage: 'Generating...',
         confirmText: 'Export',
+        imagePreview: 'https://d1735p3aqhycef.cloudfront.net/' + this.selectedAvatar.avatarImagePath,
       })
       .afterClosed$.subscribe(() => {
         this.router.navigate([URL_HANDLER['PRODUCT_AVATAR_URL']]).then();

@@ -88,7 +88,6 @@ export class SelectAvatarComponent implements AfterViewInit {
   }
 
   onConfirm() {    
-    if (this.selectedAvatar == null) return;
-    this.modalRef.close(this.avatarList[this.selectedAvatar!]);
+    this.modalRef.close(this.selectedAvatar ? this.avatarList[this.selectedAvatar!] : null);
   }
 }

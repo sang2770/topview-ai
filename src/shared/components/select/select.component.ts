@@ -55,7 +55,7 @@ export interface SelectOption {
 })
 export class SelectComponent implements OnInit, ControlValueAccessor, AfterViewInit {
   @Input() options: SelectOption[] = [];
-  @ContentChild('optionTemplate') optionTemplate?: TemplateRef<any>;
+  @Input() optionTemplate?: TemplateRef<any>;
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() required: boolean = false;

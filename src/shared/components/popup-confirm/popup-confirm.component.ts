@@ -23,6 +23,10 @@ export class PopupConfirmComponent implements OnInit{
   @Input() cancelText: string = 'Cancel';
   @Input() data: any;
   @Input() imagePreview?: string;
+  @Input() videoPreview?: {
+    url: string;
+    duration: number;
+  };
   
   @Output() confirm = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
@@ -67,5 +71,12 @@ export class PopupConfirmComponent implements OnInit{
         this.isProcessing = false;
       }
     }, 100);
+  }
+
+  getDuration(): string {
+    const duration = this.videoPreview?.duration || 0;
+    const minutes = Math.floor(duration / 60);
+    const seconds = Math.floor(duration % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 }
