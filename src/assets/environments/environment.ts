@@ -1,4 +1,4 @@
 export const environment = {
     appName: 'TopViewAI',
-    gateway: "http://147.93.103.68:3000/"
+    gateway: "https://ac0d-2a02-4780-12-cb7a-00-1.ngrok-free.app/"
   };
