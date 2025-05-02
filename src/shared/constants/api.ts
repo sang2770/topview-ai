@@ -1,7 +1,7 @@
 import { environment } from "../../assets/environments/environment";
 
 export const API = {
-  GET_PRODUCT: `https://cors-anywhere.herokuapp.com/${environment.gateway}extract-images`,
+  GET_PRODUCT: `${environment.gateway}extract-images`,
 };
 
 
