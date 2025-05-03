@@ -150,14 +150,19 @@
   margin-top: 5px;
 }
 
+.upload-container {
+ padding: 10px;
+ max-height: 400px;
+ overflow: hidden; 
+ border-radius: 16px;
+ border: 1px solid rgb(67, 67, 67);
+
+
+}
 .upload-result {
   position: relative;
   height: 380px;
-  padding: 18px 8px 13px 32px;
-  border-radius: 16px;
-  border: 1px solid rgb(67, 67, 67);
-  overflow: hidden;
-  margin-top: 10px;
+  overflow: auto;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;

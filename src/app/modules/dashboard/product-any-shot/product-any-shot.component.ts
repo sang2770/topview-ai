@@ -4,6 +4,7 @@ import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 import { URL_HANDLER } from '../../../../shared/constants/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-any-shot',
@@ -23,7 +24,7 @@ export class ProductAnyShotComponent implements OnInit {
   exampleList = [
     {
       id: 1,
-      image: 'https://dr1coeak04nbk.cloudfront.net/analyzed_video%2Ftask%2Fany_fit%2F9ab0c2fab32e43dabf7b290fb5348021%2F9ab0c2fab32e43dabf7b290fb5348021_198.png?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vZHIxY29lYWswNG5iay5jbG91ZGZyb250Lm5ldC9hbmFseXplZF92aWRlbyUyRnRhc2slMkZhbnlfZml0JTJGOWFiMGMyZmFiMzJlNDNkYWJmN2IyOTBmYjUzNDgwMjElMkY5YWIwYzJmYWIzMmU0M2RhYmY3YjI5MGZiNTM0ODAyMV8xOTgucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzQ2MDQ3Nzc1fX19XX0_&Signature=l6shZUI0q8apWj3piKK3ez-bt6Y3A3XmLRSTqE1nt9VpZbS0CIcg6rmPnst1istJUnqIjgHYC-8g7oXFVGN9~4g6pMSOmO2usv59e06LuQD4VG5MYd~L1HQF29Wwp2n0jZIBr1QAgT7h-sZch-oOfQtK~svnPdTzohmPac3GxV0d99rnNnvnzZg~F-ZeD8pCK9EINPp8NXxmhdYy8Ym1EeZu7-fl4cqAJ5Wc5F795xLfH6TKgi2IRj64ykQpaU6m4Pg5zGHVI4T94qquoYmW2dYw0pCQmdBHxJ9qsHjsROdpy6FdZxNjo9djJMuiI4HUQ8U5uQ163B67PWXeLhr-hg__&Key-Pair-Id=K21X5TGS0ALJI4',
+      image: 'https://dr1coeak04nbk.cloudfront.net/analyzed_video%2Ftask%2Fany_fit%2F9ab0c2fab32e43dabf7b290fb5348021%2F9ab0c2fab32e43dabf7b290fb5348021_198.png?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vZHIxY29lYWswNG5iay5jbG91ZGZyb250Lm5ldC9hbmFseXplZF92aWRlbyUyRnRhc2slMkZhbnlfZml0JTJGOWFiMGMyZmFiMzJlNDNkYWJmN2IyOTBmYjUzNDgwMjElMkY5YWIwYzJmYWIzMmU0M2RhYmY3YjI5MGZiNTM0ODAyMV8xOTgucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzQ2MzI0NDU2fX19XX0_&Signature=jpfN8pv69HjLK4UGddwuRzOD84PCrsp9MWVw91P~fNxmV19mdWo-iuObwJapQVEaiCAnwyxMvtp-iOLk9~tn4DYekPAIRFaQMM2UxLiy-LbwoM8mlHtkMhvveq5l6CYmfbghPTeiXfAaEnjirfAfXKQdf1RZ~zpNLFO6V2xH~sXVpwIggcUHyiZ77J56PA3~-D~iEnlySk65sXKvE~ZccNv7~9luOEDPs5vOF1neWX6gvgpY56AUnwLHe8AmaksZF8Ronywg~Nxlw8N4qQTiksoT2C7fxyvsD8f9ds4PBCRxwUz7HgnPiqTZ0Larj-XpYlYQaWUCjxpesVvWp~qYuQ__&Key-Pair-Id=K21X5TGS0ALJI4',
       thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
       name: 'clothes'
     },
@@ -54,7 +55,8 @@ export class ProductAnyShotComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private router: Router,
-    private popupConfirmService: PopupConfirmService
+    private popupConfirmService: PopupConfirmService,
+    private translateService: TranslateService
   ) {
     this.dashboardService.title$.next('Product AnyShot');
   }
@@ -103,7 +105,8 @@ export class ProductAnyShotComponent implements OnInit {
       imagePreview: this.templateImage,
       size: 'lg',
       pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
-      message: "Generate Completed! You can check and export"
+      message: "Generate Completed! You can check and export",
+      confirmText: this.translateService.instant('export'),
     }).afterClosed$.subscribe((res) => {
       if (!res) return;
       this.router.navigate([URL_HANDLER['PRODUCT_ANY_SHOT']]).then();

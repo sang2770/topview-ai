@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 import { URL_HANDLER } from '../../../../shared/constants/api';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-ai-video',
@@ -55,7 +56,8 @@ export class AiVideoComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private router: Router,
-    private popupConfirmService: PopupConfirmService
+    private popupConfirmService: PopupConfirmService,
+    private translateService: TranslateService
   ) {
     this.dashboardService.title$.next('AI Creation');
   }
@@ -78,7 +80,8 @@ export class AiVideoComponent implements OnInit {
       // title: "Generate AI Video",
       size: 'lg',
       pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
-      message: "Generate Completed! You can check and export"
+      message: "Generate Completed! You can check and export",
+      confirmText: this.translateService.instant('export'),
     }).afterClosed$.subscribe((res) => {
       if (!res) return;
       this.router.navigate([URL_HANDLER['AI_VIDEO']]).then();
