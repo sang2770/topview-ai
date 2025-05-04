@@ -21,6 +21,7 @@ import { DrawerComponent } from '../../../shared/components/drawer/drawer.compon
 import { SelectTemplateComponent } from "./select-template/select-template.component";
 import { NgOptimizedImage } from '@angular/common';
 import { ResizeObserverDirective } from '../../../shared/components/directive/resize-observer.directive';
+import { SuggestInstallExtenstionComponent } from './suggest-install-extenstion/suggest-install-extenstion.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -30,6 +31,7 @@ import { ResizeObserverDirective } from '../../../shared/components/directive/re
     AiVideoComponent,
     ProductAvatarComponent,
     SelectTemplateComponent,
+    SuggestInstallExtenstionComponent
   ],
   imports: [
     CommonModule,

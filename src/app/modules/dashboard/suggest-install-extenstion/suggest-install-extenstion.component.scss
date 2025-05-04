@@ -1,0 +1,79 @@
+.chakra-modal__body {
+    p {
+        margin: 0 !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    text-align: center;
+
+    .css-f7njuq {
+        display: flex;
+        height: 48px;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        margin: 10px auto;
+        border-radius: 12px;
+        background: rgb(78, 64, 243);
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0px 12px;
+    }
+
+    .css-e08esm {
+        display: flex;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        text-align: left;
+        color: rgba(255, 255, 255, 0.5);
+        -webkit-box-pack: center;
+        justify-content: center;
+    }
+
+    .css-3ukjbq {
+        display: flex;
+        margin-left: 12px;
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        background: rgb(255, 255, 255);
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .css-e08esm {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+
+        p {
+            line-height: 30px;
+        }
+    }
+
+    .css-1anew1j,
+    .css-jifm8i {
+        img {
+            width: 200px;
+        }
+    }
+
+    .css-jifm8i {
+        display: flex;
+        flex-direction: column;
+    }
+}
