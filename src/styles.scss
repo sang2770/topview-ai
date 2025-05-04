@@ -22,7 +22,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
-  min-width: 1100px
+  // min-width: 1100px
 }
 
 .h-100 {
@@ -185,11 +185,10 @@ textarea {
   text-align: center;
 }
 
-
-
 /* Scrollbar Styling (Optional, Webkit browsers) */
 /* Optimized scrollbar styles */
-.upload-result, textarea {
+.upload-result,
+textarea {
   &::-webkit-scrollbar {
     width: 8px;
   }
@@ -203,9 +202,47 @@ textarea {
     background-color: #555;
     border-radius: 4px;
     border: 2px solid #2c2c34;
-    
+
     &:hover {
       background-color: #777;
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    .header-logo {
+      width: auto;
+      padding-left: 10px;
+
+      img {
+        width: 100px;
+      }
+    }
+
+    .header-title {
+      font-size: 16px;
+    }
+
+    .header-options {
+      font-size: 16px;
+    }
+  }
+
+  .body {
+    flex-direction: column;
+
+    .sidebar {
+      display: none;
+    }
+
+    .content {
+      width: 100%;
+      padding: 16px 12px;
+    }
+  }
+
+  .banner-item {
+    width: unset !important;
   }
 }

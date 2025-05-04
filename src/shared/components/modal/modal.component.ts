@@ -32,9 +32,7 @@ import { ModalConfig } from './modal.model';
         style({ opacity: 0 }),
         animate('200ms ease-out', style({ opacity: 1 })),
       ]),
-      transition(':leave', [
-        animate('150ms ease-in', style({ opacity: 0 })),
-      ]),
+      transition(':leave', [animate('150ms ease-in', style({ opacity: 0 }))]),
     ]),
     trigger('contentAnimation', [
       transition(':enter', [
@@ -42,7 +40,10 @@ import { ModalConfig } from './modal.model';
         animate('150ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
       ]),
       transition(':leave', [
-        animate('100ms ease-in', style({ opacity: 0, transform: 'scale(0.95)' })),
+        animate(
+          '100ms ease-in',
+          style({ opacity: 0, transform: 'scale(0.95)' })
+        ),
       ]),
     ]),
   ],
@@ -55,11 +56,13 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
     showCloseButton: true,
     centered: false,
     fullscreen: false,
+    customBg: undefined,
   };
 
   @Output() closed = new EventEmitter<any>();
 
-  @ViewChild('modalContent', { read: ViewContainerRef }) modalContent!: ViewContainerRef;
+  @ViewChild('modalContent', { read: ViewContainerRef })
+  modalContent!: ViewContainerRef;
   @ViewChild('modalContainer') modalContainer!: ElementRef;
 
   componentRef: ComponentRef<any> | null = null;
@@ -67,10 +70,11 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
   modalRef: ModalRef | null = null;
   result: any;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     document.body.classList.add('modal-open');
+    console.log(this.config);
   }
 
   ngAfterViewInit(): void {
@@ -112,10 +116,9 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
   loadComponent<T>(component: Type<T>, data?: any): void {
     this.removeComponent();
-    
+
     // Use setTimeout to ensure ViewChild is initialized
     setTimeout(() => {
-      
       if (!this.modalContent) {
         console.warn('Modal content container is not available');
         return;
@@ -123,7 +126,7 @@ export class ModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.modalContent.clear();
 
-      this.componentRef = this.modalContent.createComponent(component);      
+      this.componentRef = this.modalContent.createComponent(component);
       if (data) {
         Object.assign(this.componentRef.instance, data);
       }

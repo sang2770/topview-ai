@@ -1,45 +1,29 @@
+<div class="modal-backdrop" [class.modal-centered]="config.centered" [class.modal-fullscreen]="config.fullscreen"
+  (click)="onBackdropClick($event)" [@modalAnimation] tabindex="-1" role="dialog" aria-modal="true" #modalContainer>
 
-<div 
-  class="modal-backdrop" 
-  [class.modal-centered]="config.centered"
-  [class.modal-fullscreen]="config.fullscreen"
-  (click)="onBackdropClick($event)"
-  [@modalAnimation]
-  tabindex="-1"
-  role="dialog"
-  aria-modal="true"
-  #modalContainer>
-  
-  <div 
-    class="modal-container" 
-    [class.modal-sm]="config.size === 'sm'"
-    [class.modal-md]="config.size === 'md'"
-    [class.modal-lg]="config.size === 'lg'"
-    [class.modal-xl]="config.size === 'xl'"
-    [class.modal-fullscreen]="config.fullscreen"
-    [@contentAnimation]
-    (click)="$event.stopPropagation()">
-    
+  <div class="modal-container" [class.modal-sm]="config.size === 'sm'" [class.modal-md]="config.size === 'md'"
+    [class.bg-custom]="!!config.customBg" [class.modal-lg]="config.size === 'lg'"
+    [class.modal-xl]="config.size === 'xl'" [style.background]="config.customBg"
+    [class.modal-fullscreen]="config.fullscreen" [@contentAnimation] (click)="$event.stopPropagation()">
+
     <div class="modal-header" *ngIf="config.title || config.showCloseButton">
-      <h3 class="modal-title" >
+      <h3 class="modal-title">
         {{ config.title }}
       </h3>
-      <button 
-        *ngIf="config.showCloseButton" 
-        type="button" 
-        class="modal-close-button" 
-        aria-label="Close" 
+      <button *ngIf="config.showCloseButton" type="button" class="modal-close-button" aria-label="Close"
         (click)="close()">
         <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
-          <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+          <path fill="currentColor"
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+          </path>
         </svg>
       </button>
     </div>
-    
+
     <div class="modal-body">
       <ng-container #modalContent></ng-container>
     </div>
-    
+
     <div class="modal-footer" *ngIf="config.footerTemplate">
       <ng-container *ngTemplateOutlet="config.footerTemplate; context: {modalRef: modalRef}"></ng-container>
     </div>

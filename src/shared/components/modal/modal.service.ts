@@ -1,10 +1,20 @@
-import { Injectable, TemplateRef, Type, ViewContainerRef, ComponentRef, Injector, createComponent, ApplicationRef, EnvironmentInjector } from '@angular/core';
+import {
+  Injectable,
+  TemplateRef,
+  Type,
+  ViewContainerRef,
+  ComponentRef,
+  Injector,
+  createComponent,
+  ApplicationRef,
+  EnvironmentInjector,
+} from '@angular/core';
 import { ModalComponent } from './modal.component';
 import { ModalConfig, ModalOptions } from './modal.model';
 import { ModalRef } from './modal-ref';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalService {
   private modalsContainerElement: HTMLElement | null = null;
@@ -14,13 +24,15 @@ export class ModalService {
     private injector: Injector,
     private appRef: ApplicationRef,
     private environmentInjector: EnvironmentInjector
-  ) {
-  }
+  ) {}
 
   /**
    * Opens a modal with a component
    */
-  open<T, R = any>(component: Type<T>, options: ModalOptions = {}): ModalRef<T, R> {    
+  open<T, R = any>(
+    component: Type<T>,
+    options: ModalOptions = {}
+  ): ModalRef<T, R> {
     this.createModalsContainer();
     return this.createModal(options, (modalRef, modalComponent) => {
       modalComponent.loadComponent(component, options.data);
@@ -43,13 +55,13 @@ export class ModalService {
    * Closes all active modals
    */
   closeAll(result?: any): void {
-    this.activeModals.forEach(modalRef => modalRef.close(result));
+    this.activeModals.forEach((modalRef) => modalRef.close(result));
   }
 
   /**
    * Creates a modal container and appends it to the body
    */
-  private createModalsContainer(): void {    
+  private createModalsContainer(): void {
     this.modalsContainerElement = document.createElement('div');
     this.modalsContainerElement.classList.add('modals-container');
     document.body.appendChild(this.modalsContainerElement);
@@ -60,7 +72,10 @@ export class ModalService {
    */
   private createModal<T, R>(
     options: ModalOptions,
-    contentLoader: (modalRef: ModalRef<T, R>, modalComponent: ModalComponent) => void
+    contentLoader: (
+      modalRef: ModalRef<T, R>,
+      modalComponent: ModalComponent
+    ) => void
   ): ModalRef<T, R> {
     // Create the modal config
     const config: ModalConfig = {
@@ -72,16 +87,17 @@ export class ModalService {
       fullscreen: options.fullscreen || false,
       title: options.title,
       footerTemplate: options.footerTemplate,
+      customBg: options.customBg,
     };
-    
+
     // Create the modal reference
     const modalRef = new ModalRef<T, R>();
-    
+
     // Create the modal component
     const modalComponentRef = createComponent(ModalComponent, {
       environmentInjector: this.environmentInjector,
       hostElement: this.modalsContainerElement!,
-      elementInjector: this.injector
+      elementInjector: this.injector,
     });
 
     const modalComponent = modalComponentRef.instance;
@@ -108,7 +124,7 @@ export class ModalService {
 
     // Add to active modals
     this.activeModals.push(modalRef);
-  
+
     // Detect changes
     this.appRef.attachView(modalComponentRef.hostView);
     modalComponentRef.changeDetectorRef.detectChanges();

@@ -4,7 +4,7 @@ import { ModalRef } from '../modal/modal-ref';
 import { PopupConfirmComponent } from './popup-confirm.component';
 
 export interface PopupConfirmOptions {
-title?: string;
+  title?: string;
   message?: string;
   pendingMessage?: string;
   type?: 'default' | 'progress';
@@ -14,14 +14,16 @@ title?: string;
   data?: any;
   size?: any;
   imagePreview?: string;
+  customBg?: string;
+  disableAction?: boolean;
   videoPreview?: {
     url: string;
     duration: number;
-  }
+  };
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PopupConfirmService {
   constructor(private modalService: ModalService) {}
@@ -36,6 +38,8 @@ export class PopupConfirmService {
       centered: true,
       size: options.size ?? 'sm',
       title: options.title,
+      customBg: options.customBg,
+      closeOnBackdropClick: false,
       data: {
         message: options.message,
         type: options.type || 'default',
@@ -44,8 +48,10 @@ export class PopupConfirmService {
         cancelText: options.cancelText,
         data: options.data,
         imagePreview: options.imagePreview,
-        videoPreview: options.videoPreview
-      }
+        videoPreview: options.videoPreview,
+        disableAction: options.disableAction,
+        config: {},
+      },
     });
   }
 
@@ -57,7 +63,7 @@ export class PopupConfirmService {
   progress(options: PopupConfirmOptions = {}): ModalRef {
     return this.confirm({
       ...options,
-      type: 'progress'
+      type: 'progress',
     });
   }
 
@@ -70,7 +76,7 @@ export class PopupConfirmService {
     return this.confirm({
       ...options,
       action: 'export',
-      confirmText: options.confirmText || 'Export'
+      confirmText: options.confirmText || 'Export',
     });
   }
 }

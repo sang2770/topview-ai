@@ -25,10 +25,11 @@
                     Create video
                 </button>
             </div>
-            <div style="font-size: 15px; color:rgba(255, 255, 255, 0.5) ;">
-                or
-            </div>
-            <div class="item-action h-100">
+
+            <div class="item-action h-100" style="display: flex; align-items: center;">
+                <div style="font-size: 15px; margin-right: 15px; color:rgba(255, 255, 255, 0.5) ;">
+                    or
+                </div>
                 <button class="btn btn-ghost h-100 pointer" (click)="createVideo()">
                     Upload file
                 </button>
@@ -119,8 +120,9 @@
                 </button>
                 <div class="home-item-product-avatars" #productAvatarsContainer>
                     @for (avatar of productAvatarList; track $index) {
-                    <div class="home-product-avatar" (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getProductAvatar())">
-                        <div class="product-avatar-image-container" >
+                    <div class="home-product-avatar"
+                        (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getProductAvatar())">
+                        <div class="product-avatar-image-container">
                             <img [src]="avatar.image" [alt]="avatar.category" loading="eager"
                                 class="product-avatar-image">
                             <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
@@ -156,7 +158,7 @@
                 <div class="home-item-video-avatars" #videoAvatarsContainer>
                     @for (avatar of videoAvatarTemplate; track $index) {
                     <div class="home-video-avatar" (click)="redirectToTool(ROUTER_UTILS.DASHBOARD.getAiVideo())">
-                        <div class="video-avatar-image-container"  >
+                        <div class="video-avatar-image-container">
                             <img [src]="avatar.image" [alt]="avatar.title" loading="eager" class="video-avatar-image">
                             <img alt="starter" src="https://www.topview.ai/images/templates/icon_starter.svg"
                                 class="video-avatar-badge">
