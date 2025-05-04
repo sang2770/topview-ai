@@ -24,7 +24,7 @@ export class ProductAnyShotComponent implements OnInit {
   exampleList = [
     {
       id: 1,
-      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
+      image: 'assets/images/sample_product_anyshot.png',
       thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
       name: 'clothes'
     },
