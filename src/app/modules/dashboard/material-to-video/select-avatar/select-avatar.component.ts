@@ -1,15 +1,23 @@
-import { Component, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 import { ModalRef } from '../../../../../shared/components/modal';
 
 @Component({
   selector: 'app-select-avatar',
   templateUrl: './select-avatar.component.html',
-  styleUrl: './select-avatar.component.scss'
+  styleUrl: './select-avatar.component.scss',
 })
 export class SelectAvatarComponent implements AfterViewInit {
-  avatarList: { url: string, videoUrl: string, name?: string }[] = [];
+  avatarList: { url: string; videoUrl: string; name?: string }[] = [];
   selectedAvatar: number | null = null;
-  @ViewChildren('avatarVideo') avatarVideos!: QueryList<ElementRef<HTMLVideoElement>>;
+  @ViewChildren('avatarVideo') avatarVideos!: QueryList<
+    ElementRef<HTMLVideoElement>
+  >;
   modalRef!: ModalRef;
   constructor() {
     this.loadData();
@@ -39,12 +47,12 @@ export class SelectAvatarComponent implements AfterViewInit {
             console.log(isHovered, video.paused);
 
             if (isHovered && video.paused) {
-              console.log("is hovered");
+              console.log('is hovered');
 
               video.style.opacity = '1';
               video.muted = true;
 
-              video.play().catch(error => {
+              video.play().catch((error) => {
                 console.log('Video play failed:', error);
               });
             }
@@ -59,10 +67,10 @@ export class SelectAvatarComponent implements AfterViewInit {
         });
 
         item.addEventListener('click', () => {
+          video.muted = false;
+          video.volume = 1.0;
           if (video.paused) {
-            video.muted = false;
-            video.volume = 1.0;
-            video.play().catch(error => {
+            video.play().catch((error) => {
               console.log('Video play failed on click:', error);
             });
           }
@@ -71,19 +79,20 @@ export class SelectAvatarComponent implements AfterViewInit {
     }, 500);
   }
 
-
   loadData() {
     // read data.json
     fetch('assets/data/avatar.json')
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         this.avatarList = data.map((item: any) => ({
-          url: item.coverDefault.startsWith('http') ? item.coverDefault : `https://d1735p3aqhycef.cloudfront.net/${item.coverDefault}`,
+          url: item.coverDefault.startsWith('http')
+            ? item.coverDefault
+            : `https://d1735p3aqhycef.cloudfront.net/${item.coverDefault}`,
           videoUrl: item.previewVideoUrl,
-          name: item.aiavatarName
+          name: item.aiavatarName,
         }));
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error loading avatar.json:', error);
       });
   }
@@ -94,6 +103,8 @@ export class SelectAvatarComponent implements AfterViewInit {
   }
 
   onConfirm() {
-    this.modalRef.close(this.selectedAvatar ? this.avatarList[this.selectedAvatar!] : null);
+    this.modalRef.close(
+      this.selectedAvatar ? this.avatarList[this.selectedAvatar!] : null
+    );
   }
 }
