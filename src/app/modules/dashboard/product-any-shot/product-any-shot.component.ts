@@ -24,7 +24,7 @@ export class ProductAnyShotComponent implements OnInit {
   exampleList = [
     {
       id: 1,
-      image: 'https://dr1coeak04nbk.cloudfront.net/analyzed_video%2Ftask%2Fany_fit%2F9ab0c2fab32e43dabf7b290fb5348021%2F9ab0c2fab32e43dabf7b290fb5348021_198.png?Policy=eyJTdGF0ZW1lbnQiOiBbeyJSZXNvdXJjZSI6Imh0dHBzOi8vZHIxY29lYWswNG5iay5jbG91ZGZyb250Lm5ldC9hbmFseXplZF92aWRlbyUyRnRhc2slMkZhbnlfZml0JTJGOWFiMGMyZmFiMzJlNDNkYWJmN2IyOTBmYjUzNDgwMjElMkY5YWIwYzJmYWIzMmU0M2RhYmY3YjI5MGZiNTM0ODAyMV8xOTgucG5nIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzQ2MzI0NDU2fX19XX0_&Signature=jpfN8pv69HjLK4UGddwuRzOD84PCrsp9MWVw91P~fNxmV19mdWo-iuObwJapQVEaiCAnwyxMvtp-iOLk9~tn4DYekPAIRFaQMM2UxLiy-LbwoM8mlHtkMhvveq5l6CYmfbghPTeiXfAaEnjirfAfXKQdf1RZ~zpNLFO6V2xH~sXVpwIggcUHyiZ77J56PA3~-D~iEnlySk65sXKvE~ZccNv7~9luOEDPs5vOF1neWX6gvgpY56AUnwLHe8AmaksZF8Ronywg~Nxlw8N4qQTiksoT2C7fxyvsD8f9ds4PBCRxwUz7HgnPiqTZ0Larj-XpYlYQaWUCjxpesVvWp~qYuQ__&Key-Pair-Id=K21X5TGS0ALJI4',
+      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
       thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
       name: 'clothes'
     },
