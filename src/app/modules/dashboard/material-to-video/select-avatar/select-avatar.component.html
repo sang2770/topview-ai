@@ -11,7 +11,7 @@
         <div class="avatar-item" [class.selected]="selectedAvatar === $index" (click)="selectAvatar($index)">
             <div class="avatar-media-container">
                 <img [src]="item.url" alt="Avatar" class="avatar-image">
-                <video [src]="item.videoUrl" class="avatar-video" loop muted #avatarVideo></video>
+                <video [src]="item.videoUrl" class="avatar-video" #avatarVideo loop playsinline></video>
             </div>
             <!-- <div class="avatar-name">{{ item.name || 'Avatar ' + ($index + 1) }}</div> -->
         </div>

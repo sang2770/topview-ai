@@ -7,7 +7,7 @@ import { ModalRef } from '../../../../../shared/components/modal';
   styleUrl: './select-avatar.component.scss'
 })
 export class SelectAvatarComponent implements AfterViewInit {
-  avatarList: {url: string, videoUrl: string, name?: string}[] = [];
+  avatarList: { url: string, videoUrl: string, name?: string }[] = [];
   selectedAvatar: number | null = null;
   @ViewChildren('avatarVideo') avatarVideos!: QueryList<ElementRef<HTMLVideoElement>>;
   modalRef!: ModalRef;
@@ -28,34 +28,40 @@ export class SelectAvatarComponent implements AfterViewInit {
         if (index === 0) return;
         const video = videoElements[index - 1]?.nativeElement;
         if (!video) return;
-  
+
         let isHovered = false;
-  
+
         item.addEventListener('mouseenter', () => {
           isHovered = true;
-          
+
           // Debounce nhẹ để tránh đụng `pause()` quá nhanh
           setTimeout(() => {
-            console.log(isHovered , video.paused);
-            
+            console.log(isHovered, video.paused);
+
             if (isHovered && video.paused) {
+              console.log("is hovered");
+
               video.style.opacity = '1';
+              video.muted = true;
+
               video.play().catch(error => {
                 console.log('Video play failed:', error);
               });
             }
           }, 50);
         });
-  
+
         item.addEventListener('mouseleave', () => {
           isHovered = false;
           video.pause();
           video.currentTime = 0;
           video.style.opacity = '0';
         });
-  
+
         item.addEventListener('click', () => {
           if (video.paused) {
+            video.muted = false;
+            video.volume = 1.0;
             video.play().catch(error => {
               console.log('Video play failed on click:', error);
             });
@@ -64,7 +70,7 @@ export class SelectAvatarComponent implements AfterViewInit {
       });
     }, 500);
   }
-  
+
 
   loadData() {
     // read data.json
@@ -87,7 +93,7 @@ export class SelectAvatarComponent implements AfterViewInit {
     // You can emit an event here to notify parent components about the selection
   }
 
-  onConfirm() {    
+  onConfirm() {
     this.modalRef.close(this.selectedAvatar ? this.avatarList[this.selectedAvatar!] : null);
   }
 }
