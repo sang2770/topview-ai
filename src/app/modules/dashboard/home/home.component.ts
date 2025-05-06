@@ -47,21 +47,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   toolList = [
     {
-      name: 'Avatar Marketing Video',
+      name: 'Materials/Links to Video',
       description: 'Create marketing video ads from link or local materials',
-      image: 'https://www.topview.ai/images/home/ai_video_ads.png',
+      image: '/assets/images/ai_video_ads.png',
       link: ROUTER_UTILS.DASHBOARD.getMaterialToVideo(),
     },
     // {
     //   name: 'Video Avatar',
     //   description: 'Create avatar videos or clone your avatar from a video',
-    //   image: 'https://www.topview.ai/images/home/ai_avatar.png',
+    //   image: '/assets/images/ai_avatar.png',
     //   link: '/gen/avatar-video-creation',
     // },
     {
       name: 'Product Avatar',
       description: 'Create an avatar holding your product with one image',
-      image: 'https://www.topview.ai/images/home/product_avatar.png',
+      image: '/assets/images/product_avatar.png',
       link: ROUTER_UTILS.DASHBOARD.getProductAvatar(),
       badge: 'New',
     },
@@ -70,32 +70,32 @@ export class HomeComponent implements OnInit, AfterViewInit {
       description:
         'Fit any product anywhere, perfect for try-ons and product showcases',
       video:
-        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/cover_video.mp4',
+        '/assets/videos/cover_video.mp4',
       link: ROUTER_UTILS.DASHBOARD.getProductAnyShot(),
       badge: 'Limited Free',
     },
     // {
     //   name: 'Photo Avatar',
     //   description: 'Make the picture talk',
-    //   image: 'https://www.topview.ai/images/home/photo_talking_avatar_v2.png',
+    //   image: '/assets/images/photo_talking_avatar_v2.png',
     //   link: '/gen/photo-talking-avatar',
     // },
     // {
     //   name: 'AI Image',
     //   description: 'Enter prompts to generate images',
-    //   image: 'https://www.topview.ai/images/home/ai_image_creation.png',
+    //   image: '/assets/images/ai_image_creation.png',
     //   link: '/gen/ai-creation?type=image',
     // },
     {
       name: 'AI Video',
       description: 'Text to video, image to video',
-      image: 'https://www.topview.ai/images/home/ai_video.png',
+      image: '/assets/images/ai_video.png',
       link: ROUTER_UTILS.DASHBOARD.getAiVideo(),
     },
     // {
     //   name: 'AI Voice Generator',
     //   description: 'Transfer text to speech',
-    //   image: 'https://www.topview.ai/images/home/ai_voice.png',
+    //   image: '/assets/images/ai_voice.png',
     //   link: '/gen/tts',
     // },
   ];
