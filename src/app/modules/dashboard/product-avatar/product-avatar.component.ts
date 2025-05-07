@@ -6,6 +6,7 @@ import { ApiService } from '../../../../shared/services/api.service';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 import { URL_HANDLER } from '../../../../shared/constants/api';
 import { ElementRef, ViewChild } from '@angular/core';
+import { environment } from '../../../../assets/environments/environment';
 
 @Component({
   selector: 'app-product-avatar',
@@ -13,6 +14,7 @@ import { ElementRef, ViewChild } from '@angular/core';
   styleUrl: './product-avatar.component.scss',
 })
 export class ProductAvatarComponent implements OnInit {
+  readonly serverUrl = environment.server;
   data: any = [];
   selectedCategoryIndex: any = undefined;
   productList: any = [];
@@ -101,7 +103,9 @@ export class ProductAvatarComponent implements OnInit {
         message: 'Product Avatar Generated Successfully!',
         pendingMessage: 'Generating...',
         confirmText: 'Export',
-        imagePreview: 'https://d1735p3aqhycef.cloudfront.net/' + this.selectedAvatar.avatarImagePath,
+        imagePreview:
+          'https://d1735p3aqhycef.cloudfront.net/' +
+          this.selectedAvatar.avatarImagePath,
       })
       .afterClosed$.subscribe(() => {
         this.router.navigate([URL_HANDLER['PRODUCT_AVATAR_URL']]).then();

@@ -5,6 +5,7 @@ import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
 import { URL_HANDLER } from '../../../../shared/constants/api';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../assets/environments/environment';
 
 @Component({
   selector: 'app-product-any-shot',
@@ -12,6 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrl: './product-any-shot.component.scss',
 })
 export class ProductAnyShotComponent implements OnInit {
+  readonly SERVER_URL = environment.server;
   basicDrawerVisible = false;
   customMarks = [
     { value: 0, label: '1' },
@@ -25,32 +27,38 @@ export class ProductAnyShotComponent implements OnInit {
     {
       id: 1,
       image: 'assets/images/sample_product_anyshot.png',
-      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
-      name: 'clothes'
+      thumbnail:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/clothes_product_compress_image.jpg',
+      name: 'clothes',
     },
     {
       id: 2,
-      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_template_image.jpg',
-      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_product_compress_image.jpg',
-      name: 'shoes'
+      image:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_template_image.jpg',
+      thumbnail:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/shoes_product_compress_image.jpg',
+      name: 'shoes',
     },
     {
       id: 3,
-      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
-      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_product_compress_image.jpg',
-      name:'hat' 
+      image:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
+      thumbnail:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_product_compress_image.jpg',
+      name: 'hat',
     },
     {
       id: 4,
-      image: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
-      thumbnail: 'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/dress_product_compress_image.jpg',
-      name:'dress' 
-    }
-  ]
+      image:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/hat_template_image.jpg',
+      thumbnail:
+        'https://d1735p3aqhycef.cloudfront.net/aigc-web/public/product-anyfit/sample/dress_product_compress_image.jpg',
+      name: 'dress',
+    },
+  ];
 
   productImage: any = null;
   templateImage: any = null;
-
 
   constructor(
     private dashboardService: DashboardService,
@@ -82,7 +90,7 @@ export class ProductAnyShotComponent implements OnInit {
 
   onSelectedTemplate(data: any) {
     this.basicDrawerVisible = false;
-    this.templateImage = data.templateImageUrl;
+    this.templateImage = this.SERVER_URL + data.coverPath;
   }
 
   onFileSelected(file: File) {
@@ -96,20 +104,23 @@ export class ProductAnyShotComponent implements OnInit {
 
   onCreateNew() {
     this.productImage = null;
-    this.templateImage = null; 
+    this.templateImage = null;
   }
 
-  generate() {    
-    this.popupConfirmService.progress({
-      // title: "Generate AI Video",
-      imagePreview: this.templateImage,
-      size: 'lg',
-      pendingMessage: "Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.",
-      message: "Generate Completed! You can check and export",
-      confirmText: this.translateService.instant('export'),
-    }).afterClosed$.subscribe((res) => {
-      if (!res) return;
-      this.router.navigate([URL_HANDLER['PRODUCT_ANY_SHOT']]).then();
-    });
+  generate() {
+    this.popupConfirmService
+      .progress({
+        // title: "Generate AI Video",
+        imagePreview: this.templateImage,
+        size: 'lg',
+        pendingMessage:
+          'Your creation is brewing! Enjoy a coffee break while we finalize it. Video AI spinning magic, even when you leave the page.',
+        message: 'Generate Completed! You can check and export',
+        confirmText: this.translateService.instant('export'),
+      })
+      .afterClosed$.subscribe((res) => {
+        if (!res) return;
+        this.router.navigate([URL_HANDLER['PRODUCT_ANY_SHOT']]).then();
+      });
   }
 }

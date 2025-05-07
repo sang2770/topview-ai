@@ -33,8 +33,7 @@
                 }
                 <div (click)="selectAvatar(item)" *ngIf="item?.templateImageUrl"
                     [ngClass]="{'grid-item': true, 'active': this.selectedAvatar?.templateId === item.templateId}"><img
-                        [src]="'https://d1735p3aqhycef.cloudfront.net/' + item?.coverPath" alt="{{item?.templateName}}"
-                        loading="lazy">
+                        [src]="SERVER_URL + item?.coverPath" alt="{{item?.templateName}}" loading="lazy">
                 </div>
                 }
             </div>

@@ -1,16 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopupConfirmService } from '../../../../shared/components/popup-confirm/popup-confirm.service';
-import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
+import { environment } from '../../../../assets/environments/environment';
 import { ApiService } from '../../../../shared/services/api.service';
-import { DashboardService } from '../dashboard-layout/dashboard.service';
 
 @Component({
   selector: 'app-select-template',
   templateUrl: './select-template.component.html',
-  styleUrl: './select-template.component.scss'
+  styleUrl: './select-template.component.scss',
 })
 export class SelectTemplateComponent implements OnInit {
+  readonly SERVER_URL = environment.server;
   @Output() selectedTemplate: EventEmitter<any> = new EventEmitter<any>();
 
   categories: any = [];
@@ -23,11 +22,7 @@ export class SelectTemplateComponent implements OnInit {
   avatarListRender: any = [];
   totalColumn: any = 6;
 
-  constructor(
-    private router: Router,
-    private apiService: ApiService,
-  ) {
-  }
+  constructor(private router: Router, private apiService: ApiService) {}
   ngOnInit(): void {
     this.initData();
   }
@@ -35,7 +30,9 @@ export class SelectTemplateComponent implements OnInit {
   initData() {
     this.apiService.getTemplatesAnyShot().subscribe((res) => {
       this.categories = res as any[];
-      this.avatarList = this.categories.map((item: any) => item.dataList).flat();
+      this.avatarList = this.categories
+        .map((item: any) => item.dataList)
+        .flat();
       this.renderGallery();
     });
   }
@@ -43,7 +40,9 @@ export class SelectTemplateComponent implements OnInit {
   selectCategory(index?: any) {
     if (index === undefined) {
       this.selectedCategoryIndex = undefined;
-      this.avatarList = this.categories.map((item: any) => item.dataList).flat();
+      this.avatarList = this.categories
+        .map((item: any) => item.dataList)
+        .flat();
       return;
     }
     this.selectedCategoryIndex = index;
@@ -56,7 +55,7 @@ export class SelectTemplateComponent implements OnInit {
   }
 
   onCancel(): void {
-   this.selectedTemplate.emit(null); 
+    this.selectedTemplate.emit(null);
   }
 
   onConfirm(): void {
@@ -64,13 +63,13 @@ export class SelectTemplateComponent implements OnInit {
   }
 
   renderGallery() {
-    this.avatarListRender = Array.from({ length: this.totalColumn }).map(() => []);
+    this.avatarListRender = Array.from({ length: this.totalColumn }).map(
+      () => []
+    );
     for (let i = 0; i < this.avatarList.length; i++) {
       this.avatarListRender[i % this.totalColumn].push(this.avatarList[i]);
     }
-
   }
-
 
   //   xs (extra small)	0px	Điện thoại nhỏ
   // sm (small)	640px	Điện thoại lớn
@@ -88,8 +87,7 @@ export class SelectTemplateComponent implements OnInit {
       this.totalColumn = 4;
     } else if (width < 1280) {
       this.totalColumn = 5;
-    }
-    else {
+    } else {
       this.totalColumn = 6;
     }
     this.renderGallery();
