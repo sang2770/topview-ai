@@ -41,7 +41,16 @@ export class ProductAvatarComponent implements OnInit {
   initData() {
     this.apiService.getProductCategory().subscribe((res) => {
       this.data = res as any[];
-      this.productList = this.data.map((item: any) => item.products).flat();
+      this.productList = this.data
+        .map((item: any) =>
+          item.products.map((product: any) => {
+            product.avatarImagePath = this.apiService.enrichUrl(
+              product.avatarImagePath
+            );
+            return product;
+          })
+        )
+        .flat();
       this.selectedAvatar = this.productList[0];
       this.selectedAvatarIndex = 0;
       this.setPositionProductAvatar(this.selectedAvatar?.objectMaskImageInfo);

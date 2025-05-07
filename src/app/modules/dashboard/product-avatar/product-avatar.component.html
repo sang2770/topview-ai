@@ -50,8 +50,7 @@
                     @for (item of productList; track $index) {
                     <div [ngClass]="{'avatar-item': true, 'selected': selectedAvatarIndex === $index}"
                         (click)="selectAvatar($index)">
-                        <img [src]="'https://d1735p3aqhycef.cloudfront.net/' + item.avatarImagePath"
-                            alt="item.avatarName" loading="lazy">
+                        <img [src]="item.avatarImagePath" alt="item.avatarName" loading="lazy">
                         <!-- No badges for the first few -->
                         @if (item.showNewBadge) {
                         <span class="badge new-badge">New</span>
@@ -89,8 +88,7 @@
         <!-- Right Panel -->
         <section class="right-panel">
             <div class="preview-area">
-                <img [src]="serverUrl + selectedAvatar.avatarImagePath" alt="Selected Avatar Preview"
-                    class="preview-image">
+                <img [src]="selectedAvatar.avatarImagePath" alt="Selected Avatar Preview" class="preview-image">
                 <!-- Approximate position and size for the product placeholder -->
                 <div class="product-placeholder" [ngStyle]="{
                         'left': objectMaskImageInfo.x + '%',

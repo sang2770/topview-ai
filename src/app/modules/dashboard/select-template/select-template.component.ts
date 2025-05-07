@@ -31,7 +31,14 @@ export class SelectTemplateComponent implements OnInit {
     this.apiService.getTemplatesAnyShot().subscribe((res) => {
       this.categories = res as any[];
       this.avatarList = this.categories
-        .map((item: any) => item.dataList)
+        .map((item: any) => {
+          console.log(item.dataList);
+
+          return (item.dataList ?? []).map((product: any) => ({
+            ...product,
+            coverPath: this.apiService.enrichUrl(product.coverPath),
+          }));
+        })
         .flat();
       this.renderGallery();
     });
@@ -63,6 +70,8 @@ export class SelectTemplateComponent implements OnInit {
   }
 
   renderGallery() {
+    console.log(this.avatarList);
+
     this.avatarListRender = Array.from({ length: this.totalColumn }).map(
       () => []
     );

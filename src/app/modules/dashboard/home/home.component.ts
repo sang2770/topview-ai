@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ApiService } from '../../../../shared/services/api.service';
 
 type ScrollContainerType =
   | 'tools'
@@ -47,7 +48,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('templatesContainer') templatesContainer!: ElementRef;
   @ViewChild('productAvatarsContainer') productAvatarsContainer!: ElementRef;
   @ViewChild('videoAvatarsContainer') videoAvatarsContainer!: ElementRef;
-  @ViewChildren('videoEl') videoElements!: QueryList<ElementRef<HTMLVideoElement>>;
+  @ViewChildren('videoEl') videoElements!: QueryList<
+    ElementRef<HTMLVideoElement>
+  >;
   toolList = [
     {
       name: 'Materials/Links to Video',
@@ -72,8 +75,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       name: 'Product AnyShoot',
       description:
         'Fit any product anywhere, perfect for try-ons and product showcases',
-      video:
-        '/assets/videos/cover_video.mp4',
+      video: '/assets/videos/cover_video.mp4',
       link: ROUTER_UTILS.DASHBOARD.getProductAnyShot(),
       badge: 'Limited Free',
     },
@@ -103,169 +105,23 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // },
   ];
 
-  templateList = [
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/YGTZZuzJI8.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/tUztU66Bxh.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/2ZlsEM6OGL.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/mzQs6OzA2c.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/69j4fD2lMb.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/BBMBjEIhNT.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/J8cqyYP36X.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/HTeBecsxGP.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/ParQG1p0kY.webp',
-    },
-    {
-      title: '3C Digital Products',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/anyFit/7Ve33jak3a.webp',
-    },
-  ];
+  templateList = [];
 
-  productAvatarList = [
-    {
-      category: 'Jewelry',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/dD0VtI6Mpf.webp',
-    },
-    {
-      category: 'Jewelry',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/EaTjULErQh.webp',
-    },
-    {
-      category: 'Beauty & Personal Care',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/W15tKSOWBg.webp',
-    },
-    {
-      category: 'Beauty & Personal Care',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/FKKcvAXJzB.webp',
-    },
-    {
-      category: 'Beauty & Personal Care',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/LOS7rU2ieN.webp',
-    },
-    {
-      category: 'Beauty & Personal Care',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/mPai28y3f6.webp',
-    },
-    {
-      category: 'Clothing',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/D3SXalNdlr.webp',
-    },
-    {
-      category: 'Clothing',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/tUiyJrNAhz.webp',
-    },
-    {
-      category: 'Clothing',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/XcfqxpLzY9.webp',
-    },
-    {
-      category: 'Clothing',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/asset/dashboard/aiavatarManage/productAvatar/Y7CWHVY1sw.webp',
-    },
-  ];
+  productAvatarList = [];
 
-  videoAvatarTemplate = [
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/307a5107db9742b99ee2f004df2e31ce/ef4-2e7044604829.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/9952a9fdd1484afa868eb913c06d8df8/8a3-42cc41d85d71.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/9f36c8c20b944111b1953f6fc6b6bfc9/613-11f726248dc1.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/102ca06850e54ac583d95fd4fc486ae6/559-9f157b66c94d.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/3bef05cfcff54fdeb14f99e71bafda27/e96-51dcd5cbe5e3.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/ef8d8d86273741399c8261938d324a44/94b-118cc6514289.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/b4d62f41f8b44ba9a7378316c0fe00cc/055-f29aecda8eac.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/ab25ba064c584488a0e3b8dd3dd3ce8a/fa0-680b1b3e5a42.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/577176e06a1a4ed28227de6e76672297/eb1-985ebf0bbafc.webp',
-    },
-    {
-      title: 'Video Avatar Templates',
-      image:
-        'https://d1735p3aqhycef.cloudfront.net/aiavatar/public_model_video/d34311e2dce84c799a21772d2b3f3372/5c4-0a2cfad8245c.webp',
-    },
-  ];
+  videoAvatarTemplate = [];
   constructor(
     private router: Router,
     private dashboardService: DashboardService,
-    private sanitizer: DomSanitizer
-  ) {}
+    private sanitizer: DomSanitizer,
+    private apiService: ApiService
+  ) {
+    this.apiService.getHomeData().subscribe((res: any) => {
+      this.templateList = res.anyShoot;
+      this.productAvatarList = res.productAvatar;
+      this.videoAvatarTemplate = res.videoAvatar;
+    });
+  }
 
   ngOnInit(): void {
     this.dashboardService.title$.next(null);
@@ -284,11 +140,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.videoElements.forEach((videoRef, index) => {
       const video = videoRef.nativeElement;
       video.muted = true;
-      video.play().catch(err => {
+      video.play().catch((err) => {
         console.warn(`Autoplay failed for video ${index}:`, err);
       });
     });
-
   }
   @HostListener('window:resize')
   onResize(): void {

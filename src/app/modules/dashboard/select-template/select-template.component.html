@@ -31,9 +31,9 @@
                     <span>AI Creation</span>
                 </div>
                 }
-                <div (click)="selectAvatar(item)" *ngIf="item?.templateImageUrl"
+                <div (click)="selectAvatar(item)" *ngIf="item?.coverPath"
                     [ngClass]="{'grid-item': true, 'active': this.selectedAvatar?.templateId === item.templateId}"><img
-                        [src]="SERVER_URL + item?.coverPath" alt="{{item?.templateName}}" loading="lazy">
+                        [src]="item?.coverPath" alt="{{item?.templateName}}" loading="lazy">
                 </div>
                 }
             </div>

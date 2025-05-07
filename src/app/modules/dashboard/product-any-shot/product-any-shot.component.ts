@@ -90,7 +90,7 @@ export class ProductAnyShotComponent implements OnInit {
 
   onSelectedTemplate(data: any) {
     this.basicDrawerVisible = false;
-    this.templateImage = this.SERVER_URL + data.coverPath;
+    this.templateImage = data.coverPath;
   }
 
   onFileSelected(file: File) {

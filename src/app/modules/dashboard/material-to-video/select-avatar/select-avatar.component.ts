@@ -6,6 +6,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { ModalRef } from '../../../../../shared/components/modal';
+import { ApiService } from '../../../../../shared/services/api.service';
 
 @Component({
   selector: 'app-select-avatar',
@@ -19,7 +20,7 @@ export class SelectAvatarComponent implements AfterViewInit {
     ElementRef<HTMLVideoElement>
   >;
   modalRef!: ModalRef;
-  constructor() {
+  constructor(private apiService: ApiService) {
     this.loadData();
   }
 
@@ -80,21 +81,13 @@ export class SelectAvatarComponent implements AfterViewInit {
   }
 
   loadData() {
-    // read data.json
-    fetch('assets/data/avatar.json')
-      .then((response) => response.json())
-      .then((data) => {
-        this.avatarList = data.map((item: any) => ({
-          url: item.coverDefault.startsWith('http')
-            ? item.coverDefault
-            : `https://d1735p3aqhycef.cloudfront.net/${item.coverDefault}`,
-          videoUrl: item.previewVideoUrl,
-          name: item.aiavatarName,
-        }));
-      })
-      .catch((error) => {
-        console.error('Error loading avatar.json:', error);
-      });
+    this.apiService.getAvatarList().subscribe((res) => {
+      this.avatarList = (res as any[]).map((item: any) => ({
+        url: this.apiService.enrichUrl(item.coverDefault),
+        videoUrl: item.previewVideoUrl,
+        name: item.aiavatarName,
+      }));
+    });
   }
 
   selectAvatar(index: number | null) {

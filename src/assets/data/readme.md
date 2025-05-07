@@ -1,0 +1,15 @@
+- Material to Video
+  - file: avatar.json
+  - Ảnh: coverDefault
+  - Video: previewVideoUrl,
+  - Tên: aiavatarName
+- Product Avatar
+  - file: product-category.json
+  - Ảnh: avatarImagePath
+  - Hiển thị từ new: showNewBadge
+  - Hiển tự icon vương miện: showNewBadge
+- Product Template:
+  - file: avatar-category.json
+  - Ảnh: coverPath
+- Home page
+  - file: home.json
