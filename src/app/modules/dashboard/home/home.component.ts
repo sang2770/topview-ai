@@ -105,11 +105,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // },
   ];
 
-  templateList = [];
+  templateList: any[] = [];
 
-  productAvatarList = [];
+  productAvatarList: any[] = [];
 
-  videoAvatarTemplate = [];
+  videoAvatarTemplate: any[] = [];
   constructor(
     private router: Router,
     private dashboardService: DashboardService,

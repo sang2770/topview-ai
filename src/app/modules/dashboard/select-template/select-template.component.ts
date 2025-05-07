@@ -29,16 +29,19 @@ export class SelectTemplateComponent implements OnInit {
 
   initData() {
     this.apiService.getTemplatesAnyShot().subscribe((res) => {
-      this.categories = res as any[];
-      this.avatarList = this.categories
-        .map((item: any) => {
-          console.log(item.dataList);
-
-          return (item.dataList ?? []).map((product: any) => ({
+      this.categories = (res as any[]).map((item: any) => {
+        return {
+          ...item,
+          dataList: item.dataList?.map((product: any) => ({
             ...product,
             coverPath: this.apiService.enrichUrl(product.coverPath),
-          }));
-        })
+          })),
+        };
+      });
+      console.log(this.categories);
+
+      this.avatarList = this.categories
+        .map((item: any) => item.dataList)
         .flat();
       this.renderGallery();
     });
@@ -46,10 +49,11 @@ export class SelectTemplateComponent implements OnInit {
 
   selectCategory(index?: any) {
     if (index === undefined) {
-      this.selectedCategoryIndex = undefined;
+      this.selectedCategoryIndex = null;
       this.avatarList = this.categories
         .map((item: any) => item.dataList)
         .flat();
+      this.renderGallery();
       return;
     }
     this.selectedCategoryIndex = index;

@@ -1,6 +1,7 @@
 <div class="select-container">
     <div class="filter-tags">
-        <button [ngClass]="{'tag-btn': true, 'active': selectedCategoryIndex === null}">All</button>
+        <button [ngClass]="{'tag-btn': true, 'active': selectedCategoryIndex === null}"
+            (click)="selectCategory()">All</button>
         @for (item of categories; track $index) {
         <button [ngClass]="{'tag-btn': true, 'active': selectedCategoryIndex === $index}"
             (click)="selectCategory($index)">{{item.categoryName}}</button>
