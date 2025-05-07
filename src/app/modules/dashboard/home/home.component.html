@@ -52,7 +52,10 @@
                     @for (tool of toolList; track $index) {
                     <div class="home-tool pointer" (click)="redirectToTool(tool.link)">
                         @if (tool.video){
-                        <video [src]="tool.video" autoplay loop muted></video>
+                            <video #videoEl autoplay loop muted playsinline>
+                                <source [src]="byPassUrl(tool.video)" type="video/mp4">
+                                Your browser does not support the video tag.
+                              </video>
                         } @else {
                         <img [src]="tool.image" [alt]="tool.name">
                         }

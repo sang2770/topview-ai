@@ -5,10 +5,13 @@ import {
   ViewChild,
   AfterViewInit,
   HostListener,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ROUTER_UTILS } from '../../../../shared/constants/router-utils';
 import { DashboardService } from '../dashboard-layout/dashboard.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 type ScrollContainerType =
   | 'tools'
@@ -44,7 +47,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('templatesContainer') templatesContainer!: ElementRef;
   @ViewChild('productAvatarsContainer') productAvatarsContainer!: ElementRef;
   @ViewChild('videoAvatarsContainer') videoAvatarsContainer!: ElementRef;
-
+  @ViewChildren('videoEl') videoElements!: QueryList<ElementRef<HTMLVideoElement>>;
   toolList = [
     {
       name: 'Materials/Links to Video',
@@ -260,7 +263,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ];
   constructor(
     private router: Router,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -276,6 +280,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.updateButtonVisibility(type as ScrollContainerType)
       );
     });
+
+    this.videoElements.forEach((videoRef, index) => {
+      const video = videoRef.nativeElement;
+      video.muted = true;
+      video.play().catch(err => {
+        console.warn(`Autoplay failed for video ${index}:`, err);
+      });
+    });
+
   }
   @HostListener('window:resize')
   onResize(): void {
@@ -361,5 +374,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   redirectToTool(link: string): void {
     this.router.navigate([link]).then();
+  }
+
+  byPassUrl(url: string): any {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
