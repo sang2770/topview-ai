@@ -83,8 +83,8 @@ export class AiVideoComponent implements OnInit {
       message: "Generate Completed! You can check and export",
       confirmText: this.translateService.instant('export'),
     }).afterClosed$.subscribe((res) => {
-      if (!res) return;
-      this.router.navigate([URL_HANDLER['AI_VIDEO']]).then();
+      if (!res || !URL_HANDLER['AI_VIDEO']) return;
+      window.location.href = URL_HANDLER['AI_VIDEO'];
     });
   }
 }

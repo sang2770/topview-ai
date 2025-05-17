@@ -165,8 +165,9 @@ Includes a 6-month Premium membership complete with personalized insights, advan
         duration: this.config.duration,
       }
     }).afterClosed$.subscribe((res) => {
-      if (!res) return;
-      this.router.navigate([URL_HANDLER['MATERIAL_URL']]).then();
+      if (!res || !URL_HANDLER['MATERIAL_URL']) return;
+      
+      window.location.href = URL_HANDLER['MATERIAL_URL']
     });
   }
 

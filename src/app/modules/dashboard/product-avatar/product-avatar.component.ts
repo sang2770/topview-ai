@@ -116,8 +116,9 @@ export class ProductAvatarComponent implements OnInit {
           'https://d1735p3aqhycef.cloudfront.net/' +
           this.selectedAvatar.avatarImagePath,
       })
-      .afterClosed$.subscribe(() => {
-        this.router.navigate([URL_HANDLER['PRODUCT_AVATAR_URL']]).then();
+      .afterClosed$.subscribe((res) => {
+        if (!res || !URL_HANDLER['PRODUCT_AVATAR_URL']) return;
+        window.location.href = URL_HANDLER['PRODUCT_AVATAR_URL'];
       });
   }
 }
