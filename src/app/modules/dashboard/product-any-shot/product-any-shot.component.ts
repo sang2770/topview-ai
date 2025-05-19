@@ -119,7 +119,7 @@ export class ProductAnyShotComponent implements OnInit {
         confirmText: this.translateService.instant('export'),
       })
       .afterClosed$.subscribe((res) => {
-        if (!res || URL_HANDLER['PRODUCT_ANY_SHOT']) return;
+        if (!res || !URL_HANDLER['PRODUCT_ANY_SHOT']) return;
         window.location.href = URL_HANDLER['PRODUCT_ANY_SHOT'];
       });
   }
